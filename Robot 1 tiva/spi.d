@@ -1,0 +1,13 @@
+.\spi.o: spi.c
+.\spi.o: spi.h
+.\spi.o: MemMap.h
+.\spi.o: E:\keil\ARM\ARMCC\bin\..\include\stdint.h
+.\spi.o: E:\keil\ARM\ARMCC\bin\..\include\stdbool.h
+.\spi.o: E:\Keil\TivaWare_C_Series-2.1.2.111\inc/hw_memmap.h
+.\spi.o: E:\Keil\TivaWare_C_Series-2.1.2.111\driverlib/gpio.h
+.\spi.o: E:\Keil\TivaWare_C_Series-2.1.2.111\driverlib/pin_map.h
+.\spi.o: E:\Keil\TivaWare_C_Series-2.1.2.111\driverlib/ssi.h
+.\spi.o: E:\Keil\TivaWare_C_Series-2.1.2.111\driverlib/sysctl.h
+.\spi.o: E:\Keil\TivaWare_C_Series-2.1.2.111\driverlib/uart.h
+.\spi.o: E:\Keil\TivaWare_C_Series-2.1.2.111\utils/uartstdio.h
+.\spi.o: E:\keil\ARM\ARMCC\bin\..\include\stdarg.h

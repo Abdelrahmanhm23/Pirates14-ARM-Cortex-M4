@@ -1,0 +1,80 @@
+Dependencies for Project 'trial pwm functions', Target 'Target 1': (DO NOT MODIFY !)
+F (.\MemMap.h)(0x58FABA4B)()
+F (.\MotorInit.h)(0x58FD4768)()
+F (.\main.c)(0x590A1DF3)(-c --cpu Cortex-M4.fp -D__EVAL -g -W -O0 --apcs=interwork -IE:\Keil\TivaWare_C_Series-2.1.2.111\inc -IE:\Keil\TivaWare_C_Series-2.1.2.111-I E:\keil\ARM\RV31\INC-I E:\keil\ARM\CMSIS\Include-I E:\keil\ARM\Inc\TI\TM4C123-DTM4C123GH6PM-o .\main.o --omf_browse .\main.crf --depend .\main.d)
+I (MemMap.h)(0x58FABA4B)
+I (E:\keil\ARM\ARMCC\include\stdint.h)(0x51C819B4)
+I (MotorInit.h)(0x58FD4768)
+I (PID.h)(0x58F739CD)
+I (encoders.h)(0x5901CDC5)
+I (E:\keil\ARM\ARMCC\include\stdio.h)(0x51C819B4)
+I (E:\keil\ARM\ARMCC\include\math.h)(0x58B41097)
+I (E:\keil\ARM\ARMCC\include\string.h)(0x51C819B4)
+I (UART.h)(0x58E92E09)
+I (Motion.h)(0x59026FA2)
+I (spi.h)(0x58FF3A5B)
+I (E:\keil\ARM\ARMCC\include\stdbool.h)(0x51C819B4)
+I (E:\Keil\TivaWare_C_Series-2.1.2.111\inc\hw_memmap.h)(0x58435826)
+I (E:\Keil\TivaWare_C_Series-2.1.2.111\driverlib\gpio.h)(0x58435814)
+I (E:\Keil\TivaWare_C_Series-2.1.2.111\driverlib\pin_map.h)(0x58435814)
+I (E:\Keil\TivaWare_C_Series-2.1.2.111\driverlib\ssi.h)(0x58435814)
+I (E:\Keil\TivaWare_C_Series-2.1.2.111\driverlib\sysctl.h)(0x58435814)
+I (E:\Keil\TivaWare_C_Series-2.1.2.111\driverlib\uart.h)(0x58435814)
+I (E:\Keil\TivaWare_C_Series-2.1.2.111\utils\uartstdio.h)(0x58435840)
+I (E:\keil\ARM\ARMCC\include\stdarg.h)(0x51C819B4)
+F (.\MotorInit.c)(0x5909CF95)(-c --cpu Cortex-M4.fp -D__EVAL -g -W -O0 --apcs=interwork -IE:\Keil\TivaWare_C_Series-2.1.2.111\inc -IE:\Keil\TivaWare_C_Series-2.1.2.111-I E:\keil\ARM\RV31\INC-I E:\keil\ARM\CMSIS\Include-I E:\keil\ARM\Inc\TI\TM4C123-DTM4C123GH6PM-o .\motorinit.o --omf_browse .\motorinit.crf --depend .\motorinit.d)
+I (E:\keil\ARM\ARMCC\include\stdint.h)(0x51C819B4)
+I (MemMap.h)(0x58FABA4B)
+I (MotorInit.h)(0x58FD4768)
+F (.\encoders.c)(0x5904C506)(-c --cpu Cortex-M4.fp -D__EVAL -g -W -O0 --apcs=interwork -IE:\Keil\TivaWare_C_Series-2.1.2.111\inc -IE:\Keil\TivaWare_C_Series-2.1.2.111-I E:\keil\ARM\RV31\INC-I E:\keil\ARM\CMSIS\Include-I E:\keil\ARM\Inc\TI\TM4C123-DTM4C123GH6PM-o .\encoders.o --omf_browse .\encoders.crf --depend .\encoders.d)
+I (encoders.h)(0x5901CDC5)
+I (E:\keil\ARM\ARMCC\include\stdio.h)(0x51C819B4)
+I (E:\keil\ARM\ARMCC\include\math.h)(0x58B41097)
+I (E:\keil\ARM\ARMCC\include\string.h)(0x51C819B4)
+I (MemMap.h)(0x58FABA4B)
+I (E:\keil\ARM\ARMCC\include\stdint.h)(0x51C819B4)
+I (MotorInit.h)(0x58FD4768)
+F (.\PID.c)(0x5904C8CC)(-c --cpu Cortex-M4.fp -D__EVAL -g -W -O0 --apcs=interwork -IE:\Keil\TivaWare_C_Series-2.1.2.111\inc -IE:\Keil\TivaWare_C_Series-2.1.2.111-I E:\keil\ARM\RV31\INC-I E:\keil\ARM\CMSIS\Include-I E:\keil\ARM\Inc\TI\TM4C123-DTM4C123GH6PM-o .\pid.o --omf_browse .\pid.crf --depend .\pid.d)
+I (PID.h)(0x58F739CD)
+I (MemMap.h)(0x58FABA4B)
+I (E:\keil\ARM\ARMCC\include\stdint.h)(0x51C819B4)
+I (MotorInit.h)(0x58FD4768)
+I (encoders.h)(0x5901CDC5)
+I (E:\keil\ARM\ARMCC\include\stdio.h)(0x51C819B4)
+I (E:\keil\ARM\ARMCC\include\math.h)(0x58B41097)
+I (E:\keil\ARM\ARMCC\include\string.h)(0x51C819B4)
+F (.\UART.c)(0x58EA71A2)(-c --cpu Cortex-M4.fp -D__EVAL -g -W -O0 --apcs=interwork -IE:\Keil\TivaWare_C_Series-2.1.2.111\inc -IE:\Keil\TivaWare_C_Series-2.1.2.111-I E:\keil\ARM\RV31\INC-I E:\keil\ARM\CMSIS\Include-I E:\keil\ARM\Inc\TI\TM4C123-DTM4C123GH6PM-o .\uart.o --omf_browse .\uart.crf --depend .\uart.d)
+I (UART.h)(0x58E92E09)
+I (MemMap.h)(0x58FABA4B)
+I (E:\keil\ARM\ARMCC\include\stdint.h)(0x51C819B4)
+I (MotorInit.h)(0x58FD4768)
+F (.\startup_TM4C123.s)(0x58FA5460)(--cpu Cortex-M4.fp --pd "__EVAL SETA 1" -g --apcs=interwork -I E:\keil\ARM\RV31\INC-I E:\keil\ARM\CMSIS\Include-I E:\keil\ARM\Inc\TI\TM4C123--list .\startup_tm4c123.lst --xref -o .\startup_tm4c123.o --depend .\startup_tm4c123.d)
+F (.\Motion.c)(0x590A1ECD)(-c --cpu Cortex-M4.fp -D__EVAL -g -W -O0 --apcs=interwork -IE:\Keil\TivaWare_C_Series-2.1.2.111\inc -IE:\Keil\TivaWare_C_Series-2.1.2.111-I E:\keil\ARM\RV31\INC-I E:\keil\ARM\CMSIS\Include-I E:\keil\ARM\Inc\TI\TM4C123-DTM4C123GH6PM-o .\motion.o --omf_browse .\motion.crf --depend .\motion.d)
+I (Motion.h)(0x59026FA2)
+I (MemMap.h)(0x58FABA4B)
+I (E:\keil\ARM\ARMCC\include\stdint.h)(0x51C819B4)
+I (MotorInit.h)(0x58FD4768)
+F (.\ssi.c)(0x58F378E1)(-c --cpu Cortex-M4.fp -D__EVAL -g -W -O0 --apcs=interwork -IE:\Keil\TivaWare_C_Series-2.1.2.111\inc -IE:\Keil\TivaWare_C_Series-2.1.2.111-I E:\keil\ARM\RV31\INC-I E:\keil\ARM\CMSIS\Include-I E:\keil\ARM\Inc\TI\TM4C123-DTM4C123GH6PM-o .\ssi.o --omf_browse .\ssi.crf --depend .\ssi.d)
+I (E:\keil\ARM\ARMCC\include\stdbool.h)(0x51C819B4)
+I (E:\keil\ARM\ARMCC\include\stdint.h)(0x51C819B4)
+I (E:\Keil\TivaWare_C_Series-2.1.2.111\inc\hw_ints.h)(0x58435826)
+I (E:\Keil\TivaWare_C_Series-2.1.2.111\inc\hw_memmap.h)(0x58435826)
+I (E:\Keil\TivaWare_C_Series-2.1.2.111\inc\hw_ssi.h)(0x58435826)
+I (E:\Keil\TivaWare_C_Series-2.1.2.111\inc\hw_sysctl.h)(0x58435826)
+I (E:\Keil\TivaWare_C_Series-2.1.2.111\inc\hw_types.h)(0x58435826)
+I (E:\Keil\TivaWare_C_Series-2.1.2.111\driverlib\debug.h)(0x58435814)
+I (E:\Keil\TivaWare_C_Series-2.1.2.111\driverlib\interrupt.h)(0x58435814)
+I (E:\Keil\TivaWare_C_Series-2.1.2.111\driverlib\ssi.h)(0x58435814)
+F (.\spi.c)(0x590A1A1B)(-c --cpu Cortex-M4.fp -D__EVAL -g -W -O0 --apcs=interwork -IE:\Keil\TivaWare_C_Series-2.1.2.111\inc -IE:\Keil\TivaWare_C_Series-2.1.2.111-I E:\keil\ARM\RV31\INC-I E:\keil\ARM\CMSIS\Include-I E:\keil\ARM\Inc\TI\TM4C123-DTM4C123GH6PM-o .\spi.o --omf_browse .\spi.crf --depend .\spi.d)
+I (spi.h)(0x58FF3A5B)
+I (MemMap.h)(0x58FABA4B)
+I (E:\keil\ARM\ARMCC\include\stdint.h)(0x51C819B4)
+I (E:\keil\ARM\ARMCC\include\stdbool.h)(0x51C819B4)
+I (E:\Keil\TivaWare_C_Series-2.1.2.111\inc\hw_memmap.h)(0x58435826)
+I (E:\Keil\TivaWare_C_Series-2.1.2.111\driverlib\gpio.h)(0x58435814)
+I (E:\Keil\TivaWare_C_Series-2.1.2.111\driverlib\pin_map.h)(0x58435814)
+I (E:\Keil\TivaWare_C_Series-2.1.2.111\driverlib\ssi.h)(0x58435814)
+I (E:\Keil\TivaWare_C_Series-2.1.2.111\driverlib\sysctl.h)(0x58435814)
+I (E:\Keil\TivaWare_C_Series-2.1.2.111\driverlib\uart.h)(0x58435814)
+I (E:\Keil\TivaWare_C_Series-2.1.2.111\utils\uartstdio.h)(0x58435840)
+I (E:\keil\ARM\ARMCC\include\stdarg.h)(0x51C819B4)
