@@ -1,0 +1,26 @@
+Dependencies for Project 'spi tiva slave', Target 'Target 1': (DO NOT MODIFY !)
+F (.\startup_TM4C123.s)(0x532C4792)(--cpu Cortex-M4.fp --pd "__EVAL SETA 1" -g --apcs=interwork -I E:\keil\ARM\RV31\INC-I E:\keil\ARM\CMSIS\Include-I E:\keil\ARM\Inc\TI\TM4C123--list .\startup_tm4c123.lst --xref -o .\startup_tm4c123.o --depend .\startup_tm4c123.d)
+F (.\spi slave.c)(0x58F61F69)(-c --cpu Cortex-M4.fp -D__EVAL -g -O0 --apcs=interwork -IE:\Keil\TivaWare_C_Series-2.1.2.111-I E:\keil\ARM\RV31\INC-I E:\keil\ARM\CMSIS\Include-I E:\keil\ARM\Inc\TI\TM4C123-DTM4C1231H6PM-o ".\spi slave.o" --omf_browse ".\spi slave.crf" --depend ".\spi slave.d")
+I (MemMap.h)(0x5895CEFC)
+I (E:\keil\ARM\ARMCC\include\stdint.h)(0x51C819B4)
+I (E:\keil\ARM\ARMCC\include\stdbool.h)(0x51C819B4)
+I (E:\Keil\TivaWare_C_Series-2.1.2.111\inc\hw_memmap.h)(0x58435826)
+I (E:\Keil\TivaWare_C_Series-2.1.2.111\driverlib\gpio.h)(0x58435814)
+I (E:\Keil\TivaWare_C_Series-2.1.2.111\driverlib\pin_map.h)(0x58435814)
+I (E:\Keil\TivaWare_C_Series-2.1.2.111\driverlib\ssi.h)(0x58435814)
+I (E:\Keil\TivaWare_C_Series-2.1.2.111\driverlib\sysctl.h)(0x58435814)
+I (E:\Keil\TivaWare_C_Series-2.1.2.111\driverlib\uart.h)(0x58435814)
+I (E:\Keil\TivaWare_C_Series-2.1.2.111\utils\uartstdio.h)(0x58435840)
+I (E:\keil\ARM\ARMCC\include\stdarg.h)(0x51C819B4)
+F (.\MemMap.h)(0x5895CEFC)()
+F (.\ssi.c)(0x58F378E1)(-c --cpu Cortex-M4.fp -D__EVAL -g -O0 --apcs=interwork -IE:\Keil\TivaWare_C_Series-2.1.2.111-I E:\keil\ARM\RV31\INC-I E:\keil\ARM\CMSIS\Include-I E:\keil\ARM\Inc\TI\TM4C123-DTM4C1231H6PM-o .\ssi.o --omf_browse .\ssi.crf --depend .\ssi.d)
+I (E:\keil\ARM\ARMCC\include\stdbool.h)(0x51C819B4)
+I (E:\keil\ARM\ARMCC\include\stdint.h)(0x51C819B4)
+I (E:\Keil\TivaWare_C_Series-2.1.2.111\inc\hw_ints.h)(0x58435826)
+I (E:\Keil\TivaWare_C_Series-2.1.2.111\inc\hw_memmap.h)(0x58435826)
+I (E:\Keil\TivaWare_C_Series-2.1.2.111\inc\hw_ssi.h)(0x58435826)
+I (E:\Keil\TivaWare_C_Series-2.1.2.111\inc\hw_sysctl.h)(0x58435826)
+I (E:\Keil\TivaWare_C_Series-2.1.2.111\inc\hw_types.h)(0x58435826)
+I (E:\Keil\TivaWare_C_Series-2.1.2.111\driverlib\debug.h)(0x58435814)
+I (E:\Keil\TivaWare_C_Series-2.1.2.111\driverlib\interrupt.h)(0x58435814)
+I (E:\Keil\TivaWare_C_Series-2.1.2.111\driverlib\ssi.h)(0x58435814)
