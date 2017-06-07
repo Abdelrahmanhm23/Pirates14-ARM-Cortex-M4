@@ -30,5 +30,6 @@ void PWM();
 void analogWrite(int pin,int speed);
 void digitalWrite(uint32_t pin, char dir);
 void MotorStop(int pin);
+void init_adc();
 
 #endif /* MOTORINIT_H_*/
