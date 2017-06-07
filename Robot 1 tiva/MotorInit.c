@@ -227,6 +227,36 @@ void PWM()
 }
 
 
+
+// ADC Initilaitation 
+void init_adc(void)
+ {
+  /*  
+      AIN7  AIN6  AIN1  AIN0
+      PD0   PD1   PE2   PE3
+  */
+ RCGCADC |= 0x1;                //adc0 Module clock clock
+ ADCACTSS_ADC0 &=~0x02 ;        // disable SS1 during configartion
+ ADCSSPRI_ADC0 |= 0x3201;       // Set the highest piriority for SS1 (the highest pirority 0x0)
+ ADCEMUX_ADC0 &= ~0x00F0;       // software trigger for sequencer 1
+ ADCSSMUX1_ADC0 &= ~0xFFFF;     // mask register bits
+ ADCSSMUX1_ADC0 += 0;
+/* 
+        if  PE3 - (AIN0) ==>>  (HEX(0x0000)) (DEC(0)) 
+   else if  PE2 - (AIN1) ==>>  (HEX(0x0001)) (DEC(1))
+   else if  PD0 - (AIN6) ==>>  (HEX(0x0006)) (DEC(6))
+   else if  PD1 - (AIN7) ==>>  (HEX(0x0007)) (DEC(7)) 
+*/    
+ ADCSSCTL1_ADC0 |= 0x0000;      // (0x6) for ending squence and enable interrupt , (0x4) enable interrupt only 
+ ADCACTSS_ADC0  |=0x02 ;        // Enable SS1 
+ 
+ }
+
+
+
+
+
+
 void analogWrite(int pin,int speed)
 {
 	if( pin == Motor1)         // single drivers
