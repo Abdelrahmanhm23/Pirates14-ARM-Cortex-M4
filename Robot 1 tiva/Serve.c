@@ -6,12 +6,12 @@ unsigned long I=0;
 ////////////RELAYS ACTIVE LOW ///////////////////
 
 
+
 void GPIOD_Handler(void)     ///////////// serve sensor 
 {
-	I++;
+	
 if(GPIORIS_PORTD&0x01)
 { GPIOICR_PORTD=0x01;   // acknowledge pin 0 clear for next interrupt 
-	//I++;
 	if(State==1 || State==3 )
 	{
 		I++;
@@ -42,6 +42,4 @@ digitalWrite(ServeMotorCW,LOW);   // active LOW-----
 digitalWrite(ServeMotorCCW,LOW);
 	}
 }
-
-
 

@@ -37,12 +37,13 @@ int main()
 		
 	while(1)
 	{
-		
+		//GPIODATA_PORTD |= 0x40;
+		//digitalWrite(ServeMotorCCW,LOW);
 		//	digitalWrite(ServePiston,1);
 	//	digitalWrite(ServeMotorCCW,1);
 	//digitalWrite(ServeMotorCW,1);
 	//	Serve();
-		
+	//	delayUs(200000);
 		//if(State==2)
 		//{
 		//	while(1);

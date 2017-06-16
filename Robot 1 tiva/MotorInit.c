@@ -30,13 +30,14 @@ void PWMA_Init()
 	GPIOAFSEL_PORTA &= ~0x3C;
 	GPIOPCTL_PORTA  &= ~0x00FFFF00;     //  configure 2,3,4,5 as GPIO
 	GPIODIR_PORTA   &= ~ 0x3C;    // set direction of 2,3,4 as inputs
+	GPIOPUR_PORTA   |= 0x3C;      // pullup registers
 	GPIODEN_PORTA   |= 0x3C;      // digital enable for pins 2,3,4,5
 	GPIOIS_PORTA    &= ~0x3C;     // 2,3,4,5 are edge senstive set to 1 for level
   GPIOIBE_PORTA   &= ~0x3C;    //  2,3,4,5 is not both edges
   GPIOEV_PORTA     |= 0x3C;     // 2,3,4,5 are rising edges
 	GPIOICR_PORTA    = 0x3C;     // clear flags of 2,3,4,5
 	GPIOIM_PORTA    |= 0x3C;     // arm interrupts for pins 2,3,4,5
-	PRI4 = (PRI0&0xFFFFFF00)|0x000000E0 ; // priority 2 
+	PRI0 = (PRI0&0xFFFFFF00)|0x000000A0 ; // priority 5 
 	EN0  = 1<<0;               // enable interrupts 16
 	
 	///////////////////////////////////////////////////////////////////
@@ -155,7 +156,7 @@ void PWMD_Init()      // 0 input 1 analog  2,3,6,7 output
   GPIOEV_PORTD     |= 0x01;     // 0 is rising edges
 	GPIOICR_PORTD    = 0x01;     // clear flags of 0
 	GPIOIM_PORTD    |= 0x01;     // arm interrupts for pins 0
-	PRI4 = (PRI0&0xFFFFFF00)|0xE0000000 ; // priority 2 
+	PRI0 = (PRI0&0x00FFFFFF)|0xF0000000 ; // priority 7 
 	EN0  = 1<<3;               // enable interrupts 19
 
 	
@@ -205,7 +206,7 @@ void PWME_Init()
   GPIOEV_PORTB     |= 0xC0;     // 0 are rising edges
 	GPIOICR_PORTB    = 0xC0;     // clear flags of 0
 	GPIOIM_PORTB    |= 0xC0;     // arm interrupts for pins 0
-	PRI4 = (PRI0&0xFFFFFF00)|0x0000E000 ; // priority 2 
+	PRI0 = (PRI0&0xFFFF00FF)|0x0000A000 ; // priority 5
 	EN0  = 1<<1;               // enable interrupts 16
 }
 
