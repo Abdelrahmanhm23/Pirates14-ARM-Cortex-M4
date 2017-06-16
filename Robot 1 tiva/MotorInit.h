@@ -41,6 +41,7 @@ void digitalWrite(uint32_t pin, char dir);
 void MotorStop(int pin);
 void init_adc_3pins();
 void init_adc_8pins();
+void init_adc_2pins();
 void delayUs(int n);
 
 #endif /* MOTORINIT_H_*/

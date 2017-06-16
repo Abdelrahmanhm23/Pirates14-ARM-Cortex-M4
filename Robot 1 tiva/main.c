@@ -11,7 +11,7 @@
 //double y = 0.00125 ;
  int i=0;
 int a=0;
-int y[8];
+int y[8]={208,180,150,120,90,60,30,10};
 //unsigned long x = 0 ;
 
 void Delay1ms(unsigned long msec);
@@ -34,9 +34,14 @@ int main()
 
 
 	TIVA1();
-		
+	
 	while(1)
 	{
+		ReadData();
+	//	for(a=0;a<=8;a++)
+	//{
+	//i=	map(y[a] , 0 , 255 , 3190 , 0);
+	//}
 		//GPIODATA_PORTD |= 0x40;
 		//digitalWrite(ServeMotorCCW,LOW);
 		//	digitalWrite(ServePiston,1);
