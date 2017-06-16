@@ -61,10 +61,10 @@ void line (int error)
 {
 if ((ls1==1) && (ls2==0) && (ls3==0) && (ls4==0) && (ls5==0) && (ls6==0) && (ls7==0) && (ls8==0))
 {
-     analogWrite(Motor5,690);     //255
-     analogWrite(Motor6,63);     //255
-     analogWrite(Motor7,2815);      //20
-     analogWrite(Motor8,3065);      //20
+     analogWrite(Motor5,690);     //200
+     analogWrite(Motor6,63);     //250
+     analogWrite(Motor7,2815);     //60 
+     analogWrite(Motor8,3065);      //30
      digitalWrite(Motor5,LOW); 
      digitalWrite(Motor6,LOW); 
      digitalWrite(Motor7,HIGH);
@@ -75,8 +75,8 @@ if ((ls1==1) && (ls2==1) && (ls3==0) && (ls4==0) && (ls5==0) && (ls6==0) && (ls7
 {
       analogWrite(Motor5,690); 
      analogWrite(Motor6,63);   
-     analogWrite(Motor7,2440);  
-     analogWrite(Motor8,2815);  
+     analogWrite(Motor7,2440);     //60
+     analogWrite(Motor8,2815);     //30
      digitalWrite(Motor5,LOW); 
      digitalWrite(Motor6,LOW); 
      digitalWrite(Motor7,HIGH);
@@ -87,8 +87,8 @@ if ((ls1==0) && (ls2==1) && (ls3==0) && (ls4==0) && (ls5==0) && (ls6==0) && (ls7
 {
       analogWrite(Motor5,690); 
      analogWrite(Motor6,63);   
-     analogWrite(Motor7,2065);  
-     analogWrite(Motor8,2440);  
+     analogWrite(Motor7,2065);    //90
+     analogWrite(Motor8,2440);     //60
      digitalWrite(Motor5,LOW); 
      digitalWrite(Motor6,LOW); 
      digitalWrite(Motor7,HIGH);
@@ -100,8 +100,8 @@ if ((ls1==0) && (ls2==1) && (ls3==1) && (ls4==0) && (ls5==0) && (ls6==0) && (ls7
 {
       analogWrite(Motor5,690); 
      analogWrite(Motor6,63);   
-     analogWrite(Motor7,1689);  
-     analogWrite(Motor8,2065);  
+     analogWrite(Motor7,1689);    //120
+     analogWrite(Motor8,2065);    //90
      digitalWrite(Motor5,LOW); 
      digitalWrite(Motor6,LOW); 
      digitalWrite(Motor7,HIGH);
@@ -113,8 +113,8 @@ if ((ls1==0) && (ls2==0) && (ls3==1) && (ls4==0) && (ls5==0) && (ls6==0) && (ls7
 {
       analogWrite(Motor5,690); 
      analogWrite(Motor6,63);   
-     analogWrite(Motor7,1314);  
-     analogWrite(Motor8,1089);  
+     analogWrite(Motor7,1314);     //150
+     analogWrite(Motor8,1089);     //120
      digitalWrite(Motor5,LOW); 
      digitalWrite(Motor6,LOW); 
      digitalWrite(Motor7,HIGH);
@@ -126,8 +126,8 @@ if ((ls1==0) && (ls2==0) && (ls3==1) && (ls4==1) && (ls5==0) && (ls6==0) && (ls7
 {
       analogWrite(Motor5,690); 
      analogWrite(Motor6,63);   
-     analogWrite(Motor7,939);  
-     analogWrite(Motor8,1314);  
+     analogWrite(Motor7,939);     //180
+     analogWrite(Motor8,1314);    //150
      digitalWrite(Motor5,LOW); 
      digitalWrite(Motor6,LOW); 
      digitalWrite(Motor7,HIGH);
@@ -138,8 +138,8 @@ if ((ls1==0) && (ls2==0) && (ls3==0) && (ls4==1) && (ls5==0) && (ls6==0) && (ls7
 {
       analogWrite(Motor5,690); 
      analogWrite(Motor6,63);   
-     analogWrite(Motor7,563);  
-     analogWrite(Motor8,939);  
+     analogWrite(Motor7,563);    //210
+     analogWrite(Motor8,939);    //180
      digitalWrite(Motor5,LOW); 
      digitalWrite(Motor6,LOW); 
      digitalWrite(Motor7,HIGH);
@@ -155,10 +155,10 @@ if ((ls1==0) && (ls2==0) && (ls3==0) && (ls4==1) && (ls5==0) && (ls6==0) && (ls7
     digitalWrite(Motor6,LOW);
     digitalWrite(Motor7,HIGH);
     digitalWrite(Motor8,HIGH);*/
-      analogWrite(Motor5,690); 
-     analogWrite(Motor6,63);   
-     analogWrite(Motor7,188);  
-     analogWrite(Motor8,588);  
+      analogWrite(Motor5,690);   //200
+     analogWrite(Motor6,63);     // 250
+     analogWrite(Motor7,188);   //240
+     analogWrite(Motor8,588);   //208
      digitalWrite(Motor5,LOW); 
      digitalWrite(Motor6,LOW); 
      digitalWrite(Motor7,HIGH);
@@ -177,8 +177,8 @@ if ((ls1==0) && (ls2==0) && (ls3==0) && (ls4==1) && (ls5==0) && (ls6==0) && (ls7
     digitalWrite(Motor7,LOW);
     digitalWrite(Motor8,LOW);*/
 
-      analogWrite(Motor5,1064); 
-     analogWrite(Motor6,438);   
+      analogWrite(Motor5,1064);    //170
+     analogWrite(Motor6,438);      //220
      analogWrite(Motor7,188);  
      analogWrite(Motor8,588);  
      digitalWrite(Motor5,LOW); 
@@ -198,8 +198,8 @@ if ((ls1==0) && (ls2==0) && (ls3==0) && (ls4==1) && (ls5==0) && (ls6==0) && (ls7
     digitalWrite(Motor6,HIGH);
     digitalWrite(Motor7,HIGH);
     digitalWrite(Motor8,HIGH);*/
-  analogWrite(Motor5,1314); 
-     analogWrite(Motor6,814);   
+  analogWrite(Motor5,1314);   //150
+     analogWrite(Motor6,814);  //190 
      analogWrite(Motor7,188);  
      analogWrite(Motor8,588);  
      digitalWrite(Motor5,LOW); 
@@ -210,8 +210,8 @@ if ((ls1==0) && (ls2==0) && (ls3==0) && (ls4==1) && (ls5==0) && (ls6==0) && (ls7
  }
 if ((ls1==0) && (ls2==0) && (ls3==0) && (ls4==0) && (ls5==0) && (ls6==1) && (ls7==0) && (ls8==0))
 {
-  analogWrite(Motor5,1689); 
-     analogWrite(Motor6,1189);   
+  analogWrite(Motor5,1689);     //120
+     analogWrite(Motor6,1189);  //160  
      analogWrite(Motor7,188);  
      analogWrite(Motor8,588);  
      digitalWrite(Motor5,LOW); 
@@ -223,8 +223,8 @@ if ((ls1==0) && (ls2==0) && (ls3==0) && (ls4==0) && (ls5==0) && (ls6==1) && (ls7
 
 if ((ls1==0) && (ls2==0) && (ls3==0) && (ls4==0) && (ls5==0) && (ls6==1) && (ls7==1) && (ls8==0))
 {
-  analogWrite(Motor5,2065); 
-     analogWrite(Motor6,1564);   
+  analogWrite(Motor5,2065);     //90
+     analogWrite(Motor6,1564);  //130 
      analogWrite(Motor7,188);  
      analogWrite(Motor8,588);  
      digitalWrite(Motor5,LOW); 
@@ -235,8 +235,8 @@ if ((ls1==0) && (ls2==0) && (ls3==0) && (ls4==0) && (ls5==0) && (ls6==1) && (ls7
   }
   if ((ls1==0) && (ls2==0) && (ls3==0) && (ls4==0) && (ls5==0) && (ls6==0) && (ls7==1) && (ls8==0))
   {
-  analogWrite(Motor5,2440); 
-     analogWrite(Motor6,1940);   
+  analogWrite(Motor5,2440);      //60
+     analogWrite(Motor6,1940);   //100
      analogWrite(Motor7,188);  
      analogWrite(Motor8,588);  
      digitalWrite(Motor5,LOW); 
@@ -247,8 +247,8 @@ if ((ls1==0) && (ls2==0) && (ls3==0) && (ls4==0) && (ls5==0) && (ls6==1) && (ls7
     }
 if ((ls1==0) && (ls2==0) && (ls3==0) && (ls4==0) && (ls5==0) && (ls6==0) && (ls7==1) && (ls8==1))
 {
-  analogWrite(Motor5,2815); 
-     analogWrite(Motor6,2315);   
+  analogWrite(Motor5,2815);     //30
+     analogWrite(Motor6,2315); //70   
      analogWrite(Motor7,188);  
      analogWrite(Motor8,588);  
      digitalWrite(Motor5,LOW); 
@@ -259,8 +259,8 @@ if ((ls1==0) && (ls2==0) && (ls3==0) && (ls4==0) && (ls5==0) && (ls6==0) && (ls7
   }
 if ((ls1==0) && (ls2==0) && (ls3==0) && (ls4==0) && (ls5==0) && (ls6==0) && (ls7==0) && (ls8==1))
 {
-  analogWrite(Motor5,3065); 
-     analogWrite(Motor6,2690);   
+  analogWrite(Motor5,3065);   //10
+     analogWrite(Motor6,2690);  //40  
      analogWrite(Motor7,188);  
      analogWrite(Motor8,588);  
      digitalWrite(Motor5,LOW); 
