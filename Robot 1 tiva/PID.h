@@ -31,6 +31,13 @@ extern float previous_error_ML3, previous_I_ML3;
 extern float REF_RPM_ML3  , REF_REV_ML3 ;
 /////////////////////////////
 
+////////Motor lifter 3////////
+extern float kp_MServe, ki_MServe, kd_MServe;
+extern float error_MServe, P_MServe, I_MServe, D_MServe, PID_value_MServe;
+extern float previous_error_MServe, previous_I_MServe;
+extern float REF_RPM_MServe  , REF_REV_MServe ;
+/////////////////////////////
+
 #define constrain(amt,low,high) ((amt)<(low)?(low):((amt)>(high)?(high):(amt)))
 
 void PID_ML1_RPM();
@@ -39,5 +46,6 @@ void PID_ML2_RPM();
 void PID_ML2_REV();
 void PID_ML3_RPM();
 void PID_ML3_REV();
+void PID_MServe_RPM();
 
 #endif /* PID_H_ */

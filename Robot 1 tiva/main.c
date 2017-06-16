@@ -4,6 +4,8 @@
 #include "UART.h"
 #include "Motion.h"
 #include "spi.h"
+#include "pistons.h"
+#include "Serve.h"
 #include <math.h>
 #define SCB_R                   (*((volatile unsigned long *) 0xE000ED88))
 //double y = 0.00125 ;
@@ -21,14 +23,35 @@ void PID_REV_lifters();
 
 
 unsigned long servepwm ;
-
+long map(long x, long in_min, long in_max, long out_min, long out_max)
+{
+  return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
+}
 
 
 int main()
 {
 
-	PWM();
-	
+
+	TIVA1();
+		
+	while(1)
+	{
+		
+		//	digitalWrite(ServePiston,1);
+	//	digitalWrite(ServeMotorCCW,1);
+	//digitalWrite(ServeMotorCW,1);
+	//	Serve();
+		
+		//if(State==2)
+		//{
+		//	while(1);
+	//	}
+//	LOAD();
+	//	TIMER4A_Start();
+	//	TIMER4A_Stop();
+	}
+}
 	/*	for(i=0;i<=1600;i=i+100)
 		{
 		analogWrite(Motor7,i);
@@ -46,6 +69,7 @@ int main()
 //	x=Hex2Dec(0xA0);
 //digitalWrite(Motor1,HIGH);
 //	digitalWrite(Motor2,HIGH);
+	/*
 	while(1)
 	{
 		
@@ -84,8 +108,11 @@ int main()
 	//	MotorStop(Motor8);
 	//	analogWrite(Motor10,400);
    // MotorStop(Motor2);
-	}
-}
+	 
+//	}
+
+
+//}
 
 void Delay1ms(unsigned long msec){// write this function
 	unsigned long i ;
@@ -108,69 +135,85 @@ void SystemInit(void)
 
 void Data()
 {
-
-		if(ReadData()==0xFF)
+	if (ReadData()== 0x23)  // start manual mode
+	{  
+		if(ReadData()==stop)
 		{Stop();}
-		else if(ReadData()==0x01)
+		else if(ReadData()==F)        // analog forward
 		{Forward();}
-		else if(ReadData()==0x02)
+		else if(ReadData()==Rev)      // analog backward
 		{Reverse();}
-		else if(ReadData()==0xFF)
+		else if(ReadData()==stop)    
 		{Stop();}
-		else if(ReadData()==0x03)
+		else if(ReadData()==L)        // analog left
 		{Left();}
-		else if(ReadData()==0x04)
+		else if(ReadData()==R)        // analog right
 		{Right();}
-		else 	if(ReadData()==0xFF)
+		else 	if(ReadData()==stop)
 		{Stop();}
-		else if(ReadData()==0x05)
+		else if(ReadData()==UR)       // analog upright
 		{UpRight();}
-		else if(ReadData()==0x06)
-		{UpLeft();}
-		else if(ReadData()==0x07)
+		else if(ReadData()==UL)       // analog upright
+		{UpLeft();}  
+		else if(ReadData()==DR)       // analog down right
 		{DownRight();}
-		else if(ReadData()==0x08)
+		else if(ReadData()==DL)       //analog down left 
 		{DownLeft();}
-		else if(ReadData()==0x09)
+		else if(ReadData()==CW)       // right analog right( CW)
 		{ClockWise();}
-		else 	if(ReadData()==0xFF)
+		else 	if(ReadData()==stop)
 		{Stop();}
-		else if(ReadData()==0x10)
+		else if(ReadData()==CCW)      // right analog left (CCW)
 		{CounterClockWise();}
-		else if(ReadData()==0xFF)
+		else if(ReadData()==stop)
 		{Stop();}
-		else if(ReadData()==0x11)
-		{serve();
-			}
-		else if(ReadData()==0x12)
+		else if(ReadData()==ServeStart)  // R1
+		{serve();}
+		else if(ReadData()==ServeStop)   // L1
 		{servestop();}
-		else if(ReadData()==0x14)
+				else if(ReadData()==LIFT1_UP)   // ------------------
 		{lifter12up();}
-		else if(ReadData()==0x15)
+		else if(ReadData()==LIFT1_DOWN) // --------------------
 		{lifter12down();}
-		else if(ReadData()==0x16)
+				else if(ReadData()==LIFT2_UP)   // --------------------
+		{lifter12up();}
+		else if(ReadData()==LIFT2_DOWN) //-------------------------
+		{lifter12down();}
+		else if(ReadData()==LIFT12_UP)   // TRIANGLE
+		{lifter12up();}
+		else if(ReadData()==LIFT12_DOWN) // CROSS
+		{lifter12down();}
+		else if(ReadData()==LIFT3_UP)    // CIRCLE
 		{lifter3up();}
-		else if(ReadData()==0x17)
+		else if(ReadData()==LIFT3_DOWN)  // SQUARE
 		{lifter3down();}
-		else if(ReadData()==0x18)
-		{liftersup();}
-		else if(ReadData()==0x19)
+		else if(ReadData()==LIFTall_UP)  // UP
+		{liftersup();} 
+		else if(ReadData()==LIFTall_DOWN) // DOWN
 		{liftersdown();}
-		else if(ReadData()==0x20)
+		else if(ReadData()==LIFT_STOP)
 		{liftersStop();}
-		else if(ReadData()==0x22)
+		else if(ReadData()==servepwm_DOWN)  // LEFT
 		{servepwm=servepwm+25;
 		if(servepwm>3200)
 		{ servepwm=3190; }		}
-		else if(ReadData()==0x21)
+		else if(ReadData()==servepwm_UP)    // RIGHT
 		{servepwm=servepwm-25;
 		if(servepwm<10)
 		{servepwm=1;}
 		if(servepwm>0xFFFF)
 		{servepwm=1;}
 		}
-		else if(ReadData()==0xFF)
+		else if(ReadData()==stop)
 		{Stop();}
+	}
+	
+	if (ReadData()==0x24) // select Automatic mode
+	{
+	
+	
+	
+	}
 }
 
 

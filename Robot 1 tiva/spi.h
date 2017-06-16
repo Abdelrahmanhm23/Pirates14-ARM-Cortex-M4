@@ -32,6 +32,32 @@ servo             (0x13)
 lifter1,2         (0x14)            
 lifter3           (0x15)
 */
+extern char stop ;
+extern char F  ;
+extern char Rev ;
+extern char L  ;
+extern char R ;
+extern char UR ;
+extern char UL ;
+extern char DR ;
+extern char DL;
+extern char CW ;
+extern char CCW ;
+extern char ServeStart ;
+extern char ServeStop  ;
+extern char LIFT1_UP ;
+extern char LIFT1_DOWN ;
+extern char LIFT2_UP ;
+extern char LIFT2_DOWN ;
+extern char LIFT12_UP ;
+extern char LIFT12_DOWN ;
+extern char LIFT3_UP ;
+extern char LIFT3_DOWN ;
+extern char LIFTall_UP ;
+extern char LIFTall_DOWN ;
+extern char LIFT_STOP ;
+extern char servepwm_UP  ;
+extern char servepwm_DOWN ;
   
 uint32_t ReadData() ;
 

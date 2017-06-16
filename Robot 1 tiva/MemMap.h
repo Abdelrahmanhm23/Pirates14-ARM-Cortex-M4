@@ -803,6 +803,7 @@ PWM ENABLE : 0x08
 #define ADC0_BASE    0x40038000
 #define ADC1_BASE    0x40039000
 
+#define RCGCADC *((volatile uint32_t *)(0x400FE000 + 0x638))  // ADC Clock register
 
 #define ADCACTSS_ADC0                *((volatile uint32_t *)(ADC0_BASE+ 0x00))
 #define ADCRIS_ADC0                  *((volatile uint32_t *)(ADC0_BASE+ 0x04))
@@ -923,17 +924,48 @@ PWM ENABLE : 0x08
 #define	ADCCC_ADC1                   *((volatile uint32_t *)(ADC1_BASE+0xFC8))
 
 #define Timer0_BASE 0x40030000
+#define Timer4_BASE 0x40034000
+
 
 #define RCGCTIMER  *((volatile uint32_t *)(0x400FE000 + 0x604))
 
-#define GPTMCTL   *((volatile uint32_t *)(0x40030000 + 0x00C))
+#define GPTMCTL0   *((volatile uint32_t *)(0x40030000 + 0x00C))
 
-#define GPTMCFG  *((volatile uint32_t *)(Timer0_BASE + 0x000))
-#define GPTMTAMR  *((volatile uint32_t *)(Timer0_BASE + 0x004))
-#define GPTMIMR  *((volatile uint32_t *)(Timer0_BASE + 0x018))
-#define GPTMICR  *((volatile uint32_t *)(Timer0_BASE + 0x024))
-#define GPTMTAILR  *((volatile uint32_t *)(Timer0_BASE + 0x028))
-#define GPTMTAPR  *((volatile uint32_t *)(Timer0_BASE + 0x038))
+#define GPTMCFG0  *((volatile uint32_t *)(Timer0_BASE + 0x000))
+#define GPTMTAMR0  *((volatile uint32_t *)(Timer0_BASE + 0x004))
+#define GPTMIMR0  *((volatile uint32_t *)(Timer0_BASE + 0x018))
+#define GPTMICR0  *((volatile uint32_t *)(Timer0_BASE + 0x024))
+#define GPTMTAILR0  *((volatile uint32_t *)(Timer0_BASE + 0x028))
+#define GPTMTAPR0  *((volatile uint32_t *)(Timer0_BASE + 0x038))
+
+
+#define GPTMCFG4  *((volatile uint32_t *)(Timer4_BASE + 0x000))
+#define GPTMTAMR4  *((volatile uint32_t *)(Timer4_BASE + 0x004))
+#define GPTMTBMR4 *((volatile uint32_t *)(Timer4_BASE +0x08))
+#define GPTMCTL4 *((volatile uint32_t *)(Timer4_BASE +0x0C))
+#define GPTMSYNC4 *((volatile uint32_t *)(Timer4_BASE +0x10))
+#define GPTMIMR4  *((volatile uint32_t *)(Timer4_BASE +0x18))
+#define GPTMRIS4  *((volatile uint32_t *)(Timer4_BASE +0x1C))
+#define GPTMMIS4 *((volatile uint32_t *)(Timer4_BASE +0x20))
+#define GPTMICR4 *((volatile uint32_t *)(Timer4_BASE +0x24))
+#define GPTMTAILR4 *((volatile uint32_t *)(Timer4_BASE +0x28))
+#define GPTMTBILR4 *((volatile uint32_t *)(Timer4_BASE +0x2C))
+#define GPTMTAMATCHR4 *((volatile uint32_t *)(Timer4_BASE +0x30))
+#define GPTMTBMATCHR4 *((volatile uint32_t *)(Timer4_BASE +0x34))
+#define GPTMTAPR4 *((volatile uint32_t *)(Timer4_BASE +0x38))
+#define GPTMTBPR4 *((volatile uint32_t *)(Timer4_BASE +0x3C))
+#define GPTMTAPMR4 *((volatile uint32_t *)(Timer4_BASE +0x40))
+#define GPTMTBPMR4 *((volatile uint32_t *)(Timer4_BASE +0x44))
+#define GPTMTAR4 *((volatile uint32_t *)(Timer4_BASE +0x48))
+#define GPTMTBR4 *((volatile uint32_t *)(Timer4_BASE +0x4C))
+#define GPTMTAV4 *((volatile uint32_t *)(Timer4_BASE +0x50))
+#define GPTMTBV4 *((volatile uint32_t *)(Timer4_BASE +0x54))
+#define GPTMRTCPD4 *((volatile uint32_t *)(Timer4_BASE +0x58))
+#define GPTMTAPS4 *((volatile uint32_t *)(Timer4_BASE +0x5C))
+#define GPTMTBPS4 *((volatile uint32_t *)(Timer4_BASE +0x60))
+#define GPTMTAPV4 *((volatile uint32_t *)(Timer4_BASE +0x64))
+#define GPTMTBPV4 *((volatile uint32_t *)(Timer4_BASE +0x66))
+#define GPTMPP4  *((volatile uint32_t *)(Timer4_BASE +0xFC0))
 
 
 ///////////////////System Timer//////////////

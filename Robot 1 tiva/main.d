@@ -19,3 +19,5 @@
 .\main.o: E:\Keil\TivaWare_C_Series-2.1.2.111\driverlib/uart.h
 .\main.o: E:\Keil\TivaWare_C_Series-2.1.2.111\utils/uartstdio.h
 .\main.o: E:\keil\ARM\ARMCC\bin\..\include\stdarg.h
+.\main.o: pistons.h
+.\main.o: Serve.h

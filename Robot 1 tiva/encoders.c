@@ -2,21 +2,27 @@
  unsigned long Mlifter1counter=0 ;
  unsigned long Mlifter2counter=0 ;
  unsigned long Mlifter3counter=0 ;
+ unsigned long MServecounter=0 ;
+ 
 unsigned long RPM_ML1=0;
 unsigned long RPM_ML2=0;
 unsigned long RPM_ML3=0 ;
+unsigned long RPM_MServe=0 ;
 
 unsigned long prev1 =0;
 unsigned long prev2 =0;
 unsigned long prev3 =0;
+unsigned long prevMServe =0;
 
 unsigned long counts1 =0 ;
 unsigned long counts2 =0 ;
 unsigned long counts3 =0 ;
+unsigned long countsMServe =0 ;
 
 unsigned long prev_counts1 =0 ;
 unsigned long prev_counts2 =0 ;
 unsigned long prev_counts3 =0 ;
+unsigned long prev_MServe =0 ;
 
 void GPIOA_Handler(void)
 {
@@ -41,23 +47,37 @@ if(GPIORIS_PORTA&0x08)
 	{ Mlifter3counter=0;                                      // reset counter   Mlifter 3
 		prev3=0;}
 }
+	if(GPIORIS_PORTA&0x20)
+{GPIOICR_PORTA=0x20;   // acknowledge pin 5 clear for next interrupt 
+	MServecounter++;
+		if(MServecounter==0xFFFFFFFF)
+	{ MServecounter=0;                                      // reset counter   serve Motor
+		prevMServe=0;}
+}
 }
 
+
+
+	
 void SysTick_Handler()
 {
-	GPIOIM_PORTA   &= ~0x1C; 
+	GPIOIM_PORTA   &= ~0x3C; 
   	counts1=Mlifter1counter-prev1;           // no. of counts per 0.02 secs motor lifter 1
    	counts2=Mlifter2counter-prev2;           // no. of counts per 0.02 secs motor lifter 2
 		counts3=Mlifter3counter-prev3;           // no. of counts per 0.02 secs motor lifter 3
+	  countsMServe=MServecounter-prevMServe;           // no. of counts per 0.02 secs serve Motor
 /*counts1=	singlePoleFilter(counts1,prev_counts1);   // filter 
 counts2=	singlePoleFilter(counts2,prev_counts2);
 counts3=	singlePoleFilter(counts3,prev_counts3);*/
 	RPM_ML1 = (counts1) * 50 * (0.00083333)* (60) ;           // rpm count Mlifter 1    (counts/secs * rev/count * 60)
 	RPM_ML2 = (counts2) * 50 * (0.00083333)* (60) ;           // rpm count Mlifter 2    (counts/secs * rev/count * 60)
 	RPM_ML3 = (counts3) * 50 * (0.00083333)* (60) ;            // rpm count Mlifter 3    (counts/secs * rev/count * 60)
+	RPM_MServe = (countsMServe) * 50 * (0.00083333)* (60) ;    // rpm count MServe   (counts/secs * rev/count * 60)
+	
 	prev1 = Mlifter1counter ;                                  // set last count reached
 	prev2 = Mlifter2counter ;                                  // set last count reached
 	prev3 = Mlifter3counter ;                                  // set last count reached
+	prevMServe = MServecounter ;                                  // set last count reached
 //	prev_counts1=counts1;
 //	prev_counts2=counts2;
 //	prev_counts3=counts3;
@@ -71,8 +91,11 @@ counts3=	singlePoleFilter(counts3,prev_counts3);*/
 		if(Mlifter3counter==0xFFFFFFFF)
 	{Mlifter3counter=0;                                      // reset counter
 		prev3=0;}
+		if(MServecounter==0xFFFFFFFF)
+	{MServecounter=0;                                      // reset counter
+		prevMServe=0;}
 	///////////////////////////////////////////////////////////////////////////////
-	GPIOIM_PORTA   |= 0x1C;
+	GPIOIM_PORTA   |= 0x3C;
 }
 
 

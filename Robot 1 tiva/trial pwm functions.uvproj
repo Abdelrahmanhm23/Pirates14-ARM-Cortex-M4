@@ -460,6 +460,36 @@
               <FileType>1</FileType>
               <FilePath>.\spi.c</FilePath>
             </File>
+            <File>
+              <FileName>pistons.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\pistons.c</FilePath>
+            </File>
+            <File>
+              <FileName>pistons.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\pistons.h</FilePath>
+            </File>
+            <File>
+              <FileName>ADC.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\ADC.c</FilePath>
+            </File>
+            <File>
+              <FileName>ADC.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\ADC.h</FilePath>
+            </File>
+            <File>
+              <FileName>Serve.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Serve.c</FilePath>
+            </File>
+            <File>
+              <FileName>Serve.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Serve.h</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>

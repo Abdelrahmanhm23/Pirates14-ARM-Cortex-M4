@@ -8,6 +8,9 @@
 ".\motion.o"
 ".\ssi.o"
 ".\spi.o"
+".\pistons.o"
+".\adc.o"
+".\serve.o"
 --strict --scatter ".\trial pwm functions.sct"
 --summary_stderr --info summarysizes --map --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers

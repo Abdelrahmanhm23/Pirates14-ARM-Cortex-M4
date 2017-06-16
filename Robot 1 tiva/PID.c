@@ -23,12 +23,21 @@ float REF_RPM_ML3=300 , REF_REV_ML3=(135*2);   //135 one rev
 /////////////////////////////
 
 
+////////Motor serve////////////////////////
+float kp_MServe=0.50036, ki_MServe=0.04180, kd_MServe=0;                  //  1.43596  ,   0.11253
+float error_MServe=0, P_MServe=0, I_MServe=0, D_MServe=0, PID_value_MServe=0;
+float previous_error_MServe=0, previous_I_MServe=0;
+float REF_RPM_MServe=300 , REF_REV_MServe=(135*2);   //135 one rev
+/////////////////////////////
 
+
+
+/*
 long map(long x, long in_min, long in_max, long out_min, long out_max)
 {
   return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
 }
-
+*/
 void PID_ML1_RPM()
 {
 error_ML1 = REF_RPM_ML1 - RPM_ML1 ;
@@ -117,4 +126,19 @@ PID_value_ML3=	constrain(PID_value_ML3 , 0,255 );
 PID_value_ML3=	map(PID_value_ML3 , 0 , 255 , 3190 , 0);
   previous_error_ML3=error_ML3;	
 	analogWrite(Motor3,PID_value_ML3);
+}
+
+
+void PID_MServe_RPM()
+{
+	error_MServe = REF_RPM_MServe - RPM_MServe ;
+	P_MServe = error_MServe;
+	I_MServe = I_MServe + error_MServe ;
+	D_MServe = error_MServe - previous_error_MServe ;
+	
+	PID_value_MServe = (kp_MServe*P_MServe) + (ki_MServe*I_MServe) + (kd_MServe*D_MServe);
+  PID_value_MServe=	constrain(PID_value_MServe , 0,255 );
+  PID_value_MServe=	map(PID_value_MServe , 0 , 255 , 3190 , 1000);
+  previous_error_MServe=error_MServe;	
+	analogWrite(Motor9,PID_value_MServe);   /////Motor 9   serve motor
 }

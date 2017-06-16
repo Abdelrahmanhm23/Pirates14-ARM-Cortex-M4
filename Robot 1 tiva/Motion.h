@@ -14,6 +14,17 @@ extern unsigned long M7_CCW;
 extern unsigned long M8_CW;
 extern unsigned long M8_CCW;
 
+extern unsigned long FORWARD[4];
+extern unsigned long REVERSE[4];
+extern unsigned long LEFT[4];
+extern unsigned long RIGHT[4];
+extern unsigned long UPRIGHT[4];
+extern unsigned long UPLEFT[4];
+extern unsigned long DOWNRIGHT[4];
+extern unsigned long DOWNLEFT[4];
+extern unsigned long CLOCKWISE[4];
+extern unsigned long COUNTERCLOCKWISE[4];
+
 extern unsigned long servepwm;
 
 //	y[0]=250;   // 0x3F     63
@@ -51,6 +62,10 @@ void DownRight();
 void DownLeft();
 void ClockWise();
 void CounterClockWise();
+void lifter1up();
+void lifter1down();
+void lifter2up();
+void lifter2down();
 void lifter12up();
 void lifter12down();
 void lifter3up();
