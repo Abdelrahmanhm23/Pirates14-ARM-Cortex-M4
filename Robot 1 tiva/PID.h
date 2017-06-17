@@ -40,12 +40,12 @@ extern float REF_RPM_MServe  , REF_REV_MServe ;
 
 #define constrain(amt,low,high) ((amt)<(low)?(low):((amt)>(high)?(high):(amt)))
 
-void PID_ML1_RPM();
-void PID_ML1_REV();
-void PID_ML2_RPM();
-void PID_ML2_REV();
-void PID_ML3_RPM();
-void PID_ML3_REV();
-void PID_MServe_RPM();
+void PID_ML1_RPM(int rpm_ref_ML1);
+void PID_ML1_REV(int ref_ML1);
+void PID_ML2_RPM(int rpm_ref_ML2);
+void PID_ML2_REV(int ref_ML2);
+void PID_ML3_RPM(int rpm_ref_ML3);
+void PID_ML3_REV(int ref_ML3);
+void PID_MServe_RPM(int rpm_ref_MServe);
 
 #endif /* PID_H_ */

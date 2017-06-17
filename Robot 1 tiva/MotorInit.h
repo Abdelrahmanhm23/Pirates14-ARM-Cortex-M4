@@ -33,7 +33,7 @@ void ADCE_Init();
 void PortF_Init();
 void Timer4(void);
 void SysTick_Init(void);
-int SysTick_time();
+int  SysTick_time();
 void TIVA1();
 void TIVA2();
 void analogWrite(int pin,int speed);

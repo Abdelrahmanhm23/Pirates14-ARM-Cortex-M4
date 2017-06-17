@@ -21,3 +21,5 @@
 .\main.o: E:\keil\ARM\ARMCC\bin\..\include\stdarg.h
 .\main.o: pistons.h
 .\main.o: Serve.h
+.\main.o: Poles.h
+.\main.o: E:\keil\ARM\ARMCC\bin\..\include\stdlib.h

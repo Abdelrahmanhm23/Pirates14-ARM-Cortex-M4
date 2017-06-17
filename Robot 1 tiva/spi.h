@@ -32,6 +32,8 @@ servo             (0x13)
 lifter1,2         (0x14)            
 lifter3           (0x15)
 */
+
+///////////////////////MANUAL//////////////////////
 extern char stop ;
 extern char F  ;
 extern char Rev ;
@@ -58,7 +60,15 @@ extern char LIFTall_DOWN ;
 extern char LIFT_STOP ;
 extern char servepwm_UP  ;
 extern char servepwm_DOWN ;
-  
+//////////////////////////////AUTOMATIC//////////////////////////
+extern char POLE3 ;        // TRIANGLE
+extern char POLE1;        // CROSS
+extern char POLE2 ;         // CIRCLE
+extern char POLE5;        // SQUARE
+extern char POLE4 ;        // UP
+extern char VERTICAL_LINE ;  // DOWN
+extern char LINE  ;          //RIGHT
+extern char R2;             // R2
 uint32_t ReadData() ;
 
 #endif

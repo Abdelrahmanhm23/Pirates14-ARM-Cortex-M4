@@ -40,7 +40,7 @@ unsigned long COUNTERCLOCKWISE[4]={563,413,413,588};
 #define constrain(amt,low,high) ((amt)<(low)?(low):((amt)>(high)?(high):(amt)))
 
 
-//unsigned long servepwm ;
+unsigned long servepwm=1550 ;
 
 void Stop()
 { 

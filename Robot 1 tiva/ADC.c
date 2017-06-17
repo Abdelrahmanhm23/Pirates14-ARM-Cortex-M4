@@ -3,6 +3,8 @@
 // passing an array to this function and its size to get the ADC FIFO's data 
 // data_get(array_name , size of the array) 
 // EX : data_get (ADCValue , 4);
+int VL=0;
+int ls1=0 ,ls2=0 ,ls3=0,ls4=0,ls5=0,ls6=0,ls7=0,ls8=0;
 
 
 void data_get (int *pt , int i )
@@ -57,8 +59,9 @@ void digital_reads(uint32_t *ADC )
     }
 
 
-void line (int error)
+void line ()
 {
+
 if ((ls1==1) && (ls2==0) && (ls3==0) && (ls4==0) && (ls5==0) && (ls6==0) && (ls7==0) && (ls8==0))
 {
      analogWrite(Motor5,690);     //200
@@ -280,7 +283,7 @@ if ((ls1==0) && (ls2==0) && (ls3==0) && (ls4==0) && (ls5==0) && (ls6==0) && (ls7
     digitalWrite(Motor6,HIGH);
     digitalWrite(Motor7,HIGH);
     digitalWrite(Motor8,HIGH);*/
-  MotorStop(Motor5); 
+     MotorStop(Motor5); 
      MotorStop(Motor6);   
      MotorStop(Motor7);  
      MotorStop(Motor8);  
@@ -300,7 +303,7 @@ if ((ls1==0) && (ls2==0) && (ls3==0) && (ls4==0) && (ls5==0) && (ls6==0) && (ls7
     digitalWrite(Motor6,HIGH);
     digitalWrite(Motor7,HIGH);
     digitalWrite(Motor8,HIGH);*/
-  MotorStop(Motor5); 
+     MotorStop(Motor5); 
      MotorStop(Motor6);   
      MotorStop(Motor7);  
      MotorStop(Motor8);  
@@ -326,3 +329,18 @@ int main()
 }
 
 */
+
+
+
+void VerticalLines()
+{
+	if((VL>=0||VL>=1)&&VL!=3)
+	{
+		VL++;
+	}
+	if(VL<=3&&VL!=1)
+	{
+		VL--;
+	}
+	
+}

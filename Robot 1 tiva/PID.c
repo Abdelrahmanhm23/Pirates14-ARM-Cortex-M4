@@ -32,15 +32,15 @@ float REF_RPM_MServe=300 , REF_REV_MServe=(135*2);   //135 one rev
 
 
 
-/*
+
 long map(long x, long in_min, long in_max, long out_min, long out_max)
 {
   return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
 }
-*/
-void PID_ML1_RPM()
+
+void PID_ML1_RPM(int rpm_ref_ML1)
 {
-error_ML1 = REF_RPM_ML1 - RPM_ML1 ;
+error_ML1 = rpm_ref_ML1 - RPM_ML1 ;
 	P_ML1 = error_ML1;
 	I_ML1 = I_ML1 + error_ML1 ;
 	D_ML1 = error_ML1 - previous_error_ML1 ;
@@ -53,9 +53,9 @@ error_ML1 = REF_RPM_ML1 - RPM_ML1 ;
 }
 
 
-void PID_ML1_REV()
+void PID_ML1_REV(int ref_ML1)
 {
-	error_ML1 = REF_REV_ML1 - Mlifter1counter ;
+	error_ML1 = ref_ML1 - Mlifter1counter ;
 	P_ML1 = error_ML1;
 	I_ML1 = I_ML1 + error_ML1 ;
 	D_ML1 = error_ML1 - previous_error_ML1 ;
@@ -68,9 +68,9 @@ void PID_ML1_REV()
 }
 
 
-void PID_ML2_RPM()
+void PID_ML2_RPM(int rpm_ref_ML2)
 {
-	error_ML2 = REF_RPM_ML2 - RPM_ML2 ;
+	error_ML2 = rpm_ref_ML2 - RPM_ML2 ;
 	P_ML2 = error_ML2;
 	I_ML2 = I_ML2 + error_ML2 ;
 	D_ML2 = error_ML2 - previous_error_ML2 ;
@@ -83,9 +83,9 @@ PID_value_ML2 = (kp_ML2*P_ML2) + (ki_ML2*I_ML2) + (kd_ML2*D_ML2);
 
 }
 
-void PID_ML2_REV()
+void PID_ML2_REV(int ref_ML2)
 {
-	error_ML2 = REF_REV_ML2 - Mlifter2counter ;
+	error_ML2 = ref_ML2 - Mlifter2counter ;
 	P_ML2 = error_ML2;
 	I_ML2 = I_ML2 + error_ML2 ;
 	D_ML2 = error_ML2 - previous_error_ML2 ;
@@ -101,9 +101,9 @@ PID_value_ML2 = (kp_ML2*P_ML2) + (ki_ML2*I_ML2) + (kd_ML2*D_ML2);
 
 
 
-void PID_ML3_RPM()
+void PID_ML3_RPM(int rpm_ref_ML3)
 {
-	error_ML3 = REF_RPM_ML3 - RPM_ML3 ;
+	error_ML3 = rpm_ref_ML3 - RPM_ML3 ;
 	P_ML3 = error_ML3;
 	I_ML3 = I_ML3 + error_ML3 ;
 	D_ML3 = error_ML3 - previous_error_ML3 ;
@@ -115,9 +115,9 @@ void PID_ML3_RPM()
 	analogWrite(Motor3,PID_value_ML3);
 }
 
-void PID_ML3_REV()
+void PID_ML3_REV(int ref_ML3)
 {
-	error_ML3 = REF_REV_ML3 - Mlifter3counter ;
+	error_ML3 = ref_ML3 - Mlifter3counter ;
 	P_ML3 = error_ML3;
 	I_ML3 = I_ML3 + error_ML3 ;
 	D_ML3 = error_ML3 - previous_error_ML3 ;
@@ -129,9 +129,9 @@ PID_value_ML3=	map(PID_value_ML3 , 0 , 255 , 3190 , 0);
 }
 
 
-void PID_MServe_RPM()
+void PID_MServe_RPM(int rpm_ref_MServe)
 {
-	error_MServe = REF_RPM_MServe - RPM_MServe ;
+	error_MServe = rpm_ref_MServe - RPM_MServe ;
 	P_MServe = error_MServe;
 	I_MServe = I_MServe + error_MServe ;
 	D_MServe = error_MServe - previous_error_MServe ;
