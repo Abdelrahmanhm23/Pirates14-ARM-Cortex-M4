@@ -117,6 +117,10 @@ void setup() {
    */
 pinMode(ss1, OUTPUT);
    digitalWrite(ss1, HIGH);
+//////// I think those two lines were missed////////////////
+ pinMode(ss2, OUTPUT);           
+    digitalWrite(ss2, HIGH);
+ ///////////////////////////////////////////
    SPI.setClockDivider(SPI_CLOCK_DIV8);
     SPI.begin();
 }
@@ -257,7 +261,8 @@ void TIVA1(uint32_t value) {
   digitalWrite(ss1, HIGH);
 }
 void TIVA2(uint32_t value) {
-  digitalWrite(ss2, LOW);
+//why not   SPI.transfer(0x00); at the start like TIVA1  ?!!!
+digitalWrite(ss2, LOW);
  SPI.transfer(value);
   digitalWrite(ss2, HIGH);
 }
@@ -296,8 +301,10 @@ void SERVE()
   dec();
  // liftersStop();
 }
+
 void saucer()
 {TIVA1(0x13);}
+
 void lifter12()
 {
   while(1)
@@ -306,12 +313,12 @@ void lifter12()
       if (PS3.PS3Connected || PS3.PS3NavigationConnected) {
    if(PS3.getAnalogButton(TRIANGLE)>100) 
    {
-  TIVA1(0x14); }
-else
-   {liftersStop();
-    break;}
+     TIVA1(0x14); }
+   else
+   { liftersStop();
+     break;}
   }
-    }
+}
 
   while(1)
     {
