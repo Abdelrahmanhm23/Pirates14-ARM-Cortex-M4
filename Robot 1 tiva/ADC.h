@@ -12,7 +12,7 @@ extern int VL ;
 
 
 void init_adc();
-void data_get (int *pt , int i );
+void data_get (uint32_t *pt , int i );
 void digital_reads(uint32_t *ADC );
 void line ();
 void VerticalLines();
