@@ -1,5 +1,5 @@
  /*
-stop              (0xAA)
+stop              (0xFF)
 forward           (0x01)
 reverse           (0x02)
 left              (0x03)
@@ -59,7 +59,7 @@ int pos = 0;    // variable to store the servo position
 Servo servo;
 #include <SPI.h> 
 #include <PS3BT.h>
-
+//#include <PS3USB.h>
 #include <usbhub.h>
 // Satisfy IDE, which only needs to see the include statment in the ino.
 #ifdef dobogusinclude
@@ -73,8 +73,8 @@ BTD Btd(&Usb); // You have to create the Bluetooth Dongle instance like so
 /* You can create the instance of the class in two ways */
 PS3BT PS3(&Btd); // This will just create the instance
 //PS3BT PS3(&Btd, 0x00, 0x15, 0x83, 0x3D, 0x0A, 0x57); // This will also store the bluetooth address - this can be obtained from the dongle when running the sketch
-
-
+void MANUAL();
+void AUTOMATIC();
 void left();
 void stop();
 void right();
@@ -89,6 +89,7 @@ void lifter12();
 void lifter3();
 void lifters();
 void liftersStop();
+void lifter2();
 void inc();
 void dec();
 void TIVA1(uint32_t value);
@@ -117,7 +118,9 @@ void setup() {
    */
 pinMode(ss1, OUTPUT);
    digitalWrite(ss1, HIGH);
-   SPI.setClockDivider(SPI_CLOCK_DIV8);
+   SPI.setClockDivider(SPI_CLOCK_DIV4);
+   pinMode(ss2, OUTPUT);
+   digitalWrite(ss2, HIGH);
     SPI.begin();
 }
 
@@ -251,7 +254,7 @@ void loop() {
  
 
 void TIVA1(uint32_t value) {
-  SPI.transfer(0x00);
+  //SPI.transfer(0x00);
   digitalWrite(ss1, LOW);   
  SPI.transfer(value);
   digitalWrite(ss1, HIGH);
@@ -261,40 +264,62 @@ void TIVA2(uint32_t value) {
  SPI.transfer(value);
   digitalWrite(ss2, HIGH);
 }
+void MANUAL()
+{  if(PS3.getButtonPress(SELECT))
+{
+  TIVA1(0x23); }
+   }
+void AUTOMATIC()
+{  if(PS3.getButtonPress(START))
+{
+  TIVA1(0x24);
+  TIVA2(0x24);} }
 void stop()
-{TIVA1(0xFF);}
+{TIVA1(0xFF);
+TIVA2(0xFF);}
 void forward()
-{ TIVA1(0x01); }
+{ TIVA2(0x01); }
 void reverse()
-{ TIVA1(0x02); }
+{ TIVA2(0x02); }
 void left()
-{TIVA1(0x03);}
+{TIVA2(0x03);}
 void right()
-{TIVA1(0x04);}
+{TIVA2(0x04);}
 void upright()
-{TIVA1(0x05);}
+{TIVA2(0x05);}
 void upleft()
-{TIVA1(0x06);}
+{TIVA2(0x06);}
 void downright()
-{TIVA1(0x07);}
+{TIVA2(0x07);}
 void downleft()
-{TIVA1(0x08);}
+{TIVA2(0x08);}
 void ClockWise() 
-{TIVA1(0x09);}
+{TIVA2(0x09);}
 void CounterClockWise()
-{TIVA1(0x10);}
+{TIVA2(0x10);}
 void SERVE()
 {
   if(PS3.getAnalogButton(R1)>50) // start
   {TIVA1(0x11);}
   if(PS3.getAnalogButton(L1)>50) // stop
   { TIVA1(0x12);}
+  if(PS3.getAnalogButton(R2)>50) // stop
+  { TIVA1(0x27);}
+    if(PS3.getAnalogButton(L2)>50) // stop
+  { TIVA1(0x28);}
+ if (PS3.getButtonClick(PS)) {
+     TIVA1(0x30);
+  //    PS3.disconnect();
+    }
   lifter12();
   lifter3();
   lifters();
   inc();
   dec();
- // liftersStop();
+  MANUAL();
+  AUTOMATIC();
+  liftersStop();
+  lifter2();
 }
 void saucer()
 {TIVA1(0x13);}
@@ -327,6 +352,7 @@ else
       }
    }
   }
+
            
 void lifter3()
 {
@@ -353,6 +379,37 @@ void lifter3()
    }
    }
 }
+
+
+void lifter2()
+{
+  while(1)
+    {
+      Usb.Task();
+      if (PS3.PS3Connected || PS3.PS3NavigationConnected) {
+   if(PS3.getAnalogButton(R2)>100) 
+   {
+  TIVA1(0x27); }
+else
+   {liftersStop();
+    break;}
+  }
+    }
+
+  while(1)
+    {
+      Usb.Task();
+      if (PS3.PS3Connected || PS3.PS3NavigationConnected) {
+   if(PS3.getAnalogButton(L2)>100)
+   {
+  TIVA1(0x28);
+    }
+else
+  {liftersStop();
+    break;}
+      }
+   }
+  }
 void lifters()
 {
   while(1)
@@ -380,22 +437,38 @@ void lifters()
   }
 }
 void liftersStop()
-{
-
-   TIVA1(0x20);
-}
+{ TIVA1(0x20);}
 void dec()
 {
-   if(PS3.getAnalogButton(LEFT)>50)
+   while(1)
+   {
+   Usb.Task();
+      if (PS3.PS3Connected || PS3.PS3NavigationConnected) {
+   if(PS3.getAnalogButton(LEFT)>100)
    {
   TIVA1(0x22);}
+  else
+    {
+    break;}
  }
+}
+}
  void inc()
  {
- if(PS3.getAnalogButton(RIGHT)>50)
+  while(1)
+   {
+   Usb.Task();
+      if (PS3.PS3Connected || PS3.PS3NavigationConnected) {
+   if(PS3.getAnalogButton(RIGHT)>100)
    {
   TIVA1(0x21);}
+  else
+    {
+    break;}
  }
+}
+ }
+
 
 
 static const byte ASCII[][5] =
