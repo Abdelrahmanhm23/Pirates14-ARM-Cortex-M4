@@ -29,11 +29,16 @@ int main()
 {
 
 
-	TIVA1();
+TIVA1();
 	
 	while(1)
 	{
 		Data();
+		//ReadData();
+		//	PID_ML3_RPM(400);
+	//	if(Mlifter3counter>=340)
+	//	{liftersStop();
+	//	while(1);}
 	}
 }
 

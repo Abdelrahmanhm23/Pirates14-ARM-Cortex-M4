@@ -61,7 +61,7 @@ if(GPIORIS_PORTA&0x08)
 	
 void SysTick_Handler()
 {
-	GPIOIM_PORTA   &= ~0x3C; 
+//	GPIOIM_PORTA   &= ~0x3C; 
   	counts1=Mlifter1counter-prev1;           // no. of counts per 0.02 secs motor lifter 1
    	counts2=Mlifter2counter-prev2;           // no. of counts per 0.02 secs motor lifter 2
 		counts3=Mlifter3counter-prev3;           // no. of counts per 0.02 secs motor lifter 3
@@ -71,7 +71,7 @@ counts2=	singlePoleFilter(counts2,prev_counts2);
 counts3=	singlePoleFilter(counts3,prev_counts3);*/
 	RPM_ML1 = (counts1) * 50 * (0.00083333)* (60) ;           // rpm count Mlifter 1    (counts/secs * rev/count * 60)
 	RPM_ML2 = (counts2) * 50 * (0.00083333)* (60) ;           // rpm count Mlifter 2    (counts/secs * rev/count * 60)
-	RPM_ML3 = (counts3) * 50 * (0.00083333)* (60) ;            // rpm count Mlifter 3    (counts/secs * rev/count * 60)
+	RPM_ML3 = (counts3)  * (88.49)* (0.0166) ;            // rpm count Mlifter 3    (counts/secs * rev/count * 60)
 	RPM_MServe = (countsMServe) * 50 * (0.00083333)* (60) ;    // rpm count MServe   (counts/secs * rev/count * 60)
 	
 	prev1 = Mlifter1counter ;                                  // set last count reached
@@ -95,7 +95,7 @@ counts3=	singlePoleFilter(counts3,prev_counts3);*/
 	{MServecounter=0;                                      // reset counter
 		prevMServe=0;}
 	///////////////////////////////////////////////////////////////////////////////
-	GPIOIM_PORTA   |= 0x3C;
+//	GPIOIM_PORTA   |= 0x3C;
 }
 
 

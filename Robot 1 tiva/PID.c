@@ -109,8 +109,8 @@ void PID_ML3_RPM(int rpm_ref_ML3)
 	D_ML3 = error_ML3 - previous_error_ML3 ;
 	
 	PID_value_ML3 = (kp_ML3*P_ML3) + (ki_ML3*I_ML3) + (kd_ML3*D_ML3);
-  PID_value_ML3=	constrain(PID_value_ML3 , 0,255 );
-  PID_value_ML3=	map(PID_value_ML3 , 0 , 255 , 3190 , 1000);
+  PID_value_ML3=	constrain(PID_value_ML3 , 0,3190 );
+  PID_value_ML3=	map(PID_value_ML3 , 0 , 3190 , 3190 , 1000);
   previous_error_ML3=error_ML3;	
 	analogWrite(Motor3,PID_value_ML3);
 }
@@ -122,8 +122,8 @@ void PID_ML3_REV(int ref_ML3)
 	I_ML3 = I_ML3 + error_ML3 ;
 	D_ML3 = error_ML3 - previous_error_ML3 ;
 	PID_value_ML3 = (kp_ML3*P_ML3) + (ki_ML3*I_ML3) + (kd_ML3*D_ML3);
-PID_value_ML3=	constrain(PID_value_ML3 , 0,255 );
-PID_value_ML3=	map(PID_value_ML3 , 0 , 255 , 3190 , 0);
+PID_value_ML3=	constrain(PID_value_ML3 , 0,3190 );
+PID_value_ML3=	map(PID_value_ML3 , 0 , 3190 , 3190 , 0);
   previous_error_ML3=error_ML3;	
 	analogWrite(Motor3,PID_value_ML3);
 }

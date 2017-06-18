@@ -30,14 +30,14 @@ void PWMA_Init()
 	GPIOAFSEL_PORTA &= ~0x3C;
 	GPIOPCTL_PORTA  &= ~0x00FFFF00;     //  configure 2,3,4,5 as GPIO
 	GPIODIR_PORTA   &= ~ 0x3C;    // set direction of 2,3,4 as inputs
-	GPIOPUR_PORTA   |= 0x3C;      // pullup registers
+	GPIOPUR_PORTA   &= ~0x3C;      // pullup registers
 	GPIODEN_PORTA   |= 0x3C;      // digital enable for pins 2,3,4,5
 	GPIOIS_PORTA    &= ~0x3C;     // 2,3,4,5 are edge senstive set to 1 for level
   GPIOIBE_PORTA   &= ~0x3C;    //  2,3,4,5 is not both edges
   GPIOEV_PORTA     |= 0x3C;     // 2,3,4,5 are rising edges
 	GPIOICR_PORTA    = 0x3C;     // clear flags of 2,3,4,5
 	GPIOIM_PORTA    |= 0x3C;     // arm interrupts for pins 2,3,4,5
-	PRI0 = (PRI0&0xFFFFFF00)|0x000000A0 ; // priority 5 
+	PRI0 = (PRI0&0xFFFFFF00)|0x000000F0 ; // priority 5 
 	EN0  = 1<<0;               // enable interrupts 16
 	
 	///////////////////////////////////////////////////////////////////
@@ -200,7 +200,7 @@ void PWME_Init()
 	GPIOAFSEL_PORTB &= ~0xC3;                // disable alternate function for 0,1,6,7
 	GPIOPCTL_PORTB  &= ~0x00000000;         //initialize pctl
   GPIODIR_PORTB   |= 0x03;                // set direction of 0,1 as outputs
-  GPIODIR_PORTA   &= ~ 0xC0;              // set direction of 6,7 as inputs
+  GPIODIR_PORTB   &= ~ 0xC0;              // set direction of 6,7 as inputs
 		GPIOAFSEL_PORTB |= 0x30;                // enable alternate function for 4,5
 	GPIOAMSEL_PORTB |= 0x30;                 // enable analog function for 4,5
 	GPIODEN_PORTB   |= 0xF3;                // digital enable for 0,1,4,5,6,7
@@ -449,14 +449,15 @@ void analogWrite(int pin,int speed)
 {
 	if( pin == Motor1)         // single drivers
 	{
-		PWM0_CMPA_1 = speed;
-		PWM0_CTL_1 |= EnableDown;
-		PWM0_EN |= 0x04;
+		 PWM0_CMPB_0=speed;
+		PWM0_CTL_0 |= EnableDown;
+		PWM0_EN |= 0x02; 
 		}
 	else if(pin == Motor2)    // single drivers
-	{  PWM0_CMPB_0=speed;
-		PWM0_CTL_0 |= EnableDown;
-		PWM0_EN |= 0x02;      }
+	{ 
+PWM0_CMPA_1 = speed;
+		PWM0_CTL_1 |= EnableDown;
+		PWM0_EN |= 0x04;	}
 	else if(pin==Motor3)
 	{ PWM0_CMPA_0=speed;
 		PWM0_CTL_0 |= EnableDown;
@@ -497,16 +498,17 @@ void analogWrite(int pin,int speed)
 void digitalWrite(uint32_t pin, char dir)
 {
 	if(pin==Motor1)
+	{
+	 if(dir==1)
+	{PC7 |= 0x80;}
+	else if (dir==LOW)
+	{PC7 &= ~0x80;}
+	}
+	else if(pin==Motor2)
 	{  if(dir==1)
 	{PE1 |= 0x02;}
 	else if (dir==LOW)
-	{PE1 &= ~0x02;}
-	}
-	else if(pin==Motor2)
-	{   if(dir==1)
-	{PC7 |= 0x80;}
-	else if (dir==LOW)
-	{PC7 &= ~0x80;}}
+	{PE1 &= ~0x02;} }
 	else if(pin==Motor3)
 	{
 	if(dir==1)

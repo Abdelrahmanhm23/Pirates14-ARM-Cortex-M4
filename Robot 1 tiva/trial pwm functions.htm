@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\trial pwm functions.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\trial pwm functions.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5.03 [Build 76]: Last Updated: Sat Jun 17 14:13:01 2017
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5.03 [Build 76]: Last Updated: Sun Jun 18 12:43:55 2017
 <BR><P>
 <H3>Maximum Stack Usage =         64 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -427,7 +427,7 @@ Global Symbols
 <P><STRONG><a name="[85]"></a>main</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, main.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = main &rArr; Data &rArr; Pole5 &rArr; PID_ML3_REV &rArr; map
 </UL>
-<BR>[Calls]<UL><LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIVA1
+<BR>[Calls]<UL><LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIVA2
 <LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Data
 </UL>
 <BR>[Called By]<UL><LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry_main
@@ -438,88 +438,88 @@ Global Symbols
 <P><STRONG><a name="[78]"></a>SystemInit</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, main.o(.text))
 <BR>[Address Reference Count : 1]<UL><LI> startup_tm4c123.o(.text)
 </UL>
-<P><STRONG><a name="[a7]"></a>PWMA_Init</STRONG> (Thumb, 298 bytes, Stack size 0 bytes, motorinit.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIVA1
+<P><STRONG><a name="[a8]"></a>PWMA_Init</STRONG> (Thumb, 298 bytes, Stack size 0 bytes, motorinit.o(.text), UNUSED)
+<BR><BR>[Called By]<UL><LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIVA1
 </UL>
 
-<P><STRONG><a name="[a8]"></a>PWMB_Init</STRONG> (Thumb, 190 bytes, Stack size 0 bytes, motorinit.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIVA1
+<P><STRONG><a name="[a9]"></a>PWMB_Init</STRONG> (Thumb, 190 bytes, Stack size 0 bytes, motorinit.o(.text), UNUSED)
+<BR><BR>[Called By]<UL><LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIVA1
 </UL>
 
-<P><STRONG><a name="[a9]"></a>PWMC_Init</STRONG> (Thumb, 148 bytes, Stack size 0 bytes, motorinit.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIVA1
+<P><STRONG><a name="[aa]"></a>PWMC_Init</STRONG> (Thumb, 148 bytes, Stack size 0 bytes, motorinit.o(.text), UNUSED)
+<BR><BR>[Called By]<UL><LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIVA1
 </UL>
 
-<P><STRONG><a name="[aa]"></a>PWMD_Init</STRONG> (Thumb, 186 bytes, Stack size 0 bytes, motorinit.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIVA1
+<P><STRONG><a name="[ab]"></a>PWMD_Init</STRONG> (Thumb, 186 bytes, Stack size 0 bytes, motorinit.o(.text), UNUSED)
+<BR><BR>[Called By]<UL><LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIVA1
 </UL>
 
-<P><STRONG><a name="[ab]"></a>PWME_Init</STRONG> (Thumb, 160 bytes, Stack size 0 bytes, motorinit.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIVA1
+<P><STRONG><a name="[ac]"></a>PWME_Init</STRONG> (Thumb, 160 bytes, Stack size 0 bytes, motorinit.o(.text), UNUSED)
+<BR><BR>[Called By]<UL><LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIVA1
 </UL>
 
-<P><STRONG><a name="[b0]"></a>ADCB_Init</STRONG> (Thumb, 422 bytes, Stack size 0 bytes, motorinit.o(.text), UNUSED)
-<BR><BR>[Called By]<UL><LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIVA2
+<P><STRONG><a name="[b0]"></a>ADCB_Init</STRONG> (Thumb, 420 bytes, Stack size 0 bytes, motorinit.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIVA2
 </UL>
 
-<P><STRONG><a name="[b1]"></a>ADCC_Init</STRONG> (Thumb, 148 bytes, Stack size 0 bytes, motorinit.o(.text), UNUSED)
-<BR><BR>[Called By]<UL><LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIVA2
+<P><STRONG><a name="[b1]"></a>ADCC_Init</STRONG> (Thumb, 148 bytes, Stack size 0 bytes, motorinit.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIVA2
 </UL>
 
-<P><STRONG><a name="[b2]"></a>ADCD_Init</STRONG> (Thumb, 74 bytes, Stack size 0 bytes, motorinit.o(.text), UNUSED)
-<BR><BR>[Called By]<UL><LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIVA2
+<P><STRONG><a name="[b2]"></a>ADCD_Init</STRONG> (Thumb, 74 bytes, Stack size 0 bytes, motorinit.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIVA2
 </UL>
 
-<P><STRONG><a name="[b3]"></a>ADCE_Init</STRONG> (Thumb, 140 bytes, Stack size 0 bytes, motorinit.o(.text), UNUSED)
-<BR><BR>[Called By]<UL><LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIVA2
+<P><STRONG><a name="[b3]"></a>ADCE_Init</STRONG> (Thumb, 140 bytes, Stack size 0 bytes, motorinit.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIVA2
 </UL>
 
-<P><STRONG><a name="[ac]"></a>PortF_Init</STRONG> (Thumb, 218 bytes, Stack size 0 bytes, motorinit.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIVA2
-<LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIVA1
+<P><STRONG><a name="[ad]"></a>PortF_Init</STRONG> (Thumb, 218 bytes, Stack size 0 bytes, motorinit.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIVA1
+<LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIVA2
 </UL>
 
-<P><STRONG><a name="[ae]"></a>SysTick_Init</STRONG> (Thumb, 28 bytes, Stack size 0 bytes, motorinit.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIVA2
-<LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIVA1
+<P><STRONG><a name="[af]"></a>SysTick_Init</STRONG> (Thumb, 28 bytes, Stack size 0 bytes, motorinit.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIVA1
+<LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIVA2
 </UL>
 
-<P><STRONG><a name="[ad]"></a>init_adc_3pins</STRONG> (Thumb, 82 bytes, Stack size 0 bytes, motorinit.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIVA1
+<P><STRONG><a name="[ae]"></a>init_adc_3pins</STRONG> (Thumb, 82 bytes, Stack size 0 bytes, motorinit.o(.text), UNUSED)
+<BR><BR>[Called By]<UL><LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIVA1
 </UL>
 
-<P><STRONG><a name="[a6]"></a>TIVA1</STRONG> (Thumb, 80 bytes, Stack size 4 bytes, motorinit.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = TIVA1
-</UL>
-<BR>[Calls]<UL><LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;init_adc_3pins
-<LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysTick_Init
-<LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PortF_Init
-<LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PWME_Init
-<LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PWMD_Init
-<LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PWMC_Init
-<LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PWMB_Init
-<LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PWMA_Init
-</UL>
-<BR>[Called By]<UL><LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+<P><STRONG><a name="[a7]"></a>TIVA1</STRONG> (Thumb, 80 bytes, Stack size 4 bytes, motorinit.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;init_adc_3pins
+<LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysTick_Init
+<LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PortF_Init
+<LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PWME_Init
+<LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PWMD_Init
+<LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PWMC_Init
+<LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PWMB_Init
+<LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PWMA_Init
 </UL>
 
-<P><STRONG><a name="[b5]"></a>init_adc_2pins</STRONG> (Thumb, 258 bytes, Stack size 0 bytes, motorinit.o(.text), UNUSED)
-<BR><BR>[Called By]<UL><LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIVA2
+<P><STRONG><a name="[b5]"></a>init_adc_2pins</STRONG> (Thumb, 252 bytes, Stack size 0 bytes, motorinit.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIVA2
 </UL>
 
-<P><STRONG><a name="[b4]"></a>init_adc_8pins</STRONG> (Thumb, 160 bytes, Stack size 0 bytes, motorinit.o(.text), UNUSED)
-<BR><BR>[Called By]<UL><LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIVA2
+<P><STRONG><a name="[b4]"></a>init_adc_8pins</STRONG> (Thumb, 160 bytes, Stack size 0 bytes, motorinit.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIVA2
 </UL>
 
-<P><STRONG><a name="[af]"></a>TIVA2</STRONG> (Thumb, 76 bytes, Stack size 4 bytes, motorinit.o(.text), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;init_adc_8pins
+<P><STRONG><a name="[a6]"></a>TIVA2</STRONG> (Thumb, 76 bytes, Stack size 4 bytes, motorinit.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = TIVA2
+</UL>
+<BR>[Calls]<UL><LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;init_adc_8pins
 <LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;init_adc_2pins
-<LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysTick_Init
-<LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PortF_Init
+<LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysTick_Init
+<LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PortF_Init
 <LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADCE_Init
 <LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADCD_Init
 <LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADCC_Init
 <LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADCB_Init
+</UL>
+<BR>[Called By]<UL><LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
 <P><STRONG><a name="[cd]"></a>delayUs</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, motorinit.o(.text))
@@ -615,7 +615,7 @@ Global Symbols
 <P><STRONG><a name="[c]"></a>GPIOA_Handler</STRONG> (Thumb, 170 bytes, Stack size 0 bytes, encoders.o(.text))
 <BR>[Address Reference Count : 1]<UL><LI> startup_tm4c123.o(RESET)
 </UL>
-<P><STRONG><a name="[b]"></a>SysTick_Handler</STRONG> (Thumb, 572 bytes, Stack size 32 bytes, encoders.o(.text))
+<P><STRONG><a name="[b]"></a>SysTick_Handler</STRONG> (Thumb, 534 bytes, Stack size 32 bytes, encoders.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = SysTick_Handler &rArr; __aeabi_dmul
 </UL>
 <BR>[Calls]<UL><LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
@@ -631,7 +631,7 @@ Global Symbols
 <LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2f
 </UL>
 
-<P><STRONG><a name="[bd]"></a>Hex2Dec</STRONG> (Thumb, 358 bytes, Stack size 96 bytes, encoders.o(.text), UNUSED)
+<P><STRONG><a name="[bd]"></a>Hex2Dec</STRONG> (Thumb, 372 bytes, Stack size 96 bytes, encoders.o(.text), UNUSED)
 <BR><BR>[Calls]<UL><LI><a href="#[bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__hardfp_pow
 <LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
 <LI><a href="#[c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_l2d

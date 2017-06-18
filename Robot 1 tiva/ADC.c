@@ -7,7 +7,7 @@ int VL=0;
 int ls1=0 ,ls2=0 ,ls3=0,ls4=0,ls5=0,ls6=0,ls7=0,ls8=0;
 
 
-void data_get (int *pt , int i )
+void data_get (uint32_t *pt , int i )
    {
      int k;
      ADCPSSI_ADC0 = 0x0010;    // start sampling (SS1)
@@ -61,7 +61,9 @@ void digital_reads(uint32_t *ADC )
 
 void line ()
 {
-
+  data_get ( ADC0Value , 8); // line sensor analog reads 
+	digital_reads(ADC0Value);
+	
 if ((ls1==1) && (ls2==0) && (ls3==0) && (ls4==0) && (ls5==0) && (ls6==0) && (ls7==0) && (ls8==0))
 {
      analogWrite(Motor5,690);     //200
