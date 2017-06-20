@@ -72,7 +72,7 @@ void Forward()
 	digitalWrite(Motor8,HIGH);
 	analogWrite(Motor8,FORWARD[3]) ;	
 	
-	delayUs(1); // delay for motor 1
+	//// delayUs(1); // delay for motor 1
 		digitalWrite(Motor5,HIGH);
 	analogWrite(Motor5,FORWARD[0]) ;
 }
@@ -96,7 +96,7 @@ void Reverse()
 	digitalWrite(Motor8,LOW);
 	analogWrite(Motor8,REVERSE[3]) ;
 	
-		delayUs(1); // delay for motor 1
+		// delayUs(1); // delay for motor 1
 	digitalWrite(Motor5,LOW);
 	analogWrite(Motor5,REVERSE[0]) ;	
 }
@@ -121,7 +121,7 @@ void Left()
 	digitalWrite(Motor8,LOW);
 	analogWrite(Motor8,LEFT[3]) ;
 	
-			delayUs(1); // delay for motor 1
+			// delayUs(1); // delay for motor 1
 			digitalWrite(Motor5,HIGH);
 	analogWrite(Motor5,LEFT[0]) ;
 }
@@ -147,7 +147,7 @@ void Right()
 	digitalWrite(Motor8,HIGH);
 	analogWrite(Motor8,RIGHT[3]) ;	
 	
-				delayUs(1); // delay for motor 1
+				// delayUs(1); // delay for motor 1
 			digitalWrite(Motor5,LOW);
 	analogWrite(Motor5,RIGHT[0]) ;
 }
@@ -195,7 +195,7 @@ void UpLeft()
 	digitalWrite(Motor8,LOW);
 		MotorStop(Motor8) ;	
 	
-	delayUs(1);
+	// delayUs(1);
 		digitalWrite(Motor5,HIGH);
 	analogWrite(Motor5,UPLEFT[0]) ;
 	
@@ -221,7 +221,7 @@ void DownRight()
 	digitalWrite(Motor8,LOW);
 		MotorStop(Motor8) ;	
 	
-	delayUs(1);
+	// delayUs(1);
 		digitalWrite(Motor5,LOW);
 	analogWrite(Motor5,DOWNRIGHT[0]) ;
 }
@@ -268,7 +268,7 @@ void ClockWise()
 	digitalWrite(Motor8,LOW);
 	analogWrite(Motor8,CLOCKWISE[3]) ;	
 	
-	delayUs(1);
+	// delayUs(1);
 		digitalWrite(Motor5,LOW);
 	analogWrite(Motor5,CLOCKWISE[0]) ;
 }
@@ -291,7 +291,7 @@ void CounterClockWise()
 	digitalWrite(Motor8,HIGH);
 	analogWrite(Motor8,COUNTERCLOCKWISE[3]) ;
 	
-	delayUs(1);
+	// delayUs(1);
 			digitalWrite(Motor5,HIGH);
 	analogWrite(Motor5,COUNTERCLOCKWISE[0]) ;
 	

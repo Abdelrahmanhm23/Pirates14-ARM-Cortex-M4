@@ -32,6 +32,7 @@ if(GPIORIS_PORTA&0x04)
 	if(Mlifter1counter==0xFFFFFFFF)
 	{ Mlifter1counter=0;                                      // reset counter Mlifter 1
 		prev1=0;}
+	GPIOICR_PORTA=0x04;   // acknowledge pin 2 clear for next interrupt
 }
 if(GPIORIS_PORTA&0x08)
 {GPIOICR_PORTA=0x08;   // acknowledge pin 3 clear for next interrupt 
@@ -71,9 +72,9 @@ counts2=	singlePoleFilter(counts2,prev_counts2);
 counts3=	singlePoleFilter(counts3,prev_counts3);*/
 	RPM_ML1 = (counts1) * 50 * (0.00083333)* (60) ;           // rpm count Mlifter 1    (counts/secs * rev/count * 60)
 	RPM_ML2 = (counts2) * 50 * (0.00083333)* (60) ;           // rpm count Mlifter 2    (counts/secs * rev/count * 60)
-	RPM_ML3 = (counts3)  * (88.49)* (0.0166) ;            // rpm count Mlifter 3    (counts/secs * rev/count * 60)
-	RPM_MServe = (countsMServe) * 50 * (0.00083333)* (60) ;    // rpm count MServe   (counts/secs * rev/count * 60)
-	
+	RPM_ML3 = (counts3)  * 50 * (0.001527)* (60) ;            // rpm count Mlifter 3    (counts/secs * rev/count * 60)
+	RPM_MServe = (countsMServe) * 50 * (0.005)* (60) ;    // rpm count MServe   (counts/secs * rev/count * 60)
+
 	prev1 = Mlifter1counter ;                                  // set last count reached
 	prev2 = Mlifter2counter ;                                  // set last count reached
 	prev3 = Mlifter3counter ;                                  // set last count reached

@@ -54,6 +54,7 @@ PID_ML3_REV(pos3);
 	current_pos1=pos1;
 	current_pos2=pos2;
 	current_pos3=pos3;
+	delayUs(20000);
 }
 	
 	
@@ -96,6 +97,7 @@ PID_ML3_REV(pos3);
 	current_pos1=pos1;
 	current_pos2=pos2;
 	current_pos3=pos3;
+	delayUs(20000);
 }
 	
 	
@@ -137,7 +139,9 @@ PID_ML3_REV(pos3);
 	Serve();
 	current_pos1=pos1;
 	current_pos2=pos2;
-	current_pos3=pos3;}
+	current_pos3=pos3;
+	delayUs(20000);
+}
 	
 void Pole4( long desired_pos1, long desired_pos2, long desired_pos3,int SERVEPWM)
 {
@@ -178,6 +182,7 @@ PID_ML3_REV(pos3);
 	current_pos1=pos1;
 	current_pos2=pos2;
 	current_pos3=pos3;
+	delayUs(20000);
 }
 	
 void Pole5( long desired_pos1, long desired_pos2, long desired_pos3,int SERVEPWM)
@@ -219,4 +224,5 @@ PID_ML3_REV(pos3);
 	current_pos1=pos1;
 	current_pos2=pos2;
 	current_pos3=pos3;
+	delayUs(20000);
 }

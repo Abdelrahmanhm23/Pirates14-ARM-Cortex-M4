@@ -28,17 +28,20 @@ void Data();
 int main()
 {
 
-
-TIVA1();
+	TIVA1();
 	
 	while(1)
 	{
 		Data();
+		//analogWrite(Motor5,1550);
 		//ReadData();
-		//	PID_ML3_RPM(400);
+			//PID_ML3_REV(400);
+		//delayUs(20000);
 	//	if(Mlifter3counter>=340)
 	//	{liftersStop();
 	//	while(1);}
+					//PID_ML3_RPM(400);
+
 	}
 }
 

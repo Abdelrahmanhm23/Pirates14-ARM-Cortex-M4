@@ -16,7 +16,7 @@ float REF_RPM_ML2=300  , REF_REV_ML2=(135*2) ;   //135 one rev
 /////////////////////////////
 
 ////////Motor lifter 3////////
-float kp_ML3=0.50036, ki_ML3=0.04180, kd_ML3=0;                  //  1.43596  ,   0.11253
+float kp_ML3=1.43596, ki_ML3=0.11253, kd_ML3=-1.523;                  //  1.43596  ,   0.11253
 float error_ML3=0, P_ML3=0, I_ML3=0, D_ML3=0, PID_value_ML3=0;
 float previous_error_ML3=0, previous_I_ML3=0;
 float REF_RPM_ML3=300 , REF_REV_ML3=(135*2);   //135 one rev
@@ -104,28 +104,34 @@ PID_value_ML2 = (kp_ML2*P_ML2) + (ki_ML2*I_ML2) + (kd_ML2*D_ML2);
 void PID_ML3_RPM(int rpm_ref_ML3)
 {
 	error_ML3 = rpm_ref_ML3 - RPM_ML3 ;
+		if(error_ML3>500)
+		{error_ML3=4;}
 	P_ML3 = error_ML3;
 	I_ML3 = I_ML3 + error_ML3 ;
 	D_ML3 = error_ML3 - previous_error_ML3 ;
 	
 	PID_value_ML3 = (kp_ML3*P_ML3) + (ki_ML3*I_ML3) + (kd_ML3*D_ML3);
-  PID_value_ML3=	constrain(PID_value_ML3 , 0,3190 );
-  PID_value_ML3=	map(PID_value_ML3 , 0 , 3190 , 3190 , 1000);
+PID_value_ML3=	constrain(PID_value_ML3 , 1,3190 );
+PID_value_ML3=	map(PID_value_ML3 , 0 , 3190 , 3190 , 1);
   previous_error_ML3=error_ML3;	
 	analogWrite(Motor3,PID_value_ML3);
 }
 
 void PID_ML3_REV(int ref_ML3)
 {
+
 	error_ML3 = ref_ML3 - Mlifter3counter ;
+	
 	P_ML3 = error_ML3;
 	I_ML3 = I_ML3 + error_ML3 ;
 	D_ML3 = error_ML3 - previous_error_ML3 ;
 	PID_value_ML3 = (kp_ML3*P_ML3) + (ki_ML3*I_ML3) + (kd_ML3*D_ML3);
-PID_value_ML3=	constrain(PID_value_ML3 , 0,3190 );
-PID_value_ML3=	map(PID_value_ML3 , 0 , 3190 , 3190 , 0);
+PID_value_ML3=	constrain(PID_value_ML3 , 1,3190 );
+PID_value_ML3=	map(PID_value_ML3 , 1 , 3190 , 3190 , 1);
   previous_error_ML3=error_ML3;	
 	analogWrite(Motor3,PID_value_ML3);
+	if(Mlifter3counter>=ref_ML3)
+	{MotorStop(Motor3);}
 }
 
 

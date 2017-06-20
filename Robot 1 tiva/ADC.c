@@ -61,15 +61,15 @@ void digital_reads(uint32_t *ADC )
 
 void line ()
 {
-<<<<<<< HEAD
+//<<<<<<< HEAD
   data_get ( ADC0Value , 8); // line sensor analog reads 
 	digital_reads(ADC0Value);
 	
-=======
+//=======
 
   data_get (ADC0Value , 8);   // read line sensor (analog)
   digital_reads(ADC0Value) ;  // digitalize sesnor reads
->>>>>>> origin/master
+//>>>>>>> origin/master
 if ((ls1==1) && (ls2==0) && (ls3==0) && (ls4==0) && (ls5==0) && (ls6==0) && (ls7==0) && (ls8==0))
 {
      analogWrite(Motor5,690);     //200
