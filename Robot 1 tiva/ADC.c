@@ -5,21 +5,46 @@
 // EX : data_get (ADCValue , 4);
 int VL=0;
 int ls1=0 ,ls2=0 ,ls3=0,ls4=0,ls5=0,ls6=0,ls7=0,ls8=0;
-
+int sensor_lifter1=0 , sensor_lifter3=0;
+uint32_t ADC0Value[]={0,0,0,0,0,0,0,0};
+uint32_t IR[]={0,0,0} ;
+uint32_t V_L[]={0,0} ;
 
 void data_get (uint32_t *pt , int i )
    {
      int k;
-     ADCPSSI_ADC0 = 0x0010;    // start sampling (SS1)
-     while((ADCRIS_ADC0 &0x02)==0){};  // wait untill sampling is done (for SS1)
+     ADCPSSI_ADC0 = 0x0001;    // start sampling (SS0)
+     while((ADCRIS_ADC0 &0x01)==0){};  // wait untill sampling is done (for SS0)
       //get SS FIFO values
      for(k=0 ; k<i ; k++)
        {
-        *(pt+k) = ADCSSFIFO1_ADC0 &0xFFF;
+        *(pt+k) = ADCSSFIFO0_ADC0 &0xFFF;
        }
-      ADCISC_ADC0 = 0x0010;   // set interrupt flag for SS1 
+      ADCISC_ADC0 = 0x0001;   // set interrupt flag for SS0 
    }
 
+	 
+	 void data_get_SS1 (uint32_t *pt , int i )
+   {
+     int k;
+     ADCPSSI_ADC1 = 0x0001;    // start sampling (SS1)
+     while((ADCRIS_ADC1 &0x01)==0){};  // wait untill sampling is done (for SS1)
+      //get SS FIFO values
+     for(k=0 ; k<i ; k++)
+       {
+        *(pt+k) = ADCSSFIFO0_ADC1 &0xFF;
+       }
+      ADCISC_ADC1 = 0x0001;   // set interrupt flag for SS1 
+   }
+	 
+void IR_read(uint32_t *ADC )
+{
+	data_get(IR,3);
+	if (*(ADC)>3 && *(ADC)<80)
+	{sensor_lifter1=1;}
+		if (*(ADC+1)>3 && *(ADC+1)<80)
+	{sensor_lifter3=1;}
+}
 
 
 void digital_reads(uint32_t *ADC )
@@ -67,8 +92,8 @@ void line ()
 	
 //=======
 
-  data_get (ADC0Value , 8);   // read line sensor (analog)
-  digital_reads(ADC0Value) ;  // digitalize sesnor reads
+//  data_get (ADC0Value , 8);   // read line sensor (analog)
+  //digital_reads(ADC0Value) ;  // digitalize sesnor reads
 //>>>>>>> origin/master
 if ((ls1==1) && (ls2==0) && (ls3==0) && (ls4==0) && (ls5==0) && (ls6==0) && (ls7==0) && (ls8==0))
 {
@@ -340,8 +365,12 @@ int main()
 
 
 
-void VerticalLines()
+
+void VerticalLines(uint32_t *ADC)
 {
+	data_get(V_L,2);
+	if (*(ADC)>3 && *(ADC)<80)
+	{
 	if((VL>=0||VL>=1)&&VL!=3)
 	{
 		VL++;
@@ -350,5 +379,6 @@ void VerticalLines()
 	{
 		VL--;
 	}
+}
 	
 }

@@ -146,7 +146,7 @@ void PWMD_Init()      // 0 input 1 analog  2,3,6,7 output
 	RCGCGPIO |=0x08;                        // activate clock for Port D
 	GPIODATA_PORTD   &= ~0xCF;                  // Initialize data register
 	GPIOLOCK_PORTD = 0x4C4F434B ;              // unlock port D
-	GPIOCR_PORTD = 0x80 ;                      // allow changes to 7
+	GPIOCR_PORTD = 0x80 ;                      // allow changes to 
 	GPIOAFSEL_PORTD &= ~0xCD;                 // disable 0,2,3,6,7 alternate functions
 	GPIOAMSEL_PORTD &= ~0xCD;                 // disable analog functions  0,2,3,6,7
 	GPIODIR_PORTD   &= ~0x01;                 // set direction of 0 as input
@@ -333,6 +333,9 @@ void TIVA1()  // initialization of tiva 1 (lifters,encoders,3pins ADC,Serve)
 	PortF_Init();                            // SPI communication slave 
   init_adc_3pins();
 	SysTick_Init();
+		digitalWrite(ServePiston,HIGH);
+digitalWrite(ServeMotorCW,HIGH);
+digitalWrite(ServeMotorCCW,HIGH);
 }
 
 void TIVA2()  // initialization of tiva 2 (Base , LINE follower , base sensors) 
@@ -344,8 +347,8 @@ void TIVA2()  // initialization of tiva 2 (Base , LINE follower , base sensors)
  ADCD_Init();
   ADCE_Init();
   PortF_Init();
- //init_adc_8pins();
-	//init_adc_2pins();
+ init_adc_8pins();
+	init_adc_2pins();
  SysTick_Init();
 }
 
@@ -459,19 +462,20 @@ void analogWrite(int pin,int speed)
 {
 	if( pin == Motor1)         // single drivers
 	{
-		 PWM0_CMPB_0=speed;
-		PWM0_CTL_0 |= EnableDown;
-		PWM0_EN |= 0x02; 
-		}
-	else if(pin == Motor2)    // single drivers
-	{ 
-PWM0_CMPA_1 = speed;
+		PWM0_CMPA_1 = speed;
 		PWM0_CTL_1 |= EnableDown;
-		PWM0_EN |= 0x04;	}
-	else if(pin==Motor3)
-	{ PWM0_CMPA_0=speed;
+		PWM0_EN |= 0x04; 
+		}
+	else if(pin == Motor2)    // single drivers    PWM0_CMPA_0                           
+	{ 	
+	PWM0_CMPA_0=speed;
 		PWM0_CTL_0 |= EnableDown;
-	 	PWM0_EN |= 0x01;     }
+	 	PWM0_EN |= 0x01; }
+	else if(pin==Motor3)
+	{    
+ PWM0_CMPB_0=speed;
+		PWM0_CTL_0 |= EnableDown;
+		PWM0_EN |= 0x02; 	}
 	else if(pin==Motor4)     // SERVO
 	{   PWM0_CMPB_1 = speed;
 		PWM0_CTL_1 |= EnableDown;
@@ -508,23 +512,23 @@ PWM0_CMPA_1 = speed;
 void digitalWrite(uint32_t pin, char dir)
 {
 	if(pin==Motor1)
+	{                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+	if(dir==1)
+	{PE1 |= 0x02;}
+	else if (dir==LOW)
+	{PE1 &= ~0x02;}
+	}
+	else if(pin==Motor2)
+	{  if(dir==1)
+	{PC6 |= 0x40;}
+	else if (dir==LOW)
+	{PC6 &= ~0x40;} }
+	else if(pin==Motor3)
 	{
 	 if(dir==1)
 	{PC7 |= 0x80;}
 	else if (dir==LOW)
-	{PC7 &= ~0x80;}
-	}
-	else if(pin==Motor2)
-	{  if(dir==1)
-	{PE1 |= 0x02;}
-	else if (dir==LOW)
-	{PE1 &= ~0x02;} }
-	else if(pin==Motor3)
-	{
-	if(dir==1)
-	{PC6 |= 0x40;}
-	else if (dir==LOW)
-	{PC6 &= ~0x40;}}
+	{PC7 &= ~0x80;}}
 	else if(pin==Motor4)  // SERVO
 	{if(dir==1)
 	{}

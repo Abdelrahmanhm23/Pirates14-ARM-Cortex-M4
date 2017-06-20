@@ -8,7 +8,7 @@
 #include "Serve.h"
 #include "encoders.h"
 #include "Poles.h"
-//#include "ADC.h"
+#include "ADC.h"
 #include <math.h>
 #define SCB_R                   (*((volatile unsigned long *) 0xE000ED88))
 //double y = 0.00125 ;
@@ -28,7 +28,7 @@ void Data();
 int main()
 {
 
-	TIVA1();
+	TIVA2();
 	
 	while(1)
 	{
@@ -41,7 +41,6 @@ int main()
 	//	{liftersStop();
 	//	while(1);}
 					//PID_ML3_RPM(400);
-
 	}
 }
 
@@ -78,6 +77,10 @@ void Data()
 		a=20;
 while(1)
 {	
+	if(ReadData()==0x30)   // ps button
+		{Stop();
+		 servestop();
+		 liftersStop();}
 	//	a=20;
 	if(ReadData()==0x30)   // ps button
 		{Stop();
@@ -200,7 +203,7 @@ while(1)
 //-------------------------------------------------------------	
 	if (ReadData()==LINE)        //RIGHT
 	{while(1)
-		{//		Line();
+		{	line ();
 	if(ReadData()==R2)
 		{break;}
 	if (ReadData()==0x23)

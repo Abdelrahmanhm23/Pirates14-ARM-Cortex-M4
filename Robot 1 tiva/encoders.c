@@ -70,8 +70,8 @@ void SysTick_Handler()
 /*counts1=	singlePoleFilter(counts1,prev_counts1);   // filter 
 counts2=	singlePoleFilter(counts2,prev_counts2);
 counts3=	singlePoleFilter(counts3,prev_counts3);*/
-	RPM_ML1 = (counts1) * 50 * (0.00083333)* (60) ;           // rpm count Mlifter 1    (counts/secs * rev/count * 60)
-	RPM_ML2 = (counts2) * 50 * (0.00083333)* (60) ;           // rpm count Mlifter 2    (counts/secs * rev/count * 60)
+	RPM_ML1 = (counts1)  * 50 * (0.001527)* (60) ;           // rpm count Mlifter 1    (counts/secs * rev/count * 60)
+	RPM_ML2 = (counts2)  * 50 * (0.001527)* (60) ;           // rpm count Mlifter 2    (counts/secs * rev/count * 60)
 	RPM_ML3 = (counts3)  * 50 * (0.001527)* (60) ;            // rpm count Mlifter 3    (counts/secs * rev/count * 60)
 	RPM_MServe = (countsMServe) * 50 * (0.005)* (60) ;    // rpm count MServe   (counts/secs * rev/count * 60)
 
