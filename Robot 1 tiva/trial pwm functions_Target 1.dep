@@ -1,7 +1,7 @@
 Dependencies for Project 'trial pwm functions', Target 'Target 1': (DO NOT MODIFY !)
 F (.\MemMap.h)(0x59388012)()
 F (.\MotorInit.h)(0x59450684)()
-F (.\main.c)(0x59497166)(-c --cpu Cortex-M4.fp -D__EVAL -g -W -O0 --apcs=interwork -IE:\Keil\TivaWare_C_Series-2.1.2.111\inc -IE:\Keil\TivaWare_C_Series-2.1.2.111-I E:\keil\ARM\RV31\INC-I E:\keil\ARM\CMSIS\Include-I E:\keil\ARM\Inc\TI\TM4C123-DTM4C123GH6PM-o .\main.o --omf_browse .\main.crf --depend .\main.d)
+F (.\main.c)(0x594A16D7)(-c --cpu Cortex-M4.fp -D__EVAL -g -W -O0 --apcs=interwork -IE:\Keil\TivaWare_C_Series-2.1.2.111\inc -IE:\Keil\TivaWare_C_Series-2.1.2.111-I E:\keil\ARM\RV31\INC-I E:\keil\ARM\CMSIS\Include-I E:\keil\ARM\Inc\TI\TM4C123-DTM4C123GH6PM-o .\main.o --omf_browse .\main.crf --depend .\main.d)
 I (MemMap.h)(0x59388012)
 I (E:\keil\ARM\ARMCC\include\stdint.h)(0x51C819B4)
 I (MotorInit.h)(0x59450684)
@@ -26,8 +26,8 @@ I (pistons.h)(0x59431AAE)
 I (Serve.h)(0x59431DEF)
 I (Poles.h)(0x5945048F)
 I (E:\keil\ARM\ARMCC\include\stdlib.h)(0x51C819B4)
-I (ADC.h)(0x59497165)
-F (.\MotorInit.c)(0x59497166)(-c --cpu Cortex-M4.fp -D__EVAL -g -W -O0 --apcs=interwork -IE:\Keil\TivaWare_C_Series-2.1.2.111\inc -IE:\Keil\TivaWare_C_Series-2.1.2.111-I E:\keil\ARM\RV31\INC-I E:\keil\ARM\CMSIS\Include-I E:\keil\ARM\Inc\TI\TM4C123-DTM4C123GH6PM-o .\motorinit.o --omf_browse .\motorinit.crf --depend .\motorinit.d)
+I (ADC.h)(0x5949F515)
+F (.\MotorInit.c)(0x594A11BE)(-c --cpu Cortex-M4.fp -D__EVAL -g -W -O0 --apcs=interwork -IE:\Keil\TivaWare_C_Series-2.1.2.111\inc -IE:\Keil\TivaWare_C_Series-2.1.2.111-I E:\keil\ARM\RV31\INC-I E:\keil\ARM\CMSIS\Include-I E:\keil\ARM\Inc\TI\TM4C123-DTM4C123GH6PM-o .\motorinit.o --omf_browse .\motorinit.crf --depend .\motorinit.d)
 I (E:\keil\ARM\ARMCC\include\stdint.h)(0x51C819B4)
 I (MemMap.h)(0x59388012)
 I (MotorInit.h)(0x59450684)
@@ -39,7 +39,7 @@ I (E:\keil\ARM\ARMCC\include\string.h)(0x51C819B4)
 I (MemMap.h)(0x59388012)
 I (E:\keil\ARM\ARMCC\include\stdint.h)(0x51C819B4)
 I (MotorInit.h)(0x59450684)
-F (.\PID.c)(0x59486BD9)(-c --cpu Cortex-M4.fp -D__EVAL -g -W -O0 --apcs=interwork -IE:\Keil\TivaWare_C_Series-2.1.2.111\inc -IE:\Keil\TivaWare_C_Series-2.1.2.111-I E:\keil\ARM\RV31\INC-I E:\keil\ARM\CMSIS\Include-I E:\keil\ARM\Inc\TI\TM4C123-DTM4C123GH6PM-o .\pid.o --omf_browse .\pid.crf --depend .\pid.d)
+F (.\PID.c)(0x5949D364)(-c --cpu Cortex-M4.fp -D__EVAL -g -W -O0 --apcs=interwork -IE:\Keil\TivaWare_C_Series-2.1.2.111\inc -IE:\Keil\TivaWare_C_Series-2.1.2.111-I E:\keil\ARM\RV31\INC-I E:\keil\ARM\CMSIS\Include-I E:\keil\ARM\Inc\TI\TM4C123-DTM4C123GH6PM-o .\pid.o --omf_browse .\pid.crf --depend .\pid.d)
 I (PID.h)(0x594503D1)
 I (MemMap.h)(0x59388012)
 I (E:\keil\ARM\ARMCC\include\stdint.h)(0x51C819B4)
@@ -86,12 +86,12 @@ I (E:\keil\ARM\ARMCC\include\stdarg.h)(0x51C819B4)
 F (.\pistons.c)(0x59431AAE)(-c --cpu Cortex-M4.fp -D__EVAL -g -W -O0 --apcs=interwork -IE:\Keil\TivaWare_C_Series-2.1.2.111\inc -IE:\Keil\TivaWare_C_Series-2.1.2.111-I E:\keil\ARM\RV31\INC-I E:\keil\ARM\CMSIS\Include-I E:\keil\ARM\Inc\TI\TM4C123-DTM4C123GH6PM-o .\pistons.o --omf_browse .\pistons.crf --depend .\pistons.d)
 I (pistons.h)(0x59431AAE)
 F (.\pistons.h)(0x59431AAE)()
-F (.\ADC.c)(0x59497166)(-c --cpu Cortex-M4.fp -D__EVAL -g -W -O0 --apcs=interwork -IE:\Keil\TivaWare_C_Series-2.1.2.111\inc -IE:\Keil\TivaWare_C_Series-2.1.2.111-I E:\keil\ARM\RV31\INC-I E:\keil\ARM\CMSIS\Include-I E:\keil\ARM\Inc\TI\TM4C123-DTM4C123GH6PM-o .\adc.o --omf_browse .\adc.crf --depend .\adc.d)
-I (ADC.h)(0x59497165)
+F (.\ADC.c)(0x594A0B8B)(-c --cpu Cortex-M4.fp -D__EVAL -g -W -O0 --apcs=interwork -IE:\Keil\TivaWare_C_Series-2.1.2.111\inc -IE:\Keil\TivaWare_C_Series-2.1.2.111-I E:\keil\ARM\RV31\INC-I E:\keil\ARM\CMSIS\Include-I E:\keil\ARM\Inc\TI\TM4C123-DTM4C123GH6PM-o .\adc.o --omf_browse .\adc.crf --depend .\adc.d)
+I (ADC.h)(0x5949F515)
 I (E:\keil\ARM\ARMCC\include\stdint.h)(0x51C819B4)
 I (MemMap.h)(0x59388012)
 I (MotorInit.h)(0x59450684)
-F (.\ADC.h)(0x59497165)()
+F (.\ADC.h)(0x5949F515)()
 F (.\Serve.c)(0x59442435)(-c --cpu Cortex-M4.fp -D__EVAL -g -W -O0 --apcs=interwork -IE:\Keil\TivaWare_C_Series-2.1.2.111\inc -IE:\Keil\TivaWare_C_Series-2.1.2.111-I E:\keil\ARM\RV31\INC-I E:\keil\ARM\CMSIS\Include-I E:\keil\ARM\Inc\TI\TM4C123-DTM4C123GH6PM-o .\serve.o --omf_browse .\serve.crf --depend .\serve.d)
 I (Serve.h)(0x59431DEF)
 I (MemMap.h)(0x59388012)

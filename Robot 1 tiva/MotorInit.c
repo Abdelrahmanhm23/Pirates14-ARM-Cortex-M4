@@ -144,6 +144,7 @@ void PWMC_Init()
 void PWMD_Init()      // 0 input 1 analog  2,3,6,7 output
 {
 	RCGCGPIO |=0x08;                        // activate clock for Port D
+	//RCGCADC |= 0x01;                       // enable clock to ADC 
 	GPIODATA_PORTD   &= ~0xCF;                  // Initialize data register
 	GPIOLOCK_PORTD = 0x4C4F434B ;              // unlock port D
 	GPIOCR_PORTD = 0x80 ;                      // allow changes to 
@@ -151,8 +152,10 @@ void PWMD_Init()      // 0 input 1 analog  2,3,6,7 output
 	GPIOAMSEL_PORTD &= ~0xCD;                 // disable analog functions  0,2,3,6,7
 	GPIODIR_PORTD   &= ~0x01;                 // set direction of 0 as input
 	GPIODIR_PORTD   |= 0xCC;                  // set direction of 2,3,6,7 as outputs
+	GPIOAFSEL_PORTD |= 0x02;                 // enable alternate function pin 1
+	GPIODEN_PORTD   &= ~0x02;                 // disable digital pin 1
 	GPIOAMSEL_PORTD  |= 0x02;                  // enable analog pin 1
-	GPIODEN_PORTD   |= 0xCD;                  // digital enable for 1,2,3,6,7
+	GPIODEN_PORTD   |= 0xCD;                  // digital enable for 0,2,3,6,7
 	
 	GPIOIS_PORTD    &= ~0x01;     // 0 are edge senstive set to 1 for level
   GPIOIBE_PORTD   &= ~0x01;    //  0 is not both edges
@@ -197,17 +200,19 @@ void PWME_Init()
  void ADCB_Init()  // B0 dir M7 B1 dir M8 b6 b7 input interrupts   4,5 analog
 {
   RCGCGPIO |=0x02;                        // activate clock for Port B
-	  RCGCADC |= 0x01;                       // enable clock to ADC 
+	  //RCGCADC |= 0x01;                       // enable clock to ADC 
 
 	GPIODATA_PORTB   &= ~0xF3;                  // Initialize data register
 	GPIOAMSEL_PORTB &= ~0xC3;                 // disable analog 
 	GPIOAFSEL_PORTB &= ~0xC3;                // disable alternate function for 0,1,6,7
 	GPIOPCTL_PORTB  &= ~0x00000000;         //initialize pctl
-  GPIODIR_PORTB   |= 0x03;                // set direction of 0,1 as outputs
-  GPIODIR_PORTB   &= ~ 0xC0;              // set direction of 6,7 as inputs
+  GPIODIR_PORTB   |= 0x3;                // set direction of 0,1 as outputs
+ // GPIODIR_PORTB   &= ~ 0xC0;              // set direction of 6,7 as inputs
 		GPIOAFSEL_PORTB |= 0x30;                // enable alternate function for 4,5
+	GPIODEN_PORTB   &= ~0x30;                // digital disable for 4,5
 	GPIOAMSEL_PORTB |= 0x30;                 // enable analog function for 4,5
-	GPIODEN_PORTB   |= 0xF3;                // digital enable for 0,1,4,5,6,7
+	GPIODEN_PORTB   |= 0xC3;                // digital enable for 0,1,4,5,6,7
+	
 	/*
 	GPIOIS_PORTB    &= ~0xC0;     // 0 are edge senstive set to 1 for level
   GPIOIBE_PORTB   &= ~0xC0;    //  0 is not both edges
@@ -244,7 +249,7 @@ void PWME_Init()
 	void ADCD_Init() // ADC init 0,1,2,3
 {
 RCGCGPIO |=0x08;                        // activate clock for Port D
-	  RCGCADC |= 0x01;                       // enable clock to ADC 
+	  //RCGCADC |= 0x01;                       // enable clock to ADC 
 
 	GPIODATA_PORTD   &= ~0x0F;                  // Initialize data register
 	GPIOLOCK_PORTD = 0x4C4F434B ;           // unlock port d
@@ -252,13 +257,14 @@ RCGCGPIO |=0x08;                        // activate clock for Port D
 	GPIOAMSEL_PORTD  |= 0x0F;                  // enable analog pin 1
 	GPIOPCTL_PORTD   = 0x00000000; 
 	GPIODEN_PORTD   |= 0x0F;                 // digital enable for 0,1,2,3
+	
 	}
 
 	void ADCE_Init() // ADC init E4 PWM M5 E5 PWM M6
 {
 	//RCGCPWM  |=0x01;                        // enable clock to PWM0
 	RCGCGPIO |= 0x10;                        // activate clock for Port E
-	  RCGCADC |= 0x01;                       // enable clock to ADC 
+	 // RCGCADC |= 0x01;                       // enable clock to ADC 
 	GPIODATA_PORTE   &= ~0x3F;                  // Initialize data register
   GPIOAFSEL_PORTE |= 0x3F;                 // activate alternate function for 4,5
   GPIOAMSEL_PORTE  |= 0x0F;                  // enable analog pin 0,1,2,3
@@ -322,16 +328,17 @@ void SysTick_Init(void){
 void TIVA1()  // initialization of tiva 1 (lifters,encoders,3pins ADC,Serve)
 {
 
-	RCGCADC |= 0x01; 
+	  RCGCADC |= 0x01; 
 	  RCGCPWM  |=0x03;                        // enable clock to PWM0 & PWM1
 	RCC        &= ~0x00100000 ;               // don't use pre-divide for PWM clock (default)
 	PWMA_Init();                            // PWM M9 M10 + Interrupts encoders (2 Mlifter1) (3 Mlifter2) (4 Mlifter3)
 	PWMB_Init();                            // PWM M1 M2 M3 M4 + Direction M8 M9 M10  
 	PWMC_Init();                            // PWM M7 M8 + Direction M1 M2 
 	PWMD_Init();                            // Direction M5 M6 + ADC
+	init_adc_3pins();
 	PWME_Init();                            // PWM M5 M6   + Direction M3 M7 + ADC
 	PortF_Init();                            // SPI communication slave 
-  init_adc_3pins();
+	//init_adc_2pins();
 	SysTick_Init();
 		digitalWrite(ServePiston,HIGH);
 digitalWrite(ServeMotorCW,HIGH);
@@ -340,6 +347,7 @@ digitalWrite(ServeMotorCCW,HIGH);
 
 void TIVA2()  // initialization of tiva 2 (Base , LINE follower , base sensors) 
 {
+	RCGCADC |= 0x01;
 	RCGCPWM  |=0x03;                         // enable clock to PWM0 & PWM1
 	RCC        &= ~0x00100000 ;               // don't use pre-divide for PWM clock (default)
   ADCB_Init();
@@ -364,15 +372,15 @@ void init_adc_3pins()
  ADCACTSS_ADC0 &=~0x01 ;        // disable SS0 during configartion
  ADCSSPRI_ADC0 |= 0x3210;       // Set the highest piriority for SS0 (the highest pirority 0x0)
  ADCEMUX_ADC0 &= ~0x000F;       // software trigger for sequencer 0
- ADCSSMUX0_ADC0 &= ~0xFFFF;     // mask register bits
- ADCSSMUX0_ADC0 += 0x761;
+ ADCSSMUX0_ADC0 &= ~0xFFFFFFFF;     // mask register bits
+ ADCSSMUX0_ADC0 = 0x00000006;           //10
 /* 
         if  PE3 - (AIN0) ==>>  (HEX(0x0000)) (DEC(0)) 
    else if  PE2 - (AIN1) ==>>  (HEX(0x0001)) (DEC(1))
-   else if  PD0 - (AIN6) ==>>  (HEX(0x0006)) (DEC(6))
-   else if  PD1 - (AIN7) ==>>  (HEX(0x0007)) (DEC(7)) 
+   else if  PD1 - (AIN6) ==>>  (HEX(0x0006)) (DEC(6))
+   else if  PD0 - (AIN7) ==>>  (HEX(0x0007)) (DEC(7)) 
 */    
- ADCSSCTL1_ADC0 |= 0x0644;      // (0x6) for ending squence and enable interrupt , (0x4) enable interrupt only 
+ ADCSSCTL0_ADC0 |= 0x0006;      // (0x6) for ending squence and enable interrupt , (0x4) enable interrupt only 
  ADCACTSS_ADC0  |=0x01 ;        // Enable SS0 
  
  }
@@ -401,7 +409,7 @@ void init_adc_8pins()
     ADCEMUX_ADC0 &= ~0x000F;       //software trigger for sequencer 0
     ADCSSMUX0_ADC0 &= ~0xFFFFFFFF;  // mask register bits
     ADCSSMUX0_ADC0 += 0x30124567;   // [(AIN3)-(AIN0)-(AIN1)-(AIN2)-(AIN4)-(AIN5)-(AIN6)-(AIN7) ] 0x30124567
-    ADCSSCTL1_ADC0 |= 0x64444444;   // enable raw interrupt signal (IE) for all channels and END7(sample 8 is the last sample)
+    ADCSSCTL0_ADC0 |= 0x64444444;   // enable raw interrupt signal (IE) for all channels and END7(sample 8 is the last sample)
     ADCACTSS_ADC0 |= 0x01;         //Enable SS0
 }
 
@@ -414,15 +422,15 @@ void init_adc_2pins()//--------------------
  //RCGCADC |= 0x01;                //adc0 Module clock clock
  ADCACTSS_ADC0 &=~0x02 ;        // disable SS2 during configartion
  ADCSSPRI_ADC0 |= 0x3201;       // Set the highest piriority for SS1 (the highest pirority 0x0)
- ADCEMUX_ADC0 &= ~0x00F0;       // software trigger for sequencer 0
+ ADCEMUX_ADC0 &= ~0x00F0;       // software trigger for sequencer 1
  ADCSSMUX1_ADC0 &= ~0xFFFF;     // mask register bits
- ADCSSMUX1_ADC0 += 0x00BA;      
+ ADCSSMUX1_ADC0 = 0x000A;      
 /* 
-        if  PE4 - (AIN10) ==>>  (HEX(0x000A)) (DEC(10)) 
-   else if  PE5 - (AIN11) ==>>  (HEX(0x000B)) (DEC(11))
+        if  PB4 - (AIN10) ==>>  (HEX(0x000A)) (DEC(10)) 
+   else if  PB5 - (AIN11) ==>>  (HEX(0x000B)) (DEC(11))
  
 */    
- ADCSSCTL1_ADC0 |= 0x064;      // (0x6) for ending squence and enable interrupt , (0x4) enable interrupt only 
+ ADCSSCTL1_ADC0 |= 0x0006;      // (0x6) for ending squence and enable interrupt , (0x4) enable interrupt only 
  ADCACTSS_ADC0  |=0x02 ;        // Enable SS1
  
  }

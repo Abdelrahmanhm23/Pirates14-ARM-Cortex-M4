@@ -46,8 +46,8 @@ error_ML1 = rpm_ref_ML1 - RPM_ML1 ;
 	D_ML1 = error_ML1 - previous_error_ML1 ;
 	
 	PID_value_ML1 = (kp_ML1*P_ML1) + (ki_ML1*I_ML1) + (kd_ML1*D_ML1);
-  PID_value_ML1=	constrain(PID_value_ML1 , 0,255 );
-  PID_value_ML1=	map(PID_value_ML1 , 0 , 255 , 3190 , 800 );
+PID_value_ML1=	constrain(PID_value_ML1 , 1,3190 );
+PID_value_ML1=	map(PID_value_ML1 , 0 , 3190 , 3190 , 1);
   previous_error_ML1=error_ML1;	
 	analogWrite(Motor1,PID_value_ML1);
 }
@@ -61,10 +61,12 @@ void PID_ML1_REV(int ref_ML1)
 	D_ML1 = error_ML1 - previous_error_ML1 ;
 	
 	PID_value_ML1 = (kp_ML1*P_ML1) + (ki_ML1*I_ML1) + (kd_ML1*D_ML1);
-  PID_value_ML1=	constrain(PID_value_ML1 , 0,255 );
-  PID_value_ML1=	map(PID_value_ML1 , 0 , 255 , 3190 , 0);
+  PID_value_ML1=	constrain(PID_value_ML2 , 1,3190 );
+PID_value_ML1=	map(PID_value_ML1 , 1 , 3190 , 3190 , 1);
   previous_error_ML1=error_ML1;	
 	analogWrite(Motor1,PID_value_ML1);
+	if(Mlifter1counter>=ref_ML1)
+	{MotorStop(Motor1);}
 }
 
 
@@ -76,8 +78,8 @@ void PID_ML2_RPM(int rpm_ref_ML2)
 	D_ML2 = error_ML2 - previous_error_ML2 ;
 	
 PID_value_ML2 = (kp_ML2*P_ML2) + (ki_ML2*I_ML2) + (kd_ML2*D_ML2);
-  PID_value_ML2=	constrain(PID_value_ML2 , 0,255 );
-  PID_value_ML2=	map(PID_value_ML2 , 0 , 255 , 3190 , 800);
+PID_value_ML2=	constrain(PID_value_ML2 , 1,3190 );
+PID_value_ML2=	map(PID_value_ML2 , 0 , 3190 , 3190 , 1);
   previous_error_ML2=error_ML2;	
 	analogWrite(Motor2,PID_value_ML2);
 
@@ -92,10 +94,12 @@ void PID_ML2_REV(int ref_ML2)
 	
 	
 PID_value_ML2 = (kp_ML2*P_ML2) + (ki_ML2*I_ML2) + (kd_ML2*D_ML2);
-  PID_value_ML2=	constrain(PID_value_ML2 , 0,255 );
-  PID_value_ML2=	map(PID_value_ML2 , 0 , 255 , 3190 , 0);
+ PID_value_ML2=	constrain(PID_value_ML2 , 1,3190 );
+PID_value_ML2=	map(PID_value_ML2 , 1 , 3190 , 3190 , 1);
   previous_error_ML2=error_ML2;	
 	analogWrite(Motor2,PID_value_ML2);
+	if(Mlifter2counter>=ref_ML2)
+	{MotorStop(Motor2);}
 }
 
 
