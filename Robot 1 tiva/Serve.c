@@ -15,14 +15,14 @@ if(GPIORIS_PORTD&0x01)
 	if(State==1 || State==3 )
 	{
 		I++;
-		digitalWrite(ServePiston,LOW);
-digitalWrite(ServeMotorCW,HIGH);
+		digitalWrite(ServePiston,HIGH);
+digitalWrite(ServeMotorCW,LOW);
 		State=2;
 	}
 	if(State==2 )
 	{
-		digitalWrite(ServePiston,LOW);
-		digitalWrite(ServeMotorCCW,HIGH);
+		digitalWrite(ServePiston,HIGH);
+		digitalWrite(ServeMotorCCW,LOW);
 		State=3;
 	}
 }
@@ -33,13 +33,13 @@ void Serve()
 {
 	if(State==1 || State==3 )
 	{
-	digitalWrite(ServePiston,HIGH);
-digitalWrite(ServeMotorCW,LOW);   // active LOW-----
+	digitalWrite(ServePiston,LOW);
+digitalWrite(ServeMotorCW,HIGH);   
 	}
 	if(State==2 )
 	{
-			digitalWrite(ServePiston,HIGH);
-digitalWrite(ServeMotorCCW,LOW);
+			digitalWrite(ServePiston,LOW);
+digitalWrite(ServeMotorCCW,HIGH);
 	}
 }
 

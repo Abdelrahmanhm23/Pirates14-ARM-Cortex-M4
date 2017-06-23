@@ -180,7 +180,7 @@ void PWME_Init()
 	GPIOAFSEL_PORTE |= 0x3C;                 // activate alternate function for 2,3,4,5
 	GPIOPCTL_PORTE  &= ~0x00FF0000;          //initialize pctl
 	GPIOPCTL_PORTE  |= 0x00440000;           //enable pctl PWMMO pin 4,5 
-  GPIOAMSEL_PORTE |= 0x0C;	               // enable analog function for 2,3
+  //GPIOAMSEL_PORTE |= 0x0C;	               // enable analog function for 2,3
 	GPIODIR_PORTE   |= 0x03;                 // set direction of 0,1 as outputs
 	GPIODEN_PORTE   |= 0x3F;                 // digital enable for 0,1,4,5
 
@@ -200,18 +200,18 @@ void PWME_Init()
  void ADCB_Init()  // B0 dir M7 B1 dir M8 b6 b7 input interrupts   4,5 analog
 {
   RCGCGPIO |=0x02;                        // activate clock for Port B
-	  //RCGCADC |= 0x01;                       // enable clock to ADC 
+	//  RCGCADC |= 0x01;                       // enable clock to ADC 
 
 	GPIODATA_PORTB   &= ~0xF3;                  // Initialize data register
 	GPIOAMSEL_PORTB &= ~0xC3;                 // disable analog 
 	GPIOAFSEL_PORTB &= ~0xC3;                // disable alternate function for 0,1,6,7
 	GPIOPCTL_PORTB  &= ~0x00000000;         //initialize pctl
-  GPIODIR_PORTB   |= 0x3;                // set direction of 0,1 as outputs
- // GPIODIR_PORTB   &= ~ 0xC0;              // set direction of 6,7 as inputs
+  GPIODIR_PORTB   |= 0x03;                // set direction of 0,1 as outputs
+  GPIODIR_PORTB   &= ~ 0xC0;              // set direction of 6,7 as inputs
 		GPIOAFSEL_PORTB |= 0x30;                // enable alternate function for 4,5
 	GPIODEN_PORTB   &= ~0x30;                // digital disable for 4,5
-	GPIOAMSEL_PORTB |= 0x30;                 // enable analog function for 4,5
-	GPIODEN_PORTB   |= 0xC3;                // digital enable for 0,1,4,5,6,7
+	//GPIOAMSEL_PORTB |= 0x30;                 // enable analog function for 4,5
+	GPIODEN_PORTB   |= 0xC3;                // digital enable for 0,1,6,7
 	
 	/*
 	GPIOIS_PORTB    &= ~0xC0;     // 0 are edge senstive set to 1 for level
@@ -249,14 +249,14 @@ void PWME_Init()
 	void ADCD_Init() // ADC init 0,1,2,3
 {
 RCGCGPIO |=0x08;                        // activate clock for Port D
-	  //RCGCADC |= 0x01;                       // enable clock to ADC 
+	//  RCGCADC |= 0x01;                       // enable clock to ADC 
 
 	GPIODATA_PORTD   &= ~0x0F;                  // Initialize data register
 	GPIOLOCK_PORTD = 0x4C4F434B ;           // unlock port d
 	GPIOAFSEL_PORTD  |= 0x0F;               // enable alternate function pin 1
 	GPIOAMSEL_PORTD  |= 0x0F;                  // enable analog pin 1
 	GPIOPCTL_PORTD   = 0x00000000; 
-	GPIODEN_PORTD   |= 0x0F;                 // digital enable for 0,1,2,3
+	//GPIODEN_PORTD   |= 0x0F;                 // digital enable for 0,1,2,3
 	
 	}
 
@@ -264,14 +264,14 @@ RCGCGPIO |=0x08;                        // activate clock for Port D
 {
 	//RCGCPWM  |=0x01;                        // enable clock to PWM0
 	RCGCGPIO |= 0x10;                        // activate clock for Port E
-	 // RCGCADC |= 0x01;                       // enable clock to ADC 
+	// RCGCADC |= 0x01;                       // enable clock to ADC 
 	GPIODATA_PORTE   &= ~0x3F;                  // Initialize data register
   GPIOAFSEL_PORTE |= 0x3F;                 // activate alternate function for 4,5
-  GPIOAMSEL_PORTE  |= 0x0F;                  // enable analog pin 0,1,2,3
+  //GPIOAMSEL_PORTE  |= 0x0F;                  // enable analog pin 0,1,2,3
 	GPIOPCTL_PORTE  &= ~0x00FF0000;          //initialize pctl
 	GPIOPCTL_PORTE  |= 0x00440000;           //enable pctl PWMMO pin 4,5 
 	GPIODIR_PORTE   |= 0x30;                 // set direction of 0,1 as outputs
-	GPIODEN_PORTE   |= 0x30 ;                 // digital enable for 0,1,2,3,4,5
+	GPIODEN_PORTE   |= 0x30 ;                 // digital en3able for 0,1,2,3,4,5
 
 	
 	PWM0_CTL_2 = 0x00;                      // stop counter  generator 3
@@ -327,7 +327,7 @@ void SysTick_Init(void){
 
 void TIVA1()  // initialization of tiva 1 (lifters,encoders,3pins ADC,Serve)
 {
-
+RCGCGPIO |=0x3F;
 	  RCGCADC |= 0x01; 
 	  RCGCPWM  |=0x03;                        // enable clock to PWM0 & PWM1
 	RCC        &= ~0x00100000 ;               // don't use pre-divide for PWM clock (default)
@@ -335,28 +335,29 @@ void TIVA1()  // initialization of tiva 1 (lifters,encoders,3pins ADC,Serve)
 	PWMB_Init();                            // PWM M1 M2 M3 M4 + Direction M8 M9 M10  
 	PWMC_Init();                            // PWM M7 M8 + Direction M1 M2 
 	PWMD_Init();                            // Direction M5 M6 + ADC
-	init_adc_3pins();
+//	init_adc_3pins();
 	PWME_Init();                            // PWM M5 M6   + Direction M3 M7 + ADC
 	PortF_Init();                            // SPI communication slave 
-	//init_adc_2pins();
 	SysTick_Init();
-		digitalWrite(ServePiston,HIGH);
-digitalWrite(ServeMotorCW,HIGH);
-digitalWrite(ServeMotorCCW,HIGH);
+		digitalWrite(ServePiston,LOW);
+digitalWrite(ServeMotorCW,LOW);
+digitalWrite(ServeMotorCCW,LOW);
+	digitalWrite(Motor3Piston,HIGH);
 }
 
 void TIVA2()  // initialization of tiva 2 (Base , LINE follower , base sensors) 
 {
-	RCGCADC |= 0x01;
-	RCGCPWM  |=0x03;                         // enable clock to PWM0 & PWM1
+	//RCGCGPIO |=0x3E;
+		RCGCPWM  |=0x03;                         // enable clock to PWM0 & PWM1
 	RCC        &= ~0x00100000 ;               // don't use pre-divide for PWM clock (default)
+	
   ADCB_Init();
   ADCC_Init();
  ADCD_Init();
-  ADCE_Init();
+		  ADCE_Init();
   PortF_Init();
- init_adc_8pins();
-	init_adc_2pins();
+ //init_adc_8pins();
+	//init_adc_2pins();
  SysTick_Init();
 }
 
@@ -483,7 +484,8 @@ void analogWrite(int pin,int speed)
 	{    
  PWM0_CMPB_0=speed;
 		PWM0_CTL_0 |= EnableDown;
-		PWM0_EN |= 0x02; 	}
+		PWM0_EN |= 0x02; 	
+	digitalWrite(Motor3Piston,LOW);}
 	else if(pin==Motor4)     // SERVO
 	{   PWM0_CMPB_1 = speed;
 		PWM0_CTL_1 |= EnableDown;
@@ -574,19 +576,24 @@ void digitalWrite(uint32_t pin, char dir)
 	{PB1 &= ~0x02;}}
 	else if(pin==ServeMotorCW)
 	{if(dir==1)
-	{PD6 |= 0x40;}
+	{PD6 &= ~0x40;}
 	else if (dir==0)
-	{PD6 &= ~0x40;}}
+	{PD6 |= 0x40;}}
 	else if(pin==ServeMotorCCW)
 	{if(dir==1)
-	{PD7 |= 0x80;}
+	{PD7 &= ~0x80;}
 	else if (dir==0)
-	{PD7 &= ~0x80;}}
+	{PD7 |= 0x80;}}
 	else if(pin==ServePiston)
 	{if(dir==1)
-	{PF4 |= 0x10;}
+	{PF4 &= ~0x10;}
 	else if (dir==0)
-	{PF4 &= ~0x10;}}
+	{PF4 |= 0x10;}}
+	else if(pin==Motor3Piston)
+	{if(dir==1)
+	{PD2 &= ~0x04;}
+	else if (dir==0)
+	{PD2 |= 0x04;}}
 }
 
 void MotorStop(int pin)
@@ -596,7 +603,8 @@ void MotorStop(int pin)
 	else if(pin == Motor2)
 	{ PWM0_EN &= ~0x02;  }
 	else if(pin==Motor3)
-	{PWM0_EN &= ~0x01;   }
+	{PWM0_EN &= ~0x01; 
+	 digitalWrite(Motor3Piston,HIGH); }
 	else if(pin==Motor4)     // SERVO
 	{  PWM0_EN &= ~0x08; }
 	else if(pin==Motor5)

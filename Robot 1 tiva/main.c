@@ -14,6 +14,8 @@
 //double y = 0.00125 ;
  int i=0;
 int a=0;
+unsigned long servepwm=1550 ;
+
 uint32_t A[100]={0};
 uint32_t B[100]={0};
 uint32_t C[100]={0};
@@ -41,22 +43,10 @@ int main()
 	
 	while(1)
 	{
-		
+		Data();
 		//data_get(Z,2);
-		for(e=0;e<=100;e++)
-		{
-		data_get(ADC0Value , 8);
-			A[e]=ADC0Value[0];
-			B[e]=ADC0Value[1];
-			C[e]=ADC0Value[2];
-			D[e]=ADC0Value[3];
-			E[e]=ADC0Value[4];
-			P[e]=ADC0Value[5];
-			G[e]=ADC0Value[6];
-			Z[e]=ADC0Value[7];
-		}
-		while(1);
-	//	Data();
+//	analogWrite(Motor5,1550);
+		//Forward();
 		//analogWrite(Motor5,1550);
 		//ReadData();
 			//PID_ML3_REV(400);
@@ -152,16 +142,16 @@ while(1)
 		{Stop();}
 		else if(ReadData()==ServeStart)  // R1
 		{serve();}
-		else if(ReadData()==ServeStop)   // L1
+		else if(ReadData()==LIFTall_UP)   // L1
 		{servestop();}
 				else if(ReadData()==LIFT2_UP)   // ------------------
 		{lifter1up();}
 		else if(ReadData()==LIFT2_DOWN) // --------------------
 		{lifter1down();}
-				else if(ReadData()==servepwm_UP)   // --------------------
-		{lifter2up();}
-		else if(ReadData()==servepwm_DOWN) //-------------------------
-		{lifter2down();}
+	//			else if(ReadData()==servepwm_UP)   // --------------------
+	//	{lifter2up();}
+	//	else if(ReadData()==servepwm_DOWN) //-------------------------
+	//	{lifter2down();}
 		else if(ReadData()==LIFT12_UP)   // TRIANGLE
 		{lifter12up();}
 		else if(ReadData()==LIFT12_DOWN) // CROSS
@@ -179,11 +169,11 @@ while(1)
 		else if(ReadData()==LIFT_STOP)
 		{liftersStop();}
 		else if(ReadData()==servepwm_DOWN)  // LEFT
-		{servepwm=servepwm+10;
+		{servepwm=servepwm+2;
 		if(servepwm>3200)
 		{ servepwm=3190; }		}
 		else if(ReadData()==servepwm_UP)    // RIGHT
-		{servepwm=servepwm-10;
+		{servepwm=servepwm-2;
 		if(servepwm<10)
 		{servepwm=1;}
 		if(servepwm>0xFFFF)
