@@ -300,10 +300,11 @@ void CounterClockWise()
 {TIVA2(0x10);}
 void SERVE()
 {
-  if(PS3.getAnalogButton(R1)>50) // start
-  {TIVA1(0x11);}
-  if(PS3.getAnalogButton(L1)>50) // stop
-  { TIVA1(0x12);}
+
+  if(PS3.getAnalogButton(R1)>100) // start
+  {TIVA1(0x11);} 
+  
+  
   if(PS3.getAnalogButton(R2)>50) // stop
   { TIVA1(0x27);}
     if(PS3.getAnalogButton(L2)>50) // stop
@@ -313,6 +314,7 @@ void SERVE()
      TIVA2(0x30);
       PS3.disconnect();
     }
+    servestop();
   lifter12();
   lifter3();
   lifters();
@@ -325,6 +327,15 @@ void SERVE()
 }
 void saucer()
 {TIVA1(0x13);}
+void servestop()
+{ while(1)
+    {
+      Usb.Task();
+      if (PS3.PS3Connected || PS3.PS3NavigationConnected) {
+  if(PS3.getAnalogButton(L1)>100) // stop
+  { TIVA1(0x40);}    
+  else{break;}}}
+}
 void lifter12()
 {
   while(1)
@@ -441,36 +452,25 @@ void lifters()
 void liftersStop()
 { TIVA1(0x20);}
 void dec()
-{
-   while(1)
-   {
-   Usb.Task();
+{ while(1)
+    {
+      Usb.Task();
       if (PS3.PS3Connected || PS3.PS3NavigationConnected) {
    if(PS3.getAnalogButton(LEFT)>100)
    {
   TIVA1(0x22);}
-  else
-    {
-    break;}
- }
-}
+  else{break;}}}
 }
  void inc()
- {
-  while(1)
-   {
-   Usb.Task();
-      if (PS3.PS3Connected || PS3.PS3NavigationConnected) {
-   if(PS3.getAnalogButton(RIGHT)>100)
-   {
-  TIVA1(0x21);}
-  else
+ {while(1)
     {
-    break;}
+      Usb.Task();
+      if (PS3.PS3Connected || PS3.PS3NavigationConnected) {
+if(PS3.getAnalogButton(RIGHT)>100)
+{
+  TIVA1(0x21);}
+   else{break;}}}
  }
-}
- }
-
 
 
 static const byte ASCII[][5] =
