@@ -4,6 +4,7 @@
 
 #include "MemMap.h"
 #include "MotorInit.h"
+#include "Motion.h"
 
 extern unsigned long State ;
 

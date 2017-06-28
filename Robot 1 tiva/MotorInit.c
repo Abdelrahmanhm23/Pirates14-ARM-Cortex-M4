@@ -30,13 +30,17 @@ void PWMA_Init()
 	GPIOAFSEL_PORTA &= ~0x3C;
 	GPIOPCTL_PORTA  &= ~0x00FFFF00;     //  configure 2,3,4,5 as GPIO
 	GPIODIR_PORTA   &= ~ 0x3C;    // set direction of 2,3,4 as inputs
+		GPIODR8R_PORTA |= 0xFF;
+	//GPIOODR_PORTA  |= 0xFF;
+	GPIOSLR_PORTA   |= 0xFF;
 	GPIOPUR_PORTA   |= 0x3C;      // pullup registers
 	GPIODEN_PORTA   |= 0x3C;      // digital enable for pins 2,3,4,5
+	
 	GPIOIS_PORTA    &= ~0x3C;     // 2,3,4,5 are edge senstive set to 1 for level
   GPIOIBE_PORTA   &= ~0x3C;    //  2,3,4,5 is not both edges
   GPIOEV_PORTA     &= ~0x3C;     // 2,3,4,5 are rising edges
 	GPIOICR_PORTA    = 0x3C;     // clear flags of 2,3,4,5
-	GPIOIM_PORTA    |= 0x3C;     // arm interrupts for pins 2,3,4,5
+	GPIOIM_PORTA    |= 0x1C;     // arm interrupts for pins 2,3,4 
 	PRI0 = (PRI0&0xFFFFFF00)|0x000000F0 ; // priority 5 
 	EN0  = 1<<0;               // enable interrupts 16
 	
@@ -60,6 +64,9 @@ void PWMA_Init()
 	GPIOPCTL_PORTA  &= ~0xFF000000;         //initialize pctl
 	GPIOPCTL_PORTA  |= 0x55000000;          //enable pctl PWMMO pin 6,7
   GPIODIR_PORTA   |= 0x00;                // set direction 
+	GPIODR8R_PORTA |= 0xFF;
+	GPIOSLR_PORTA  |= 0xFF;
+	GPIOPUR_PORTA |=0xFF;
 	GPIODEN_PORTA   |= 0xC0;                // digital enable for 6,7
 	
 	PWM1_CTL_1    = 0x00; 
@@ -148,20 +155,22 @@ void PWMD_Init()      // 0 input 1 analog  2,3,6,7 output
 	GPIODATA_PORTD   &= ~0xCF;                  // Initialize data register
 	GPIOLOCK_PORTD = 0x4C4F434B ;              // unlock port D
 	GPIOCR_PORTD = 0x80 ;                      // allow changes to 
-	GPIOAFSEL_PORTD &= ~0xCD;                 // disable 0,2,3,6,7 alternate functions
-	GPIOAMSEL_PORTD &= ~0xCD;                 // disable analog functions  0,2,3,6,7
-	GPIODIR_PORTD   &= ~0x01;                 // set direction of 0 as input
+	GPIOAFSEL_PORTD &= ~0xCE;                 // disable 0,2,3,6,7 alternate functions
+	GPIOAMSEL_PORTD &= ~0xCE;                 // disable analog functions  0,2,3,6,7
+	GPIODIR_PORTD   &= ~0x02;                 // set direction of 0 as input
 	GPIODIR_PORTD   |= 0xCC;                  // set direction of 2,3,6,7 as outputs
-	GPIOAFSEL_PORTD |= 0x02;                 // enable alternate function pin 1
-	GPIODEN_PORTD   &= ~0x02;                 // disable digital pin 1
-	GPIOAMSEL_PORTD  |= 0x02;                  // enable analog pin 1
-	GPIODEN_PORTD   |= 0xCD;                  // digital enable for 0,2,3,6,7
+	//GPIOAFSEL_PORTD |= 0x02;                 // enable alternate function pin 1
+//	GPIODEN_PORTD   &= ~0x02;                 // disable digital pin 1
+//	GPIOAMSEL_PORTD  |= 0x02;                  // enable analog pin 1
+	GPIODR8R_PORTD |= 0xFF;
+	GPIOPUR_PORTD |=0xFF;
+	GPIODEN_PORTD   |= 0xCE;                  // digital enable for 0,2,3,6,7
 	
-	GPIOIS_PORTD    &= ~0x01;     // 0 are edge senstive set to 1 for level
-  GPIOIBE_PORTD   &= ~0x01;    //  0 is not both edges
-  GPIOEV_PORTD     |= 0x01;     // 0 is rising edges
-	GPIOICR_PORTD    = 0x01;     // clear flags of 0
-	GPIOIM_PORTD    |= 0x01;     // arm interrupts for pins 0
+	GPIOIS_PORTD    &= ~0x02;     // 0 are edge senstive set to 1 for level
+  GPIOIBE_PORTD   &= ~0x02;    //  0 is not both edges
+  GPIOEV_PORTD     &= ~0x02;     // 0 is rising edges
+	GPIOICR_PORTD    = 0x02;     // clear flags of 0
+	GPIOIM_PORTD    |= 0x02;     // arm interrupts for pins 0
 	PRI0 = (PRI0&0x00FFFFFF)|0xF0000000 ; // priority 7 
 	EN0  = 1<<3;               // enable interrupts 19
 
@@ -182,6 +191,9 @@ void PWME_Init()
 	GPIOPCTL_PORTE  |= 0x00440000;           //enable pctl PWMMO pin 4,5 
   //GPIOAMSEL_PORTE |= 0x0C;	               // enable analog function for 2,3
 	GPIODIR_PORTE   |= 0x03;                 // set direction of 0,1 as outputs
+	GPIODR8R_PORTE |= 0xFF;
+	//GPIOODR_PORTE  |= 0xFF;
+	GPIOPUR_PORTE |=0xFF;
 	GPIODEN_PORTE   |= 0x3F;                 // digital enable for 0,1,4,5
 
 	PWM0_CTL_2 = 0x00;                      // stop counter  generator 3
@@ -253,8 +265,8 @@ RCGCGPIO |=0x08;                        // activate clock for Port D
 
 	GPIODATA_PORTD   &= ~0x0F;                  // Initialize data register
 	GPIOLOCK_PORTD = 0x4C4F434B ;           // unlock port d
-	GPIOAFSEL_PORTD  |= 0x0F;               // enable alternate function pin 1
-	GPIOAMSEL_PORTD  |= 0x0F;                  // enable analog pin 1
+	//GPIOAFSEL_PORTD  |= 0x0F;               // enable alternate function pin 1
+	//GPIOAMSEL_PORTD  |= 0x0F;                  // enable analog pin 1
 	GPIOPCTL_PORTD   = 0x00000000; 
 	//GPIODEN_PORTD   |= 0x0F;                 // digital enable for 0,1,2,3
 	
@@ -270,7 +282,7 @@ RCGCGPIO |=0x08;                        // activate clock for Port D
   //GPIOAMSEL_PORTE  |= 0x0F;                  // enable analog pin 0,1,2,3
 	GPIOPCTL_PORTE  &= ~0x00FF0000;          //initialize pctl
 	GPIOPCTL_PORTE  |= 0x00440000;           //enable pctl PWMMO pin 4,5 
-	GPIODIR_PORTE   |= 0x30;                 // set direction of 0,1 as outputs
+	//GPIODIR_PORTE   |= 0x30;                 // set direction of 0,1 as outputs
 	GPIODEN_PORTE   |= 0x30 ;                 // digital en3able for 0,1,2,3,4,5
 
 	
@@ -374,14 +386,14 @@ void init_adc_3pins()
  ADCSSPRI_ADC0 |= 0x3210;       // Set the highest piriority for SS0 (the highest pirority 0x0)
  ADCEMUX_ADC0 &= ~0x000F;       // software trigger for sequencer 0
  ADCSSMUX0_ADC0 &= ~0xFFFFFFFF;     // mask register bits
- ADCSSMUX0_ADC0 = 0x00000006;           //10
+ ADCSSMUX0_ADC0 = 0x761;           //10
 /* 
         if  PE3 - (AIN0) ==>>  (HEX(0x0000)) (DEC(0)) 
    else if  PE2 - (AIN1) ==>>  (HEX(0x0001)) (DEC(1))
    else if  PD1 - (AIN6) ==>>  (HEX(0x0006)) (DEC(6))
    else if  PD0 - (AIN7) ==>>  (HEX(0x0007)) (DEC(7)) 
 */    
- ADCSSCTL0_ADC0 |= 0x0006;      // (0x6) for ending squence and enable interrupt , (0x4) enable interrupt only 
+ ADCSSCTL0_ADC0 |= 0x0644;      // (0x6) for ending squence and enable interrupt , (0x4) enable interrupt only 
  ADCACTSS_ADC0  |=0x01 ;        // Enable SS0 
  
  }
@@ -392,13 +404,13 @@ void init_adc_8pins()
  //   RCGCGPIO |= 0x18;  // port D, E clock
 //    RCGCADC |= 0x1;    //adc0 clock
    // port E initialization
-    GPIOAFSEL_PORTE |= 0x1E;   // PE 1,2,3,4 alterntae function enable
-    GPIODEN_PORTE &= ~0x1E;    // PE 1,2,3,4 digital function disable
-    GPIOAMSEL_PORTE |= 0x1E;   // PE 1,2,3,4 analog function enable
+  //  GPIOAFSEL_PORTE |= 0x0F;   // PE 0,1,2,3 alterntae function enable
+  //  GPIODEN_PORTE &= ~0x0F;    // PE 0,1,2,3 digital function disable
+  // GPIOAMSEL_PORTE |= 0x0F;   // PE 0,1,2,3 analog function enable
   // port D initialization
-    GPIOAFSEL_PORTD |= 0x0F;   // PD 0,1,2,3 alterntae function enable
-    GPIODEN_PORTD &= ~0x0F;    // PD 0,1,2,3 digital function disable
-    GPIOAMSEL_PORTD |= 0x0F;   // PD 0,1,2,3 analog function enable
+  //  GPIOAFSEL_PORTD |= 0x0F;   // PD 0,1,2,3 alterntae function enable
+  // GPIODEN_PORTD &= ~0x0F;    // PD 0,1,2,3 digital function disable
+  // GPIOAMSEL_PORTD |= 0x0F;   // PD 0,1,2,3 analog function enable
 
   // ADC 0 init
   /*  PE0   PD0   PD1   PD2   PD3    PE1   PE2   PE3
@@ -425,7 +437,7 @@ void init_adc_2pins()//--------------------
  ADCSSPRI_ADC0 |= 0x3201;       // Set the highest piriority for SS1 (the highest pirority 0x0)
  ADCEMUX_ADC0 &= ~0x00F0;       // software trigger for sequencer 1
  ADCSSMUX1_ADC0 &= ~0xFFFF;     // mask register bits
- ADCSSMUX1_ADC0 = 0x000A;      
+ ADCSSMUX1_ADC0 = 0x00BA;      
 /* 
         if  PB4 - (AIN10) ==>>  (HEX(0x000A)) (DEC(10)) 
    else if  PB5 - (AIN11) ==>>  (HEX(0x000B)) (DEC(11))
@@ -485,7 +497,9 @@ void analogWrite(int pin,int speed)
  PWM0_CMPB_0=speed;
 		PWM0_CTL_0 |= EnableDown;
 		PWM0_EN |= 0x02; 	
-	digitalWrite(Motor3Piston,LOW);}
+	digitalWrite(Motor3Piston,LOW);
+		Delay1ms(5);
+	}
 	else if(pin==Motor4)     // SERVO
 	{   PWM0_CMPB_1 = speed;
 		PWM0_CTL_1 |= EnableDown;
@@ -576,24 +590,24 @@ void digitalWrite(uint32_t pin, char dir)
 	{PB1 &= ~0x02;}}
 	else if(pin==ServeMotorCW)
 	{if(dir==1)
-	{PD6 &= ~0x40;}
+	{PD6 |= 0x40;}
 	else if (dir==0)
-	{PD6 |= 0x40;}}
+	{PD6 &= ~0x40;}}
 	else if(pin==ServeMotorCCW)
 	{if(dir==1)
-	{PD7 &= ~0x80;}
+	{PD7 |= 0x80;}
 	else if (dir==0)
-	{PD7 |= 0x80;}}
+	{PD7 &= ~0x80;}}
 	else if(pin==ServePiston)
 	{if(dir==1)
-	{PF4 &= ~0x10;}
+	{PE0 |= 0x1;}
 	else if (dir==0)
-	{PF4 |= 0x10;}}
+	{PE0 &= ~0x1;}}
 	else if(pin==Motor3Piston)
 	{if(dir==1)
-	{PD2 &= ~0x04;}
+	{PD2 |= 0x04;}
 	else if (dir==0)
-	{PD2 |= 0x04;}}
+	{PD2 &= ~0x04;}}
 }
 
 void MotorStop(int pin)
@@ -604,7 +618,9 @@ void MotorStop(int pin)
 	{ PWM0_EN &= ~0x02;  }
 	else if(pin==Motor3)
 	{PWM0_EN &= ~0x01; 
-	 digitalWrite(Motor3Piston,HIGH); }
+	 digitalWrite(Motor3Piston,HIGH);
+		Delay1ms(5);
+	}
 	else if(pin==Motor4)     // SERVO
 	{  PWM0_EN &= ~0x08; }
 	else if(pin==Motor5)

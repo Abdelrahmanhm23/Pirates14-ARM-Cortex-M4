@@ -111,8 +111,8 @@ void Left()
 //		digitalWrite(Motor5,HIGH);
 //	analogWrite(Motor5,M5_CW) ;
 	
-	digitalWrite(Motor6,LEFT[1]);
-	analogWrite(Motor6,M6_CW) ;
+	digitalWrite(Motor6,HIGH);
+	analogWrite(Motor6,LEFT[1]) ;
 	
 	digitalWrite(Motor7,LOW);
 	analogWrite(Motor7,LEFT[2]) ;
@@ -259,17 +259,18 @@ void ClockWise()
 //	analogWrite(Motor5,M5_CCW) ;
 	
 	digitalWrite(Motor6,LOW);
-	analogWrite(Motor6,CLOCKWISE[1]) ;
-	
+	//analogWrite(Motor6,CLOCKWISE[1]) ;
+	analogWrite(Motor6,1550) ;
 	digitalWrite(Motor7,LOW);
-	analogWrite(Motor7,CLOCKWISE[2]) ;
-	
+	//analogWrite(Motor7,CLOCKWISE[2]) ;
+	analogWrite(Motor7,1550) ;
 	digitalWrite(Motor8,LOW);
-	analogWrite(Motor8,CLOCKWISE[3]) ;	
-	
+	//analogWrite(Motor8,CLOCKWISE[3]) ;	
+	analogWrite(Motor8,1550) ;
 	// delayUs(1);
 		digitalWrite(Motor5,LOW);
-	analogWrite(Motor5,CLOCKWISE[0]) ;
+	//analogWrite(Motor5,CLOCKWISE[0]) ;
+	analogWrite(Motor5,1550) ;
 }
 
 void CounterClockWise()
@@ -282,18 +283,18 @@ void CounterClockWise()
 //	analogWrite(Motor5,M5_CW) ;
 	
 	digitalWrite(Motor6,HIGH);
-	analogWrite(Motor6,COUNTERCLOCKWISE[1]) ;
-	
+	//analogWrite(Motor6,COUNTERCLOCKWISE[1]) ;
+		analogWrite(Motor6,1550) ;
 	digitalWrite(Motor7,HIGH);
-	analogWrite(Motor7,COUNTERCLOCKWISE[2]) ;
-	
+	//analogWrite(Motor7,COUNTERCLOCKWISE[2]) ;
+		analogWrite(Motor7,1550) ;
 	digitalWrite(Motor8,HIGH);
-	analogWrite(Motor8,COUNTERCLOCKWISE[3]) ;
-	
+	//analogWrite(Motor8,COUNTERCLOCKWISE[3]) ;
+		analogWrite(Motor8,1550) ;
 	// delayUs(1);
 			digitalWrite(Motor5,HIGH);
-	analogWrite(Motor5,COUNTERCLOCKWISE[0]) ;
-	
+	//analogWrite(Motor5,COUNTERCLOCKWISE[0]) ;
+		analogWrite(Motor5,1550) ;
 }
 
 void lifter1up()
@@ -378,10 +379,15 @@ void liftersdown()
 	analogWrite(Motor9,servepwm) ;
 				digitalWrite(Motor10,LOW);
 	analogWrite(Motor10,servepwm) ;
+	//	Serve();
+		//delayUs(10000);
 	}
 	void servestop()
 		{
 			MotorStop(Motor9);
 			MotorStop(Motor10);
+	//		digitalWrite(ServeMotorCW,LOW);   
+//digitalWrite(ServeMotorCCW,LOW);   
+
 		}
 			

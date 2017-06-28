@@ -6,3 +6,6 @@
 .\encoders.o: MemMap.h
 .\encoders.o: E:\keil\ARM\ARMCC\bin\..\include\stdint.h
 .\encoders.o: MotorInit.h
+.\encoders.o: Serve.h
+.\encoders.o: MotorInit.h
+.\encoders.o: Motion.h

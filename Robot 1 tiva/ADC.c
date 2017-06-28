@@ -10,24 +10,24 @@ uint32_t ADC0Value[]={0,0,0,0,0,0,0,0};
 uint32_t IR[]={0,0,0} ;
 uint32_t V_L[]={0,0} ;
 
-void data_get (uint32_t *pt , int i )
+void data_get_SS0 (uint32_t *pt , int i )
    {
      int k;
-     ADCPSSI_ADC0 = 0x0001;    // start sampling (SS0)
+     ADCPSSI_ADC0 = 0x01;    // start sampling (SS0)
      while((ADCRIS_ADC0 &0x01)==0){};  // wait untill sampling is done (for SS0)
       //get SS FIFO values
      for(k=0 ; k<i ; k++)
        {
         *(pt+k) = ADCSSFIFO0_ADC0 &0xFFF;
        }
-      ADCISC_ADC0 = 0x0001;   // set interrupt flag for SS0 
+      ADCISC_ADC0 = 0x01;   // set interrupt flag for SS0 
    }
 
 	 
 	 void data_get_SS1 (uint32_t *pt , int i )
    {
      int k;
-     ADCPSSI_ADC0 = 0x0002;    // start sampling (SS1)
+     ADCPSSI_ADC0 = 0x02;    // start sampling (SS1)
 
     while((ADCRIS_ADC0 &0x02)==0){};  // wait untill sampling is done (for SS1)
       //get SS FIFO values
@@ -35,12 +35,12 @@ void data_get (uint32_t *pt , int i )
        {
         *(pt+k) = ADCSSFIFO1_ADC0 &0xFFF;
        }
-      ADCISC_ADC0 = 0x0002;   // set interrupt flag for SS1 
+      ADCISC_ADC0 = 0x02;   // set interrupt flag for SS1 
    }
 	 
 void IR_read(uint32_t *ADC )
 {
-	data_get(IR,3);
+	data_get_SS0(IR,3);
 	if (*(ADC)>3 && *(ADC)<80)
 	{sensor_lifter1=1;}
 		if (*(ADC+1)>3 && *(ADC+1)<80)
@@ -88,7 +88,7 @@ void digital_reads(uint32_t *ADC )
 void line ()
 {
 //<<<<<<< HEAD
-  data_get ( ADC0Value , 8); // line sensor analog reads 
+  data_get_SS0 ( ADC0Value , 8); // line sensor analog reads 
 	digital_reads(ADC0Value);
 	
 //=======
@@ -369,7 +369,7 @@ int main()
 
 void VerticalLines(uint32_t *ADC)
 {
-	data_get(V_L,2);
+	data_get_SS0(V_L,2);
 	if (*(ADC)>3 && *(ADC)<80)
 	{
 	if((VL>=0||VL>=1)&&VL!=3)

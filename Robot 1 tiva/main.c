@@ -35,14 +35,16 @@ void Data();
 
 #define constrain(amt,low,high) ((amt)<(low)?(low):((amt)>(high)?(high):(amt)))
 
-
 int main()
 {
 
-	TIVA2();
+
+TIVA1();
 	
 	while(1)
 	{
+		
+
 		Data();
 		//data_get(Z,2);
 //	analogWrite(Motor5,1550);
@@ -88,9 +90,13 @@ void Data()
 		 liftersStop();}
 	if (ReadData()== 0x23)  // start manual mode
 	{ 
-		a=20;
+		//a=20;
 while(1)
 {	
+		if(ReadData()==0x0A)   // ps button
+		{Stop();
+		 servestop();
+		 liftersStop();}
 	if(ReadData()==0x30)   // ps button
 		{Stop();
 		 servestop();
@@ -141,10 +147,19 @@ while(1)
 		else if(ReadData()==stop)
 		{Stop();}
 		else if(ReadData()==ServeStart)  // R1
-		{serve();}
-		else if(ReadData()==LIFTall_UP)   // L1
-		{servestop();}
-				else if(ReadData()==LIFT2_UP)   // ------------------
+		{
+		
+			Serve();
+			
+		//e=1;
+	
+}
+
+		else if(ReadData()==ServeStop)   // L1
+		{	
+			servestop();
+		}
+			else if(ReadData()==LIFT2_UP)   // ------------------
 		{lifter1up();}
 		else if(ReadData()==LIFT2_DOWN) // --------------------
 		{lifter1down();}
@@ -159,7 +174,8 @@ while(1)
 			lifter12down();
 		}
 		else if(ReadData()==LIFT3_UP)    // CIRCLE
-		{lifter3up();}
+		{lifter3up();
+		}
 		else if(ReadData()==LIFT3_DOWN)  // SQUARE
 		{lifter3down();}
 		else if(ReadData()==LIFTall_UP)  // UP
@@ -195,6 +211,10 @@ while(1)
 		while(1)
 	{
 		if(ReadData()==0x30)   // ps button
+		{Stop();
+		 servestop();
+		 liftersStop();}
+		if(ReadData()==0x0A)   // ps button
 		{Stop();
 		 servestop();
 		 liftersStop();}

@@ -15,7 +15,7 @@ extern int VL ;
 
 
 void init_adc();
-void data_get (uint32_t *pt , int i );
+void data_get_SS0 (uint32_t *pt , int i );
 void data_get_SS1 (uint32_t *pt , int i );
 void digital_reads(uint32_t *ADC );
 void line ();

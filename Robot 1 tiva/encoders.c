@@ -1,4 +1,10 @@
 #include "encoders.h"
+unsigned long Q=0;
+//unsigned long State=1 ; 
+unsigned long W=0;
+unsigned long T=0;
+
+
  unsigned long Mlifter1counter=0 ;
  unsigned long Mlifter2counter=0 ;
  unsigned long Mlifter3counter=0 ;
@@ -49,11 +55,35 @@ if(GPIORIS_PORTA&0x08)
 		prev3=0;}
 }
 	if(GPIORIS_PORTA&0x20)
-{GPIOICR_PORTA=0x20;   // acknowledge pin 5 clear for next interrupt 
-	MServecounter++;
+{
+	Delay1ms(5);
+	/*MServecounter++;
 		if(MServecounter==0xFFFFFFFF)
 	{ MServecounter=0;                                      // reset counter   serve Motor
-		prevMServe=0;}
+		prevMServe=0;}*/
+	Q++;
+	switch (State)
+	{
+		case 1:
+
+		digitalWrite(ServePiston,HIGH);
+digitalWrite(ServeMotorCW,LOW);
+		digitalWrite(ServeMotorCCW,LOW);
+		W++;
+		GPIOIM_PORTA &= ~0x20;
+			//	State=2;
+		break;
+		
+		case 2:
+		digitalWrite(ServePiston,HIGH);
+		digitalWrite(ServeMotorCCW,LOW);
+		digitalWrite(ServeMotorCW,LOW);
+		T++;
+			GPIOIM_PORTA &= ~0x20;
+			//	State=1;
+		break;
+	}
+	GPIOICR_PORTA=0x20;   // acknowledge pin 5 clear for next interrupt 
 }
 }
 

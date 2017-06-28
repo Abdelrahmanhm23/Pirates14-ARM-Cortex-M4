@@ -15,7 +15,7 @@ char DL = 0x08;
 char CW = 0x09;
 char CCW = 0x10;
 char ServeStart = 0x11;
-char ServeStop = 0x12 ;
+char ServeStop = 0x40 ;
 char LIFT1_UP =0x25;
 char LIFT1_DOWN=0x26;
 char LIFT2_UP=0x27;           //R2
@@ -49,7 +49,7 @@ uint32_t ReadData()
 {
 	 SSIDataGet(SSI1_BASE, &pui32DataRx[ui32Index]);	
 
-if(pui32DataRx[ui32Index]>0x3F &&  pui32DataRx[ui32Index]!=0x61 &&  pui32DataRx[ui32Index]!=0x51 &&  pui32DataRx[ui32Index]!=0x4F &&  pui32DataRx[ui32Index]!=0xFF && pui32DataRx[ui32Index]!=0x41  && pui32DataRx[ui32Index]!=0x47  && pui32DataRx[ui32Index]!=0x49 && pui32DataRx[ui32Index]!=0x43 && pui32DataRx[ui32Index]!=0x45)
+if(pui32DataRx[ui32Index]>0x3F &&  pui32DataRx[ui32Index]!=0x81 &&  pui32DataRx[ui32Index]!=0x61 &&  pui32DataRx[ui32Index]!=0x51 &&  pui32DataRx[ui32Index]!=0x4F &&  pui32DataRx[ui32Index]!=0xFF && pui32DataRx[ui32Index]!=0x41  && pui32DataRx[ui32Index]!=0x47  && pui32DataRx[ui32Index]!=0x49 && pui32DataRx[ui32Index]!=0x43 && pui32DataRx[ui32Index]!=0x45)
 {
 	pui32DataRx[ui32Index]=(pui32DataRx[ui32Index] &= 0xFF )<< 1;
 	pui32DataRx[ui32Index]&= 0xFE;

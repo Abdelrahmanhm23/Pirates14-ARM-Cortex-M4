@@ -3,6 +3,9 @@
 .\pid.o: MemMap.h
 .\pid.o: E:\keil\ARM\ARMCC\bin\..\include\stdint.h
 .\pid.o: MotorInit.h
+.\pid.o: Serve.h
+.\pid.o: MotorInit.h
+.\pid.o: Motion.h
 .\pid.o: encoders.h
 .\pid.o: E:\keil\ARM\ARMCC\bin\..\include\stdio.h
 .\pid.o: E:\keil\ARM\ARMCC\bin\..\include\math.h

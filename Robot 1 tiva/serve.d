@@ -3,3 +3,5 @@
 .\serve.o: MemMap.h
 .\serve.o: E:\keil\ARM\ARMCC\bin\..\include\stdint.h
 .\serve.o: MotorInit.h
+.\serve.o: Serve.h
+.\serve.o: Motion.h
