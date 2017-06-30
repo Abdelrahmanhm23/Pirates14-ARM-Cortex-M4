@@ -30,10 +30,9 @@ void PWMA_Init()
 	GPIOAFSEL_PORTA &= ~0x3C;
 	GPIOPCTL_PORTA  &= ~0x00FFFF00;     //  configure 2,3,4,5 as GPIO
 	GPIODIR_PORTA   &= ~ 0x3C;    // set direction of 2,3,4 as inputs
-		GPIODR8R_PORTA |= 0xFF;
-	//GPIOODR_PORTA  |= 0xFF;
-	GPIOSLR_PORTA   |= 0xFF;
-	GPIOPUR_PORTA   |= 0x3C;      // pullup registers
+	GPIODR8R_PORTA |= 0xFF;
+	GPIOSLR_PORTA   |= 0x3C;
+	GPIOPUR_PORTA   |= 0xFC;      // pullup registers
 	GPIODEN_PORTA   |= 0x3C;      // digital enable for pins 2,3,4,5
 	
 	GPIOIS_PORTA    &= ~0x3C;     // 2,3,4,5 are edge senstive set to 1 for level
@@ -43,6 +42,21 @@ void PWMA_Init()
 	GPIOIM_PORTA    |= 0x1C;     // arm interrupts for pins 2,3,4 
 	PRI0 = (PRI0&0xFFFFFF00)|0x000000F0 ; // priority 5 
 	EN0  = 1<<0;               // enable interrupts 16
+	
+	/*
+	
+		GPIOIS_PORTA    &= ~0x1C;     // 2,3,4,5 are edge senstive set to 1 for level
+  GPIOIBE_PORTA   &= ~0x1C;    //  2,3,4,5 is not both edges
+  GPIOEV_PORTA     &= ~0x1C;     // 2,3,4,5 are rising edges
+	GPIOICR_PORTA    = 0x1C;     // clear flags of 2,3,4,5
+	GPIOIM_PORTA    |= 0x1C;     // arm interrupts for pins 2,3,4 
+	PRI0 = (PRI0&0xFFFFFF00)|0x000000F0 ; // priority 5 
+	EN0  = 1<<0;               // enable interrupts 16
+	
+	
+	*/
+	
+	
 	
 	///////////////////////////////////////////////////////////////////
 		///////////////////UART////////////////////////////////
@@ -64,9 +78,9 @@ void PWMA_Init()
 	GPIOPCTL_PORTA  &= ~0xFF000000;         //initialize pctl
 	GPIOPCTL_PORTA  |= 0x55000000;          //enable pctl PWMMO pin 6,7
   GPIODIR_PORTA   |= 0x00;                // set direction 
-	GPIODR8R_PORTA |= 0xFF;
-	GPIOSLR_PORTA  |= 0xFF;
-	GPIOPUR_PORTA |=0xFF;
+	GPIODR8R_PORTA |= 0x3C;
+	GPIOSLR_PORTA  |= 0x3C;
+	GPIOPUR_PORTA |=0x3C;
 	GPIODEN_PORTA   |= 0xC0;                // digital enable for 6,7
 	
 	PWM1_CTL_1    = 0x00; 
@@ -95,10 +109,12 @@ void PWMB_Init()
 	GPIODATA_PORTB   &= ~0xFB;                  // Initialize data register
 	GPIOAMSEL_PORTB  &= ~0xFB;                 // disable analog 
 	GPIOAFSEL_PORTB &= ~0x0B;                // disable 0,1,3
-	GPIOAFSEL_PORTB |= 0xF0;                // activate alternate function for 4,5,6,7
+	GPIOAFSEL_PORTB |= 0xF0;                 // activate alternate function for 4,5,6,7
 	GPIOPCTL_PORTB  &= ~0xFFFF0000;         //initialize pctl
 	GPIOPCTL_PORTB  |= 0x44440000;          //enable pctl PWMMO pin 4,5,6,7
   GPIODIR_PORTB   |= 0x0B;                // set direction of 0,1,3 as outputs
+	GPIODR8R_PORTB  |= 0xFB;
+	GPIOPUR_PORTB   |= 0xFB;                // pull down resistors
 	GPIODEN_PORTB   |= 0xFB;                // digital enable for 0,1,3,4,5,6,7
 
 	PWM0_CTL_0 = 0x00;                      // stop counter  generator 0
@@ -134,6 +150,8 @@ void PWMC_Init()
 	GPIOPCTL_PORTC  &= ~0x00FF0000;          //initialize pctl
 	GPIOPCTL_PORTC  |= 0x00440000;           //enable pctl PWMMO pin 4,5  
 	GPIODIR_PORTC   |= 0xC0;                 // set direction of 6,7 as outputs
+	GPIODR8R_PORTC  |= 0xF0;
+	GPIOPUR_PORTC   |= 0xF0; 
 	GPIODEN_PORTC   |= 0xF0;                 // digital enable for 4,5,6,7
 	
 	PWM0_CTL_3 = 0x00;                      // stop counter  generator 3
@@ -162,19 +180,9 @@ void PWMD_Init()      // 0 input 1 analog  2,3,6,7 output
 	//GPIOAFSEL_PORTD |= 0x02;                 // enable alternate function pin 1
 //	GPIODEN_PORTD   &= ~0x02;                 // disable digital pin 1
 //	GPIOAMSEL_PORTD  |= 0x02;                  // enable analog pin 1
-	GPIODR8R_PORTD |= 0xFF;
-	GPIOPUR_PORTD |=0xFF;
+	GPIODR8R_PORTD |= 0xCF;
+	GPIOPUR_PORTD |=0xCF;
 	GPIODEN_PORTD   |= 0xCE;                  // digital enable for 0,2,3,6,7
-	
-	GPIOIS_PORTD    &= ~0x02;     // 0 are edge senstive set to 1 for level
-  GPIOIBE_PORTD   &= ~0x02;    //  0 is not both edges
-  GPIOEV_PORTD     &= ~0x02;     // 0 is rising edges
-	GPIOICR_PORTD    = 0x02;     // clear flags of 0
-	GPIOIM_PORTD    |= 0x02;     // arm interrupts for pins 0
-	PRI0 = (PRI0&0x00FFFFFF)|0xF0000000 ; // priority 7 
-	EN0  = 1<<3;               // enable interrupts 19
-
-	
 }
 
 /*Module 0 pwm 4 PC4 genA M2 Motor5
@@ -191,9 +199,8 @@ void PWME_Init()
 	GPIOPCTL_PORTE  |= 0x00440000;           //enable pctl PWMMO pin 4,5 
   //GPIOAMSEL_PORTE |= 0x0C;	               // enable analog function for 2,3
 	GPIODIR_PORTE   |= 0x03;                 // set direction of 0,1 as outputs
-	GPIODR8R_PORTE |= 0xFF;
-	//GPIOODR_PORTE  |= 0xFF;
-	GPIOPUR_PORTE |=0xFF;
+	GPIODR8R_PORTE |= 0x3C;
+	GPIOPUR_PORTE |=0x3C;
 	GPIODEN_PORTE   |= 0x3F;                 // digital enable for 0,1,4,5
 
 	PWM0_CTL_2 = 0x00;                      // stop counter  generator 3
@@ -208,6 +215,8 @@ void PWME_Init()
 	//PWM0_EN |= 0X20;                      // PE5  pin enable
 
 }
+
+
 ///////////////////ADC TIVA 2/////////////////
  void ADCB_Init()  // B0 dir M7 B1 dir M8 b6 b7 input interrupts   4,5 analog
 {
@@ -297,6 +306,7 @@ RCGCGPIO |=0x08;                        // activate clock for Port D
 	//PWM0_EN |= 0x10;                      // PE4  pin enable
 	//PWM0_EN |= 0X20;                      // PE5  pin enable
 }
+
 ////////////////////////////////////////////////
 // PortF SPI Communication 4 relay
 void PortF_Init()

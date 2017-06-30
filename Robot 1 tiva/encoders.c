@@ -54,7 +54,7 @@ if(GPIORIS_PORTA&0x08)
 	{ Mlifter3counter=0;                                      // reset counter   Mlifter 3
 		prev3=0;}
 }
-	if(GPIORIS_PORTA&0x20)
+	if(GPIORIS_PORTA&0x20)    // loading sensor 
 {
 	Delay1ms(5);
 	/*MServecounter++;
@@ -103,12 +103,12 @@ counts3=	singlePoleFilter(counts3,prev_counts3);*/
 	RPM_ML1 = (counts1)  * 50 * (0.001527)* (60) ;           // rpm count Mlifter 1    (counts/secs * rev/count * 60)
 	RPM_ML2 = (counts2)  * 50 * (0.001527)* (60) ;           // rpm count Mlifter 2    (counts/secs * rev/count * 60)
 	RPM_ML3 = (counts3)  * 50 * (0.001527)* (60) ;            // rpm count Mlifter 3    (counts/secs * rev/count * 60)
-	RPM_MServe = (countsMServe) * 50 * (0.005)* (60) ;    // rpm count MServe   (counts/secs * rev/count * 60)
+//	RPM_MServe = (countsMServe) * 50 * (0.005)* (60) ;    // rpm count MServe   (counts/secs * rev/count * 60)
 
 	prev1 = Mlifter1counter ;                                  // set last count reached
 	prev2 = Mlifter2counter ;                                  // set last count reached
 	prev3 = Mlifter3counter ;                                  // set last count reached
-	prevMServe = MServecounter ;                                  // set last count reached
+//	prevMServe = MServecounter ;                                  // set last count reached
 //	prev_counts1=counts1;
 //	prev_counts2=counts2;
 //	prev_counts3=counts3;
@@ -122,9 +122,9 @@ counts3=	singlePoleFilter(counts3,prev_counts3);*/
 		if(Mlifter3counter==0xFFFFFFFF)
 	{Mlifter3counter=0;                                      // reset counter
 		prev3=0;}
-		if(MServecounter==0xFFFFFFFF)
-	{MServecounter=0;                                      // reset counter
-		prevMServe=0;}
+//		if(MServecounter==0xFFFFFFFF)
+//	{MServecounter=0;                                      // reset counter
+//		prevMServe=0;}
 	///////////////////////////////////////////////////////////////////////////////
 //	GPIOIM_PORTA   |= 0x3C;
 }

@@ -37,26 +37,11 @@ void Data();
 
 int main()
 {
-
-
 TIVA1();
 	
 	while(1)
 	{
-		
-
 		Data();
-		//data_get(Z,2);
-//	analogWrite(Motor5,1550);
-		//Forward();
-		//analogWrite(Motor5,1550);
-		//ReadData();
-			//PID_ML3_REV(400);
-		//delayUs(20000);
-	//	if(Mlifter3counter>=340)
-	//	{liftersStop();
-	//	while(1);}
-					//PID_ML3_RPM(400);
 	}
 }
 
@@ -147,35 +132,20 @@ while(1)
 		else if(ReadData()==stop)
 		{Stop();}
 		else if(ReadData()==ServeStart)  // R1
-		{
-		
-			Serve();
-			
-		//e=1;
-	
-}
-
+		{Serve();}
 		else if(ReadData()==ServeStop)   // L1
-		{	
-			servestop();
-		}
-			else if(ReadData()==LIFT2_UP)   // ------------------
+		{servestop();}
+		else if(ReadData()==LIFT1_UP)   // R2
 		{lifter1up();}
-		else if(ReadData()==LIFT2_DOWN) // --------------------
+		else if(ReadData()==LIFT1_DOWN) // L2
 		{lifter1down();}
-	//			else if(ReadData()==servepwm_UP)   // --------------------
-	//	{lifter2up();}
-	//	else if(ReadData()==servepwm_DOWN) //-------------------------
-	//	{lifter2down();}
 		else if(ReadData()==LIFT12_UP)   // TRIANGLE
 		{lifter12up();}
 		else if(ReadData()==LIFT12_DOWN) // CROSS
 		{a=40;
-			lifter12down();
-		}
+			lifter12down();}
 		else if(ReadData()==LIFT3_UP)    // CIRCLE
-		{lifter3up();
-		}
+		{lifter3up();}
 		else if(ReadData()==LIFT3_DOWN)  // SQUARE
 		{lifter3down();}
 		else if(ReadData()==LIFTall_UP)  // UP
@@ -197,7 +167,6 @@ while(1)
 		}
 		else if(ReadData()==stop)
 		{Stop();}
-		
 	if (ReadData()==0x24)////////break and go into automatic mode 
 	{break;}
 	}
