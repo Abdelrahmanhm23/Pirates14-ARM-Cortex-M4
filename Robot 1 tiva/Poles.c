@@ -35,10 +35,16 @@ void Pole1( long desired_pos1, long desired_pos2, long desired_pos3,int SERVEPWM
 		digitalWrite(Motor3,HIGH);
 	}
 	while(1)
-	{
+{
 PID_ML1_REV(pos1);
 PID_ML2_REV(pos2);
 PID_ML3_REV(pos3);
+			if(Mlifter1counter>=pos1)
+		{MotorStop(Motor1);}
+			if(Mlifter2counter>=pos2)
+		{MotorStop(Motor2);}
+			if(Mlifter3counter>=pos3)
+		{MotorStop(Motor3);}
 		if(Mlifter1counter>=pos1 &&Mlifter2counter>=pos2 && Mlifter3counter>=pos3)
 		{liftersStop();
 		break;}
@@ -48,7 +54,7 @@ PID_ML3_REV(pos3);
 	if (ReadData()==0x23)
 	{liftersStop();
 	break;}
-	}
+}
 	analogWrite(Motor9,SERVEPWM);  // change to PID_MServe_RPM 
 	Serve();
 	current_pos1=pos1;
@@ -82,6 +88,12 @@ pos1=desired_pos1 - current_pos1 ;
 PID_ML1_REV(pos1);
 PID_ML2_REV(pos2);
 PID_ML3_REV(pos3);
+			if(Mlifter1counter>=pos1)
+		{MotorStop(Motor1);}
+			if(Mlifter2counter>=pos2)
+		{MotorStop(Motor2);}
+			if(Mlifter3counter>=pos3)
+		{MotorStop(Motor3);}
 		if(Mlifter1counter>=pos1 &&Mlifter2counter>=pos2 && Mlifter3counter>=pos3)
 		{liftersStop();
 		break;}
@@ -125,6 +137,12 @@ pos1=desired_pos1 - current_pos1 ;
 PID_ML1_REV(pos1);
 PID_ML2_REV(pos2);
 PID_ML3_REV(pos3);
+			if(Mlifter1counter>=pos1)
+		{MotorStop(Motor1);}
+			if(Mlifter2counter>=pos2)
+		{MotorStop(Motor2);}
+			if(Mlifter3counter>=pos3)
+		{MotorStop(Motor3);}
 		if(Mlifter1counter>=pos1 &&Mlifter2counter>=pos2 && Mlifter3counter>=pos3)
 		{liftersStop();
 		break;}
@@ -167,6 +185,12 @@ pos1=desired_pos1 - current_pos1 ;
 PID_ML1_REV(pos1);
 PID_ML2_REV(pos2);
 PID_ML3_REV(pos3);
+			if(Mlifter1counter>=pos1)
+		{MotorStop(Motor1);}
+			if(Mlifter2counter>=pos2)
+		{MotorStop(Motor2);}
+			if(Mlifter3counter>=pos3)
+		{MotorStop(Motor3);}
 		if(Mlifter1counter>=pos1 &&Mlifter2counter>=pos2 && Mlifter3counter>=pos3)
 		{liftersStop();
 		break;}
@@ -209,6 +233,12 @@ void Pole5( long desired_pos1, long desired_pos2, long desired_pos3,int SERVEPWM
 PID_ML1_REV(pos1);
 PID_ML2_REV(pos2);
 PID_ML3_REV(pos3);
+			if(Mlifter1counter>=pos1)
+		{MotorStop(Motor1);}
+			if(Mlifter2counter>=pos2)
+		{MotorStop(Motor2);}
+			if(Mlifter3counter>=pos3)
+		{MotorStop(Motor3);}
 		if(Mlifter1counter>=pos1 &&Mlifter2counter>=pos2 && Mlifter3counter>=pos3)
 		{liftersStop();
 		break;}

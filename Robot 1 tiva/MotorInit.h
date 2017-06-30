@@ -18,6 +18,7 @@
 #define ServeMotorCCW 12
 #define ServePiston 13
 #define Motor3Piston 14
+#define Motor2Piston 15
 extern char HIGH ;
 extern char LOW ;
 
