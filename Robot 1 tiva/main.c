@@ -9,12 +9,13 @@
 #include "encoders.h"
 #include "Poles.h"
 #include "ADC.h"
+#include "fence.h"
 #include <math.h>
 #define SCB_R                   (*((volatile unsigned long *) 0xE000ED88))
 //double y = 0.00125 ;
  int i=0;
 int a=0;
-unsigned long servepwm=1550 ;
+unsigned long servepwm=8000 ;
 
 uint32_t A[100]={0};
 uint32_t B[100]={0};
@@ -37,27 +38,17 @@ void Data();
 
 int main()
 {
-TIVA1();
+TIVA2();
 	
 	while(1)
 	{
 		Data();
+	  
 	}
 }
 
+ 
 
-
-
-void Delay1ms(unsigned long msec){// write this function
-	unsigned long i ;
-	while(msec>0)
-	{i=(16000*25/30);
-		while(i>0){
-			i--;
-		}
-		msec--;
-	}
-}
 void SystemInit(void)
 {
 /* Grant coprocessor access */
@@ -132,7 +123,11 @@ while(1)
 		else if(ReadData()==stop)
 		{Stop();}
 		else if(ReadData()==ServeStart)  // R1
-		{Serve();}
+		{analogWrite(Motor9,servepwm) ;
+	analogWrite(Motor10,servepwm) ; 	  
+Delay1ms(5);			
+			Serve();
+			}
 		else if(ReadData()==ServeStop)   // L1
 		{servestop();}
 		else if(ReadData()==LIFT1_UP)   // R2
@@ -155,15 +150,15 @@ while(1)
 		else if(ReadData()==LIFT_STOP)
 		{liftersStop();}
 		else if(ReadData()==servepwm_DOWN)  // LEFT
-		{servepwm=servepwm+2;
-		if(servepwm>3200)
-		{ servepwm=3190; }		}
+		{servepwm=servepwm+20;
+		if(servepwm>16000)
+		{ servepwm=15800; }		}
 		else if(ReadData()==servepwm_UP)    // RIGHT
-		{servepwm=servepwm-2;
-		if(servepwm<10)
-		{servepwm=1;}
+		{servepwm=servepwm-20;
+		if(servepwm<80)
+		{servepwm=20;}
 		if(servepwm>0xFFFF)
-		{servepwm=1;}
+		{servepwm=20;}
 		}
 		else if(ReadData()==stop)
 		{Stop();}

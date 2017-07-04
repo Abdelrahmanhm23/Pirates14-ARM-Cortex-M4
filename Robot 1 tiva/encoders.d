@@ -9,3 +9,13 @@
 .\encoders.o: Serve.h
 .\encoders.o: MotorInit.h
 .\encoders.o: Motion.h
+.\encoders.o: spi.h
+.\encoders.o: E:\keil\ARM\ARMCC\bin\..\include\stdbool.h
+.\encoders.o: E:\Keil\TivaWare_C_Series-2.1.2.111\inc/hw_memmap.h
+.\encoders.o: E:\Keil\TivaWare_C_Series-2.1.2.111\driverlib/gpio.h
+.\encoders.o: E:\Keil\TivaWare_C_Series-2.1.2.111\driverlib/pin_map.h
+.\encoders.o: E:\Keil\TivaWare_C_Series-2.1.2.111\driverlib/ssi.h
+.\encoders.o: E:\Keil\TivaWare_C_Series-2.1.2.111\driverlib/sysctl.h
+.\encoders.o: E:\Keil\TivaWare_C_Series-2.1.2.111\driverlib/uart.h
+.\encoders.o: E:\Keil\TivaWare_C_Series-2.1.2.111\utils/uartstdio.h
+.\encoders.o: E:\keil\ARM\ARMCC\bin\..\include\stdarg.h

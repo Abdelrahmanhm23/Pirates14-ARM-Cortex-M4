@@ -13,6 +13,28 @@ long pos2=0;
 long pos3=0;
 
 
+void Pole( long desired_pos1)   // 
+{
+	pos1=desired_pos1 - current_pos1 ;
+		Mlifter1counter=0;
+if(pos1<0)
+	{
+	pos1=abs(pos1);
+		digitalWrite(Motor1,HIGH);    // if negative change direction
+	}
+		while(1)
+{
+PID_ML1_REV(pos1);
+	Delay1ms(2);
+			if(Mlifter1counter>=pos1)
+		{MotorStop(Motor1);}
+		if(Mlifter1counter>=pos1 )
+		{liftersStop();
+		break;}
+}
+	current_pos1=pos1;
+}
+
 
 
 void Pole1( long desired_pos1, long desired_pos2, long desired_pos3,int SERVEPWM)   // 

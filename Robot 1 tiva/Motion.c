@@ -300,68 +300,68 @@ void CounterClockWise()
 void lifter1up()
 {
 		digitalWrite(Motor1,LOW);
-	analogWrite(Motor1,1550) ;
+	analogWrite(Motor1,1500) ;
 
 }
 void lifter1down()
 {digitalWrite(Motor1,HIGH);
-	analogWrite(Motor1,1550) ;
+	analogWrite(Motor1,1500) ;
 }
 void lifter2up()
 {
 		digitalWrite(Motor2,LOW);
-	analogWrite(Motor2,1550) ;
+	analogWrite(Motor2,1500) ;
 
 }
 void lifter2down()
 {
 		digitalWrite(Motor2,HIGH);
-	analogWrite(Motor2,1550) ; 
+	analogWrite(Motor2,1500) ; 
 }
 
 void lifter12up()
 {
 		digitalWrite(Motor1,LOW);
-	analogWrite(Motor1,1550) ;
+	analogWrite(Motor1,1500) ;
 		digitalWrite(Motor2,LOW);
-	analogWrite(Motor2,1550) ;
+	analogWrite(Motor2,1500) ;
 
 }
 void lifter12down()
 {digitalWrite(Motor1,HIGH);
-	analogWrite(Motor1,1550) ;
+	analogWrite(Motor1,1500) ;
 		digitalWrite(Motor2,HIGH);
-	analogWrite(Motor2,1550) ; 
+	analogWrite(Motor2,1500) ; 
 }
 
 void lifter3up()
 {
 		digitalWrite(Motor3,LOW);
-	analogWrite(Motor3,1550) ;
+	analogWrite(Motor3,1500) ;
 	}
 
 void lifter3down()
 {	digitalWrite(Motor3 ,HIGH);
-	analogWrite(Motor3,1550) ;}
+	analogWrite(Motor3,1500) ;}
 
 void liftersup()
 {	
 	digitalWrite(Motor1,LOW);
-	analogWrite(Motor1,1550) ;
+	analogWrite(Motor1,1500) ;
 		digitalWrite(Motor2,LOW);
-	analogWrite(Motor2,1550) ;
+	analogWrite(Motor2,1500) ;
 	digitalWrite(Motor3,LOW);
-	analogWrite(Motor3,1550) ;
+	analogWrite(Motor3,1500) ;
 }
 
 void liftersdown()
 {
 	digitalWrite(Motor1,HIGH);
-	analogWrite(Motor1,1550) ;
+	analogWrite(Motor1,1500) ;
 		digitalWrite(Motor2,HIGH);
-	analogWrite(Motor2,1550) ;
+	analogWrite(Motor2,1500) ;
 	digitalWrite(Motor3,HIGH);
-	analogWrite(Motor3,1550) ;
+	analogWrite(Motor3,1500) ;
 }
 	void liftersStop()
 	{

@@ -54,6 +54,7 @@ if(GPIORIS_PORTA&0x08)
 	{ Mlifter3counter=0;                                      // reset counter   Mlifter 3
 		prev3=0;}
 }
+/*
 	if(GPIORIS_PORTA&0x20)    // loading sensor 
 {
 	Delay1ms(5);
@@ -61,7 +62,7 @@ if(GPIORIS_PORTA&0x08)
 		if(MServecounter==0xFFFFFFFF)
 	{ MServecounter=0;                                      // reset counter   serve Motor
 		prevMServe=0;}*/
-	Q++;
+/*	Q++;
 	switch (State)
 	{
 		case 1:
@@ -84,7 +85,7 @@ digitalWrite(ServeMotorCW,LOW);
 		break;
 	}
 	GPIOICR_PORTA=0x20;   // acknowledge pin 5 clear for next interrupt 
-}
+}*/
 }
 
 

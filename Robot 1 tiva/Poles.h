@@ -25,6 +25,7 @@ extern long pos1;
 extern long pos2;
 extern long pos3;
 
+void Pole( long desired_pos1);   // 
 void Pole1( long desired_pos1, long desired_pos2, long desired_pos3,int SERVEPWM);
 void Pole2( long desired_pos1, long desired_pos2, long desired_pos3,int SERVEPWM);
 void Pole3( long desired_pos1, long desired_pos2, long desired_pos3,int SERVEPWM);

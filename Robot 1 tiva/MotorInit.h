@@ -19,6 +19,9 @@
 #define ServePiston 13
 #define Motor3Piston 14
 #define Motor2Piston 15
+#define saucer 16
+#define s1     17
+#define s2     18
 extern char HIGH ;
 extern char LOW ;
 
@@ -45,5 +48,7 @@ void init_adc_3pins();
 void init_adc_8pins();
 void init_adc_2pins();
 void delayUs(int n);
+void Delay1ms(unsigned long msec);
+int digitalRead(int pin);
 
 #endif /* MOTORINIT_H_*/

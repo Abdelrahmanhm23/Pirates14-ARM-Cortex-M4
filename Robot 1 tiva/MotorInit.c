@@ -34,7 +34,7 @@ void PWMA_Init()
 	GPIOSLR_PORTA   |= 0x3C;
 	GPIOPUR_PORTA   |= 0xFC;      // pullup registers
 	GPIODEN_PORTA   |= 0x3C;      // digital enable for pins 2,3,4,5
-	
+	/*
 	GPIOIS_PORTA    &= ~0x3C;     // 2,3,4,5 are edge senstive set to 1 for level
   GPIOIBE_PORTA   &= ~0x3C;    //  2,3,4,5 is not both edges
   GPIOEV_PORTA     &= ~0x3C;     // 2,3,4,5 are rising edges
@@ -43,7 +43,7 @@ void PWMA_Init()
 	PRI0 = (PRI0&0xFFFFFF00)|0x000000F0 ; // priority 5 
 	EN0  = 1<<0;               // enable interrupts 16
 	
-	/*
+	*/
 	
 		GPIOIS_PORTA    &= ~0x1C;     // 2,3,4,5 are edge senstive set to 1 for level
   GPIOIBE_PORTA   &= ~0x1C;    //  2,3,4,5 is not both edges
@@ -52,11 +52,6 @@ void PWMA_Init()
 	GPIOIM_PORTA    |= 0x1C;     // arm interrupts for pins 2,3,4 
 	PRI0 = (PRI0&0xFFFFFF00)|0x000000F0 ; // priority 5 
 	EN0  = 1<<0;               // enable interrupts 16
-	
-	
-	*/
-	
-	
 	
 	///////////////////////////////////////////////////////////////////
 		///////////////////UART////////////////////////////////
@@ -77,16 +72,12 @@ void PWMA_Init()
 	GPIOAFSEL_PORTA |= 0xC0;                // activate alternate function for 6,7
 	GPIOPCTL_PORTA  &= ~0xFF000000;         //initialize pctl
 	GPIOPCTL_PORTA  |= 0x55000000;          //enable pctl PWMMO pin 6,7
-  GPIODIR_PORTA   |= 0x00;                // set direction 
-	GPIODR8R_PORTA |= 0x3C;
-	GPIOSLR_PORTA  |= 0x3C;
-	GPIOPUR_PORTA |=0x3C;
 	GPIODEN_PORTA   |= 0xC0;                // digital enable for 6,7
 	
 	PWM1_CTL_1    = 0x00; 
 	PWM1_GENA_1  |= 0x0000008C ;            // M1PWM2 output set when reload clear when match PWM CMP A ch2  PA6
 	PWM1_GENB_1  |= 0x0000080C ;            //M1PWM3 output set when reload clear when match PWM CMP B ch3   PA7
-	PWM1_LOAD_1   = 3200 ;                    // set frequency to 5khz max freq for driver 
+	PWM1_LOAD_1   = 16000 ;                    // set frequency to 5khz max freq for driver 
                                           //(16MHz/3200)
 	//PWM1_CMPA_1                           // set duty ratio for PA6 
 	//PWM1_CMPB_1                           // set duty ratio for PA7
@@ -113,8 +104,9 @@ void PWMB_Init()
 	GPIOPCTL_PORTB  &= ~0xFFFF0000;         //initialize pctl
 	GPIOPCTL_PORTB  |= 0x44440000;          //enable pctl PWMMO pin 4,5,6,7
   GPIODIR_PORTB   |= 0x0B;                // set direction of 0,1,3 as outputs
-	GPIODR8R_PORTB  |= 0xFB;
-	GPIOPUR_PORTB   |= 0xFB;                // pull down resistors
+	GPIODR8R_PORTB  |= 0xFF;
+	GPIOPUR_PORTB   |= 0xFF;                // pull UP resistors
+	GPIOSLR_PORTB   |= 0xFF;
 	GPIODEN_PORTB   |= 0xFB;                // digital enable for 0,1,3,4,5,6,7
 
 	PWM0_CTL_0 = 0x00;                      // stop counter  generator 0
@@ -123,8 +115,8 @@ void PWMB_Init()
 	PWM0_GENB_0  |= 0x0000080C ;           // M0PWM1 output set when reload clear when match PWM CMP B ch1  pB7
   PWM0_GENA_1  |= 0x0000008C ;            // M0PWM2 output set when reload clear when match PWM CMP A ch2 PB4
 	PWM0_GENB_1  |= 0x0000080C ;            //M0PWM3 output set when reload clear when match PWM CMP B ch3  PB5
-	PWM0_LOAD_0  = 3200;                     // set frequency to 5khz max freq for driver
-  PWM0_LOAD_1  = 3200;                     //(16MHz/3200)
+	PWM0_LOAD_0  = 16000;                     // set frequency to 5khz max freq for driver
+  PWM0_LOAD_1  = 16000;                     //(16MHz/3200)
   //PWM0_CMPA_0                           // set duty ratio for PB6
 	//PWM0_CMPB_0                           // set duty ratio for PB7
 	//PWM0_CMPA_1                           // set duty ratio for PB4
@@ -171,18 +163,18 @@ void PWMD_Init()      // 0 analog 1 input  2,3,6,7 output
 	RCGCGPIO |=0x08;                        // activate clock for Port D
 	GPIODATA_PORTD   &= ~0xCF;                  // Initialize data register
 	GPIOLOCK_PORTD = 0x4C4F434B ;              // unlock port D
-	GPIOCR_PORTD = 0x80 ;                      // allow changes to 
+	GPIOCR_PORTD = 0x80 ;                      // allow changes to 7
 	GPIOAFSEL_PORTD &= ~0xCE;                 // disable 0,2,3,6,7 alternate functions
 	GPIOAMSEL_PORTD &= ~0xCE;                 // disable analog functions  0,2,3,6,7
 	GPIODIR_PORTD   &= ~0x02;                 // set direction of 0 as input
 	GPIODIR_PORTD   |= 0xCC;                  // set direction of 2,3,6,7 as outputs
 	GPIOAFSEL_PORTD |= 0x01;                 // enable alternate function pin 0
 	GPIODEN_PORTD   &= ~0x01;                 // disable digital pin 0
-	GPIOAMSEL_PORTD  |= 0x01;                  // enable analog pin 0
+//	GPIOAMSEL_PORTD  |= 0x01;                  // enable analog pin 0
 	GPIODR8R_PORTD |= 0xCF;
 	GPIOPUR_PORTD |=0xCE;
 	GPIODEN_PORTD   |= 0xCE;                  // digital enable for 0,2,3,6,7
-	  RCGCADC |= 0x01;                       // enable clock to ADC 
+	//  RCGCADC |= 0x01;                       // enable clock to ADC 
 }
 
 /*Module 0 pwm 4 PC4 genA M2 Motor5
@@ -199,10 +191,12 @@ void PWME_Init()
 	GPIOPCTL_PORTE  |= 0x00440000;           //enable pctl PWMMO pin 4,5 
   GPIODEN_PORTE   &= ~0x0C;                 // digital disable for 2,3	GPIOAMSEL_PORTE |= 0x0C;	               // enable analog function for 2,3
 	GPIODIR_PORTE   |= 0x03;                 // set direction of 0,1 as outputs
-	GPIODR8R_PORTE |= 0x3C;
+	GPIODR8R_PORTE |= 0x3D;
 	GPIOPUR_PORTE |=0x33;
+		GPIOSLR_PORTE  |= 0xFF;
+	//		GPIOODR_PORTE  |= 0x01;
 	GPIODEN_PORTE   |= 0x33;                 // digital enable for 0,1,4,5
-	  RCGCADC |= 0x01; 
+	//  RCGCADC |= 0x01; 
 
 	PWM0_CTL_2 = 0x00;                      // stop counter  generator 3
   PWM0_GENA_2  |= 0x0000008C ;            // M0PWM4 output set when reload clear when match PWM CMP A ch4
@@ -229,7 +223,7 @@ void PWME_Init()
 	GPIOAFSEL_PORTB &= ~0xC3;                // disable alternate function for 0,1,6,7
 	GPIOPCTL_PORTB  &= ~0x00000000;         //initialize pctl
   GPIODIR_PORTB   |= 0x03;                // set direction of 0,1 as outputs
-  GPIODIR_PORTB   &= ~ 0xC0;              // set direction of 6,7 as inputs
+  GPIODIR_PORTB   &= ~0xC0;              // set direction of 6,7 as inputs
 		GPIOAFSEL_PORTB |= 0x30;                // enable alternate function for 4,5
 	GPIODEN_PORTB   &= ~0x30;                // digital disable for 4,5
 	//GPIOAMSEL_PORTB |= 0x30;                 // enable analog function for 4,5
@@ -364,6 +358,7 @@ RCGCGPIO |=0x3F;
 		digitalWrite(ServePiston,LOW);
 digitalWrite(ServeMotorCW,LOW);
 digitalWrite(ServeMotorCCW,LOW);
+		digitalWrite(Motor2Piston,HIGH);
 	digitalWrite(Motor3Piston,HIGH);
 }
 
@@ -372,7 +367,6 @@ void TIVA2()  // initialization of tiva 2 (Base , LINE follower , base sensors)
 	//RCGCGPIO |=0x3E;
 		RCGCPWM  |=0x03;                         // enable clock to PWM0 & PWM1
 	RCC        &= ~0x00100000 ;               // don't use pre-divide for PWM clock (default)
-	
   ADCB_Init();
   ADCC_Init();
  ADCD_Init();
@@ -436,6 +430,7 @@ void init_adc_8pins()
     ADCACTSS_ADC0 |= 0x01;         //Enable SS0
 }
 
+
 void init_adc_2pins()//--------------------
  {
   /*  
@@ -480,6 +475,17 @@ void Timer4(void)
 }
 */
 
+
+void Delay1ms(unsigned long msec){// write this function
+	unsigned long i ;
+	while(msec>0)
+	{i=(16000*25/30);
+		while(i>0){
+			i--;
+		}
+		msec--;
+	}
+}
 void delayUs(int n)
 {
     int i, j;
@@ -503,6 +509,7 @@ void analogWrite(int pin,int speed)
 		PWM0_CTL_0 |= EnableDown;
 	 	PWM0_EN |= 0x01;
 	digitalWrite(Motor2Piston,LOW);
+	//	Delay1ms(5);
 	}
 	else if(pin==Motor3)
 	{    
@@ -510,6 +517,7 @@ void analogWrite(int pin,int speed)
 		PWM0_CTL_0 |= EnableDown;
 		PWM0_EN |= 0x02; 	
 	digitalWrite(Motor3Piston,LOW);
+	//Delay1ms(5);
 	}
 	else if(pin==Motor4)     // SERVO
 	{   PWM0_CMPB_1 = speed;
@@ -601,26 +609,29 @@ void digitalWrite(uint32_t pin, char dir)
 	{PB1 &= ~0x02;}}
 	else if(pin==ServeMotorCW)
 	{if(dir==1)
-	{PD6 |= 0x40;}
+	{PD2 |= 0x04;
+	PD7 &= ~0x80;}
 	else if (dir==0)
-	{PD6 &= ~0x40;}}
+	{
+	PD2 &= ~0x04;
+	PD7 &= ~0x80;}}
 	else if(pin==ServeMotorCCW)
 	{if(dir==1)
 	{PD7 |= 0x80;
-	PD6 |= 0x40;}   //----------------DRIVER----------
+	PD2 |= 0x04;}   //----------------DRIVER----------
 	else if (dir==0)
 	{PD7 &= ~0x80;
-	PD6 &= ~0x40;}} //----------------DRIVER----------
+	PD2 &= ~0x04;}} //----------------DRIVER----------
 	else if(pin==ServePiston)
 	{if(dir==1)
-	{PE0 |= 0x1;}
+	{PD3 |= 0x08;}
 	else if (dir==0)
-	{PE0 &= ~0x1;}}
+	{PD3 &= ~0x08;}}
 	else if(pin==Motor3Piston)
 	{if(dir==1)
-	{PD2 |= 0x04;}
+	{PB3 |= 0x08;}
 	else if (dir==0)
-	{PD2 &= ~0x04;}}
+	{PB3 &= ~0x08;}}
 	else if (pin==Motor2Piston)
 	{if(dir==1)
 	{PE0|= 0x01;}
@@ -657,5 +668,28 @@ void MotorStop(int pin)
 }
 
 
-
+int digitalRead(int pin)
+{
+if(saucer)
+{
+	if((PA5&0x20)==0x20)
+	{return 1 ;}
+	else if ((PA5&0x20)!=0x20)
+	{return 0 ;}
+}
+else if(s1)
+{
+	if((PB6&0x40)==0x40)
+	{return 1 ;}
+	else if ((PB6&0x40)!=0x40)
+	{return 0 ;}
+}
+else if(s2)
+{
+	if((PB7&0x20)==0x20)
+	{return 1 ;}
+	else if ((PB7&0x40)!=0x40)
+	{return 0 ;}
+}
+}
 

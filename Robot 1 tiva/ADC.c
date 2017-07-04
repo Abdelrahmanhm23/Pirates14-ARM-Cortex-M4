@@ -82,7 +82,7 @@ void digital_reads(uint32_t *ADC )
     ls8=1;
    else
    ls8=0;
-    }
+   }
 
 
 void line ()

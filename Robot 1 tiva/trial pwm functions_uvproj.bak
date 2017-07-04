@@ -490,6 +490,16 @@
               <FileType>5</FileType>
               <FilePath>.\Serve.h</FilePath>
             </File>
+            <File>
+              <FileName>Poles.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Poles.c</FilePath>
+            </File>
+            <File>
+              <FileName>Poles.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Poles.h</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>

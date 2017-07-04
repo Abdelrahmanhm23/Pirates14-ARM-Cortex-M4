@@ -5,3 +5,13 @@
 .\serve.o: MotorInit.h
 .\serve.o: Serve.h
 .\serve.o: Motion.h
+.\serve.o: spi.h
+.\serve.o: E:\keil\ARM\ARMCC\bin\..\include\stdbool.h
+.\serve.o: E:\Keil\TivaWare_C_Series-2.1.2.111\inc/hw_memmap.h
+.\serve.o: E:\Keil\TivaWare_C_Series-2.1.2.111\driverlib/gpio.h
+.\serve.o: E:\Keil\TivaWare_C_Series-2.1.2.111\driverlib/pin_map.h
+.\serve.o: E:\Keil\TivaWare_C_Series-2.1.2.111\driverlib/ssi.h
+.\serve.o: E:\Keil\TivaWare_C_Series-2.1.2.111\driverlib/sysctl.h
+.\serve.o: E:\Keil\TivaWare_C_Series-2.1.2.111\driverlib/uart.h
+.\serve.o: E:\Keil\TivaWare_C_Series-2.1.2.111\utils/uartstdio.h
+.\serve.o: E:\keil\ARM\ARMCC\bin\..\include\stdarg.h

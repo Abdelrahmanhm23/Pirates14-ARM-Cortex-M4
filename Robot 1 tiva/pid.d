@@ -6,6 +6,16 @@
 .\pid.o: Serve.h
 .\pid.o: MotorInit.h
 .\pid.o: Motion.h
+.\pid.o: spi.h
+.\pid.o: E:\keil\ARM\ARMCC\bin\..\include\stdbool.h
+.\pid.o: E:\Keil\TivaWare_C_Series-2.1.2.111\inc/hw_memmap.h
+.\pid.o: E:\Keil\TivaWare_C_Series-2.1.2.111\driverlib/gpio.h
+.\pid.o: E:\Keil\TivaWare_C_Series-2.1.2.111\driverlib/pin_map.h
+.\pid.o: E:\Keil\TivaWare_C_Series-2.1.2.111\driverlib/ssi.h
+.\pid.o: E:\Keil\TivaWare_C_Series-2.1.2.111\driverlib/sysctl.h
+.\pid.o: E:\Keil\TivaWare_C_Series-2.1.2.111\driverlib/uart.h
+.\pid.o: E:\Keil\TivaWare_C_Series-2.1.2.111\utils/uartstdio.h
+.\pid.o: E:\keil\ARM\ARMCC\bin\..\include\stdarg.h
 .\pid.o: encoders.h
 .\pid.o: E:\keil\ARM\ARMCC\bin\..\include\stdio.h
 .\pid.o: E:\keil\ARM\ARMCC\bin\..\include\math.h
