@@ -149,7 +149,7 @@ void PWMC_Init()
 	PWM0_CTL_3 = 0x00;                      // stop counter  generator 3
   PWM0_GENA_3 |= 0x0000008C ;            // M0PWM6 output set when reload clear when match PWM CMP A ch6
 	PWM0_GENB_3 |= 0x0000080C ;            //M0PWM7 output set when reload clear when match PWM CMP B ch7
-	PWM0_LOAD_3  = 3200;                   // set frequency to 5khz max freq for driver 
+	PWM0_LOAD_3  = 16000;                   // set frequency to 5khz max freq for driver 
 	//PWM0_CMPA_3                           // set duty ratio for PC4
 	//PWM0_CMPB_3                           // set duty ratio for PC5
   //PWM0_CTL_3 |=0x01;                    // start timer
@@ -201,8 +201,8 @@ void PWME_Init()
 	PWM0_CTL_2 = 0x00;                      // stop counter  generator 3
   PWM0_GENA_2  |= 0x0000008C ;            // M0PWM4 output set when reload clear when match PWM CMP A ch4
 	PWM0_GENB_2  |= 0x0000080C ;            //M0PWM5 output set when reload clear when match PWM CMP B ch5
-	PWM0_LOAD_2  = 3200;                     // set frequency to 5khz max freq for driver 
-  PWM0_LOAD_2  = 3200;                     //(16MHz/3200)
+	PWM0_LOAD_2  = 16000;                     // set frequency to 5khz max freq for driver 
+  PWM0_LOAD_2  = 16000;                     //(16MHz/3200)
   //PWM0_CMPA_2                      // set duty ratio for PE4
 	//PWM0_CMPB_2                           // set duty ratio for PE5
 	//PWM0_CTL_2 |=0x01;                      // start timer
@@ -249,12 +249,15 @@ void PWME_Init()
 	GPIOPCTL_PORTC  &= ~0x00FF0000;          //initialize pctl
 	GPIOPCTL_PORTC  |= 0x00440000;           //enable pctl PWMMO pin 4,5  
 	GPIODIR_PORTC   |= 0xC0;                 // set direction of 6,7 as outputs
+	GPIODR8R_PORTC |= 0x30;
+	GPIOPUR_PORTC |=0x30;
+	//	GPIOSLR_PORTC  |= 0x30;
 	GPIODEN_PORTC   |= 0xF0;                 // digital enable for 4,5,6,7
 	
 	PWM0_CTL_3 = 0x00;                      // stop counter  generator 3
   PWM0_GENA_3 |= 0x0000008C ;            // M0PWM6 output set when reload clear when match PWM CMP A ch6
 	PWM0_GENB_3 |= 0x0000080C ;            //M0PWM7 output set when reload clear when match PWM CMP B ch7
-	PWM0_LOAD_3  = 3200;                   // set frequency to 5khz max freq for driver 
+	PWM0_LOAD_3  = 16000;                   // set frequency to 5khz max freq for driver 
 	//PWM0_CMPA_3                           // set duty ratio for PC4
 	//PWM0_CMPB_3                           // set duty ratio for PC5
   //PWM0_CTL_3 |=0x01;                    // start timer
@@ -287,13 +290,16 @@ RCGCGPIO |=0x08;                        // activate clock for Port D
 	GPIOPCTL_PORTE  &= ~0x00FF0000;          //initialize pctl
 	GPIOPCTL_PORTE  |= 0x00440000;           //enable pctl PWMMO pin 4,5 
 	//GPIODIR_PORTE   |= 0x30;                 // set direction of 0,1 as outputs
+	GPIODR8R_PORTD |= 0x3F;
+	GPIOPUR_PORTD |=0x3F;
+//		GPIOSLR_PORTD  |= 0x3F;
 	GPIODEN_PORTE   |= 0x30 ;                 // digital en3able for 0,1,2,3,4,5
 
 	
 	PWM0_CTL_2 = 0x00;                      // stop counter  generator 3
   PWM0_GENA_2  |= 0x0000008C ;            // M0PWM4 output set when reload clear when match PWM CMP A ch4
 	PWM0_GENB_2  |= 0x0000080C ;            //M0PWM5 output set when reload clear when match PWM CMP B ch5
-	PWM0_LOAD_2  = 3200;                     // set frequency to 5khz max freq for driver 
+	PWM0_LOAD_2  = 16000;                     // set frequency to 5khz max freq for driver 
   // PWM0_LOAD_2  = 3200;                     //(16MHz/3200)
   //PWM0_CMPA_2                      // set duty ratio for PE4
 	//PWM0_CMPB_2                           // set duty ratio for PE5
@@ -358,8 +364,8 @@ RCGCGPIO |=0x3F;
 		digitalWrite(ServePiston,LOW);
 digitalWrite(ServeMotorCW,LOW);
 digitalWrite(ServeMotorCCW,LOW);
-		digitalWrite(Motor2Piston,HIGH);
-	digitalWrite(Motor3Piston,HIGH);
+		digitalWrite(Motor2Piston,LOW);
+	digitalWrite(Motor3Piston,LOW);
 }
 
 void TIVA2()  // initialization of tiva 2 (Base , LINE follower , base sensors) 
@@ -508,7 +514,7 @@ void analogWrite(int pin,int speed)
 	PWM0_CMPA_0=speed;
 		PWM0_CTL_0 |= EnableDown;
 	 	PWM0_EN |= 0x01;
-	digitalWrite(Motor2Piston,LOW);
+	digitalWrite(Motor2Piston,HIGH);
 	//	Delay1ms(5);
 	}
 	else if(pin==Motor3)
@@ -516,7 +522,7 @@ void analogWrite(int pin,int speed)
  PWM0_CMPB_0=speed;
 		PWM0_CTL_0 |= EnableDown;
 		PWM0_EN |= 0x02; 	
-	digitalWrite(Motor3Piston,LOW);
+	digitalWrite(Motor3Piston,HIGH);
 	//Delay1ms(5);
 	}
 	else if(pin==Motor4)     // SERVO
@@ -644,12 +650,12 @@ void MotorStop(int pin)
 	if( pin == Motor1)
 	{ PWM0_EN &= ~0x04; }
 	else if(pin == Motor2)
-	{ PWM0_EN &= ~0x02; 
-	 digitalWrite(Motor2Piston,HIGH);
+	{ PWM0_EN &= ~0x01;
+	 digitalWrite(Motor2Piston,LOW);
 	}
 	else if(pin==Motor3)
-	{PWM0_EN &= ~0x01; 
-	 digitalWrite(Motor3Piston,HIGH);
+	{PWM0_EN &= ~0x02; 
+	 digitalWrite(Motor3Piston,LOW);
 	}
 	else if(pin==Motor4)     // SERVO
 	{  PWM0_EN &= ~0x08; }

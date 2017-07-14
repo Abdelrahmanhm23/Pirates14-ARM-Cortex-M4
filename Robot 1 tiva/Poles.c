@@ -76,13 +76,13 @@ PID_ML3_REV(pos3);
 	if (ReadData()==0x23)
 	{liftersStop();
 	break;}
+	Delay1ms(2);
 }
-	analogWrite(Motor9,SERVEPWM);  // change to PID_MServe_RPM 
-	Serve();
-	current_pos1=pos1;
-	current_pos2=pos2;
-	current_pos3=pos3;
-	delayUs(20000);
+	servepwm=SERVEPWM;
+current_pos1=desired_pos1;
+	current_pos2=desired_pos2;
+	current_pos3=desired_pos3;
+	
 }
 	
 	
@@ -125,13 +125,13 @@ PID_ML3_REV(pos3);
 	if (ReadData()==0x23)
 	{liftersStop();
 	break;}
+	Delay1ms(2);
 	}
-	analogWrite(Motor9,SERVEPWM);  // change to PID_MServe_RPM 
-	Serve();
-	current_pos1=pos1;
-	current_pos2=pos2;
-	current_pos3=pos3;
-	delayUs(20000);
+	servepwm=SERVEPWM;
+current_pos1=desired_pos1;
+	current_pos2=desired_pos2;
+	current_pos3=desired_pos3;
+	
 }
 	
 	
@@ -165,7 +165,7 @@ PID_ML3_REV(pos3);
 		{MotorStop(Motor2);}
 			if(Mlifter3counter>=pos3)
 		{MotorStop(Motor3);}
-		if(Mlifter1counter>=pos1 &&Mlifter2counter>=pos2 && Mlifter3counter>=pos3)
+		if(Mlifter1counter>=pos1 && Mlifter2counter>=pos2 && Mlifter3counter>=pos3)
 		{liftersStop();
 		break;}
 	if(ReadData()==R2)
@@ -174,13 +174,12 @@ PID_ML3_REV(pos3);
 	if (ReadData()==0x23)
 	{liftersStop();
 	break;}
+	Delay1ms(2);
 	}
-	analogWrite(Motor9,SERVEPWM);  // change to PID_MServe_RPM 
-	Serve();
-	current_pos1=pos1;
-	current_pos2=pos2;
-	current_pos3=pos3;
-	delayUs(20000);
+servepwm=SERVEPWM;
+	current_pos1=desired_pos1;
+	current_pos2=desired_pos2;
+	current_pos3=desired_pos3;
 }
 	
 void Pole4( long desired_pos1, long desired_pos2, long desired_pos3,int SERVEPWM)
@@ -222,13 +221,12 @@ PID_ML3_REV(pos3);
 	if (ReadData()==0x23)
 	{liftersStop();
 	break;}
+	Delay1ms(2);
 	}
-	analogWrite(Motor9,SERVEPWM);  // change to PID_MServe_RPM 
-	Serve();
-	current_pos1=pos1;
-	current_pos2=pos2;
-	current_pos3=pos3;
-	delayUs(20000);
+servepwm=SERVEPWM;
+current_pos1=desired_pos1;
+	current_pos2=desired_pos2;
+	current_pos3=desired_pos3;
 }
 	
 void Pole5( long desired_pos1, long desired_pos2, long desired_pos3,int SERVEPWM)
@@ -270,11 +268,10 @@ PID_ML3_REV(pos3);
 	if (ReadData()==0x23)
 	{liftersStop();
 	break;}
+	Delay1ms(2);
 	}
-	analogWrite(Motor9,SERVEPWM);  // change to PID_MServe_RPM 
-	Serve();
-	current_pos1=pos1;
-	current_pos2=pos2;
-	current_pos3=pos3;
-	delayUs(20000);
+servepwm=SERVEPWM;
+	current_pos1=desired_pos1;
+	current_pos2=desired_pos2;
+	current_pos3=desired_pos3;
 }

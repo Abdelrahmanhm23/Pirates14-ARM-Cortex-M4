@@ -674,6 +674,7 @@ SSIDataGet(uint32_t ui32Base, uint32_t *pui32Data)
     //
     // Wait until there is data to be read.
     //
+
 	while(!(HWREG(ui32Base + SSI_O_SR) & SSI_SR_RNE))
     {
     }

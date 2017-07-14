@@ -500,6 +500,11 @@
               <FileType>5</FileType>
               <FilePath>.\Poles.h</FilePath>
             </File>
+            <File>
+              <FileName>fence.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\fence.c</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>

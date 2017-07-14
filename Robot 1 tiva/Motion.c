@@ -16,6 +16,7 @@ unsigned long M6_CCW =651;
 unsigned long M7_CCW =463;
 unsigned long M8_CCW =363;
 ///////
+/*
 // Motor 1 CW  dir pin // Motor 2 CCW // Motor 3 CCW 	// Motor 4 CW  dir pin
 unsigned long FORWARD[4]={438,188,814,588};
 // Motor 1 CCW    // Motor 2 CW    dir pin // Motor 3 CW    dir pin // Motor 4 CCW 
@@ -31,11 +32,33 @@ unsigned long UPLEFT[4]={563,3190,689,3190};
 //Motor 1   CCW   //Motor 2   //Motor 3   CW   dir pin //Motor 4 
 unsigned long DOWNRIGHT[4]={626,3190,689,3190};
 //Motor 1    	//Motor 2   CW   dir pin //Motor 3  //Motor 4   CCW  
-unsigned long DOWNLEFT[4]={3190,188,63,689};
+unsigned long DOWNLEFT[4]={3190,188,3190,689};
 //Motor 1   CCW  //Motor 2   CCW  //Motor 3   CCW	//Motor 4   CCW
 unsigned long CLOCKWISE[4]={563,188,438,438};
 //Motor 1   CW 	//Motor 2   CW //Motor 3  CW  //Motor 4   CW
 unsigned long COUNTERCLOCKWISE[4]={563,413,413,588};
+*/
+// Motor 1 CW  dir pin // Motor 2 CCW // Motor 3 CCW 	// Motor 4 CW  dir pin
+unsigned long FORWARD[4]={2500,940,4070,2940};
+// Motor 1 CCW    // Motor 2 CW    dir pin // Motor 3 CW    dir pin // Motor 4 CCW 
+unsigned long REVERSE[4]={3445,2065,2130,2815};
+//Motor 1   CW   dir pin 	//Motor 2   CW   dir pin //Motor 3   CCW  //Motor 4   CCW  
+unsigned long LEFT[4]={2815,2065,3445,3755};
+//Motor 1   CCW   	//Motor 2   CCW  //Motor 3   CW    dir pin //Motor 4   CW    dir pin
+unsigned long RIGHT[4]={3445,500,940,2940};
+	//Motor 1  //Motor 2   CCW   dir pin  //Motor 3 //Motor 4   CW   dir pin
+unsigned long UPRIGHT[4]={15950,315,15950,1565};
+	//Motor 1   CW    dir pin //Motor 2 //Motor 3   CCW  //Motor 4  
+unsigned long UPLEFT[4]={2815,15950,3445,15950};
+//Motor 1   CCW   //Motor 2   //Motor 3   CW   dir pin //Motor 4 
+unsigned long DOWNRIGHT[4]={3130,15950,3445,15950};
+//Motor 1    	//Motor 2   CW   dir pin //Motor 3  //Motor 4   CCW  
+unsigned long DOWNLEFT[4]={15950,940,15950,3445};
+//Motor 1   CCW  //Motor 2   CCW  //Motor 3   CCW	//Motor 4   CCW
+unsigned long CLOCKWISE[4]={2815,940,315,3445};
+//Motor 1   CW 	//Motor 2   CW //Motor 3  CW  //Motor 4   CW
+unsigned long COUNTERCLOCKWISE[4]={2815,2065,2065,2940};
+
 
 #define constrain(amt,low,high) ((amt)<(low)?(low):((amt)>(high)?(high):(amt)))
 
@@ -260,17 +283,17 @@ void ClockWise()
 	
 	digitalWrite(Motor6,LOW);
 	//analogWrite(Motor6,CLOCKWISE[1]) ;
-	analogWrite(Motor6,1550) ;
+	analogWrite(Motor6,10000) ;
 	digitalWrite(Motor7,LOW);
-	//analogWrite(Motor7,CLOCKWISE[2]) ;
-	analogWrite(Motor7,1550) ;
+	analogWrite(Motor7,CLOCKWISE[2]) ;
+//	analogWrite(Motor7,8000) ;
 	digitalWrite(Motor8,LOW);
-	//analogWrite(Motor8,CLOCKWISE[3]) ;	
-	analogWrite(Motor8,1550) ;
+//	analogWrite(Motor8,CLOCKWISE[3]) ;	
+	analogWrite(Motor8,10000) ;
 	// delayUs(1);
 		digitalWrite(Motor5,LOW);
 	//analogWrite(Motor5,CLOCKWISE[0]) ;
-	analogWrite(Motor5,1550) ;
+analogWrite(Motor5,10000) ;
 }
 
 void CounterClockWise()
@@ -283,18 +306,18 @@ void CounterClockWise()
 //	analogWrite(Motor5,M5_CW) ;
 	
 	digitalWrite(Motor6,HIGH);
-	//analogWrite(Motor6,COUNTERCLOCKWISE[1]) ;
-		analogWrite(Motor6,1550) ;
+//	analogWrite(Motor6,COUNTERCLOCKWISE[1]) ;
+		analogWrite(Motor6,10000) ;
 	digitalWrite(Motor7,HIGH);
 	//analogWrite(Motor7,COUNTERCLOCKWISE[2]) ;
-		analogWrite(Motor7,1550) ;
+		analogWrite(Motor7,10000) ;
 	digitalWrite(Motor8,HIGH);
 	//analogWrite(Motor8,COUNTERCLOCKWISE[3]) ;
-		analogWrite(Motor8,1550) ;
+		analogWrite(Motor8,10000) ;
 	// delayUs(1);
 			digitalWrite(Motor5,HIGH);
-	//analogWrite(Motor5,COUNTERCLOCKWISE[0]) ;
-		analogWrite(Motor5,1550) ;
+//	analogWrite(Motor5,COUNTERCLOCKWISE[0]) ;
+		analogWrite(Motor5,10000) ;
 }
 
 void lifter1up()
@@ -377,15 +400,15 @@ void liftersdown()
 	{
 		digitalWrite(Motor9,LOW);
 	analogWrite(Motor9,servepwm) ;
-				digitalWrite(Motor10,LOW);
-	analogWrite(Motor10,servepwm) ;
+	//			digitalWrite(Motor10,LOW);
+	//analogWrite(Motor10,servepwm) ;
 	//	Serve();
 		//delayUs(10000);
 	}
 	void servestop()
 		{
 			MotorStop(Motor9);
-			MotorStop(Motor10);
+		//	MotorStop(Motor10);
 	//		digitalWrite(ServeMotorCW,LOW);   
 //digitalWrite(ServeMotorCCW,LOW);   
 

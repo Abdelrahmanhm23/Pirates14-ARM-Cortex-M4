@@ -17,15 +17,15 @@
 int a=0;
 unsigned long servepwm=8000 ;
 
-uint32_t A[100]={0};
-uint32_t B[100]={0};
-uint32_t C[100]={0};
-uint32_t D[100]={0};
-uint32_t E[100]={0};
-uint32_t P[100]={0};
-uint32_t G[100]={0};
-uint32_t Z[100]={0};
-int e=0;	
+//uint32_t A[100]={0};
+//uint32_t B[100]={0};
+//uint32_t C[100]={0};
+//uint32_t D[100]={0};
+//uint32_t E[100]={0};
+//uint32_t P[100]={0};
+//uint32_t G[100]={0};
+//uint32_t Z[100]={0};
+//int e=0;	
 //int y[8]={208,180,150,120,90,60,30,10};
 //unsigned long x = 0 ;
 
@@ -38,12 +38,21 @@ void Data();
 
 int main()
 {
-TIVA2();
-	
+
+	TIVA1();
 	while(1)
 	{
-		Data();
-	  
+	Data();
+	/*   if(ReadData()==LIFTall_UP)  // UP
+		{digitalWrite(ServeMotorCW,HIGH);} 
+		else if(ReadData()==LIFTall_DOWN) // DOWN
+		{	digitalWrite(ServeMotorCCW,HIGH);}
+		else if(ReadData()==LIFT_STOP)
+		{		digitalWrite(ServeMotorCW,LOW);
+		digitalWrite(ServeMotorCCW,LOW);
+		}
+		*/
+	
 	}
 }
 
@@ -123,8 +132,7 @@ while(1)
 		else if(ReadData()==stop)
 		{Stop();}
 		else if(ReadData()==ServeStart)  // R1
-		{analogWrite(Motor9,servepwm) ;
-	analogWrite(Motor10,servepwm) ; 	  
+		{analogWrite(Motor9,servepwm) ;	  
 Delay1ms(5);			
 			Serve();
 			}
@@ -150,15 +158,15 @@ Delay1ms(5);
 		else if(ReadData()==LIFT_STOP)
 		{liftersStop();}
 		else if(ReadData()==servepwm_DOWN)  // LEFT
-		{servepwm=servepwm+20;
+		{servepwm=servepwm+8;
 		if(servepwm>16000)
 		{ servepwm=15800; }		}
 		else if(ReadData()==servepwm_UP)    // RIGHT
-		{servepwm=servepwm-20;
+		{servepwm=servepwm-8;
 		if(servepwm<80)
-		{servepwm=20;}
+		{servepwm=500;}
 		if(servepwm>0xFFFF)
-		{servepwm=20;}
+		{servepwm=500;}
 		}
 		else if(ReadData()==stop)
 		{Stop();}
@@ -184,14 +192,14 @@ Delay1ms(5);
 		 liftersStop();}
 	//-------------------------------------------------------------		
 	if (ReadData()==0x15)
-	{Pole1(135,135,135,1550);
+	{Pole1(3170,3170,2370,1550);
 	a=50;}
 	//-------------------------------------------------------------	
 		if (ReadData()==POLE2)
-	{Pole2(135,135,135,1550);}
+	{Pole2(2746,3100,1796,9500);}
 	//-------------------------------------------------------------	
 	if (ReadData()==POLE3)
-	{Pole3(135,135,135,1550);}
+	{Pole3(500,500,500,1550);}
 	//-------------------------------------------------------------		
 	if (ReadData()==POLE4)
 	{Pole4(135,135,135,1550);}
