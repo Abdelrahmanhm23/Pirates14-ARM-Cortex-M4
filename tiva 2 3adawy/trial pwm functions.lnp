@@ -1,0 +1,18 @@
+--cpu Cortex-M4.fp
+".\main.o"
+".\motorinit.o"
+".\encoders.o"
+".\pid.o"
+".\uart.o"
+".\startup_tm4c123.o"
+".\motion.o"
+".\ssi.o"
+".\spi.o"
+".\pistons.o"
+".\adc.o"
+".\serve.o"
+".\poles.o"
+--strict --scatter ".\trial pwm functions.sct"
+--summary_stderr --info summarysizes --map --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list ".\trial pwm functions.map" -o ".\trial pwm functions.axf"
