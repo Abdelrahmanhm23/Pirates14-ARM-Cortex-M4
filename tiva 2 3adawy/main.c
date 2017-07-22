@@ -24,20 +24,19 @@ void Data();
 
 #define constrain(amt,low,high) ((amt)<(low)?(low):((amt)>(high)?(high):(amt)))
 
+long map(long x, long in_min, long in_max, long out_min, long out_max)
+{
+  return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
+}
 
 int main()
 {
 
-
-TIVA2();
-calibration();
-GPIODATA_PORTF=0x02;
-Delay1ms(500);
+i=map(200,0,255,16000,0);
 	while(1)
 	{
     //data_get_ss0 (ADC0Value,8);
     //digital_reads(ADC0Value);
-		line();
 		//Data();
 		//ReadData();
 		//	PID_ML3_RPM(400);

@@ -16,3 +16,4 @@
 .\motion.o: E:\Keil\TivaWare_C_Series-2.1.2.111\driverlib/uart.h
 .\motion.o: E:\Keil\TivaWare_C_Series-2.1.2.111\utils/uartstdio.h
 .\motion.o: E:\keil\ARM\ARMCC\bin\..\include\stdarg.h
+.\motion.o: ADC.h

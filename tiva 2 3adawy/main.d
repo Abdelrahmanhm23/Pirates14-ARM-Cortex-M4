@@ -23,4 +23,3 @@
 .\main.o: Serve.h
 .\main.o: Poles.h
 .\main.o: E:\keil\ARM\ARMCC\bin\..\include\stdlib.h
-.\main.o: ADC.h

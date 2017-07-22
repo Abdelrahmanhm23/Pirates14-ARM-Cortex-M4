@@ -32,12 +32,12 @@ float REF_RPM_MServe=300 , REF_REV_MServe=(135*2);   //135 one rev
 
 
 
-
+/*
 long map(long x, long in_min, long in_max, long out_min, long out_max)
 {
   return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
 }
-
+*/
 void PID_ML1_RPM(int rpm_ref_ML1)
 {
 error_ML1 = rpm_ref_ML1 - RPM_ML1 ;

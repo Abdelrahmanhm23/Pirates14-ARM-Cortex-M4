@@ -4,6 +4,8 @@
 .\serve.o: E:\keil\ARM\ARMCC\bin\..\include\stdint.h
 .\serve.o: MotorInit.h
 .\serve.o: Serve.h
+.\serve.o: ADC.h
+.\serve.o: MotorInit.h
 .\serve.o: Motion.h
 .\serve.o: spi.h
 .\serve.o: E:\keil\ARM\ARMCC\bin\..\include\stdbool.h

@@ -16,6 +16,7 @@
 .\poles.o: E:\Keil\TivaWare_C_Series-2.1.2.111\driverlib/uart.h
 .\poles.o: E:\Keil\TivaWare_C_Series-2.1.2.111\utils/uartstdio.h
 .\poles.o: E:\keil\ARM\ARMCC\bin\..\include\stdarg.h
+.\poles.o: ADC.h
 .\poles.o: PID.h
 .\poles.o: encoders.h
 .\poles.o: E:\keil\ARM\ARMCC\bin\..\include\stdio.h

@@ -16,3 +16,4 @@
 .\fence.o: E:\Keil\TivaWare_C_Series-2.1.2.111\driverlib/uart.h
 .\fence.o: E:\Keil\TivaWare_C_Series-2.1.2.111\utils/uartstdio.h
 .\fence.o: E:\keil\ARM\ARMCC\bin\..\include\stdarg.h
+.\fence.o: ADC.h

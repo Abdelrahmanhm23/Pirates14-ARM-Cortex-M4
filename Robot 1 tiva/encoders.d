@@ -19,3 +19,4 @@
 .\encoders.o: E:\Keil\TivaWare_C_Series-2.1.2.111\driverlib/uart.h
 .\encoders.o: E:\Keil\TivaWare_C_Series-2.1.2.111\utils/uartstdio.h
 .\encoders.o: E:\keil\ARM\ARMCC\bin\..\include\stdarg.h
+.\encoders.o: ADC.h

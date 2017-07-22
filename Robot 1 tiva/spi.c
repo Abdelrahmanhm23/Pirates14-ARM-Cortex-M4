@@ -39,6 +39,9 @@ char POLE4 = 0x18;        // UP
 char VERTICAL_LINE = 0x19;  // DOWN
 char LINE = 0x21 ;          //RIGHT
 char R2=0x27;            // R2
+char L2=0x28;         //L2
+char UP = 0x18;       // UP
+
 
 
 

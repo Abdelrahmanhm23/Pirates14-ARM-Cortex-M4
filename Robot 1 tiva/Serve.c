@@ -4,7 +4,7 @@ unsigned long State=1 ;
 unsigned long I=0;
 unsigned long state1=0;
 unsigned long state2=0;
-
+uint32_t SHARP[]={0};
 
 
 
@@ -157,15 +157,16 @@ switch (State)
 	    digitalWrite(ServePiston,LOW);
 		 Delay1ms(15);
       	PD2 &= ~0x04;
-	analogWrite(Motor10,2000) ;
+	analogWrite(Motor10,5000) ;
 		  State=2;
 		  Delay1ms(5);
 	//	state1++;
 		while(1)
 		{
-			if((PA5&0x20)==0x20)
+			if((PA5&0x20)==0x00)
+			//if(((PE2&0x04)==0))
 			{	
-				Delay1ms(55);
+				Delay1ms(70);
 				digitalWrite(ServePiston,HIGH);
     MotorStop(Motor10);
 						Delay1ms(5);
@@ -182,15 +183,16 @@ switch (State)
 		Delay1ms(15);
       	PD2 |= 0x04;
 		Delay1ms(15);
-	analogWrite(Motor10,2000) ;
+	analogWrite(Motor10,5000) ;
 		  State=1;
 		  Delay1ms(5);
 		//state2++;
 			while(1)
 		{
-			if((PA5&0x20)==0x20)
+			if((PA5&0x20)==0x00)
+		//	if(((PE2&0x04)==0))
 			{
-				Delay1ms(60);
+				Delay1ms(75);
 		digitalWrite(ServePiston,HIGH);
 		MotorStop(Motor10);
 					Delay1ms(5);
@@ -210,13 +212,15 @@ switch (State)
 	      digitalWrite(ServePiston,LOW);
 		 Delay1ms(15);
 		PD2 &= ~0x04;
-	analogWrite(Motor10,8000) ;	
+	analogWrite(Motor10,4000) ;	
 	  State=2;
 		  Delay1ms(5);
-				Delay1ms(900);
+				Delay1ms(570);
 				digitalWrite(ServePiston,HIGH);
 		
       MotorStop(Motor10);
+		Delay1ms(150);
+		digitalWrite(ServePiston,LOW);
 						Delay1ms(5);
 						state1++;
     
@@ -227,16 +231,19 @@ switch (State)
 				digitalWrite(ServePiston,LOW);
 	PD2 |= 0x04;
 		Delay1ms(15);
-	analogWrite(Motor10,8000) ;
+	analogWrite(Motor10,4000) ;
 		State=1;
 		  Delay1ms(5);
-				Delay1ms(1000);
+				Delay1ms(570);
 		digitalWrite(ServePiston,HIGH);
       MotorStop(Motor10);
 					Delay1ms(5);
-					
+		Delay1ms(150);
+		digitalWrite(ServePiston,LOW);
 
 		break;
 	
 }*/
+
+
 	}

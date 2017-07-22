@@ -16,3 +16,4 @@
 .\adc.o: E:\Keil\TivaWare_C_Series-2.1.2.111\driverlib/uart.h
 .\adc.o: E:\Keil\TivaWare_C_Series-2.1.2.111\utils/uartstdio.h
 .\adc.o: E:\keil\ARM\ARMCC\bin\..\include\stdarg.h
+.\adc.o: ADC.h

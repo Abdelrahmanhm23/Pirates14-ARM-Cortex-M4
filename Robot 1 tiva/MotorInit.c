@@ -184,19 +184,21 @@ void PWME_Init()
 {
 //RCGCPWM  |=0x01;                        // enable clock to PWM0
 	RCGCGPIO |= 0x10;                        // activate clock for Port E
+//	 RCGCADC |= 0x01;                //adc0 Module clock clock
 	GPIODATA_PORTE   &= ~0x3F;                  // Initialize data register
 	GPIOAMSEL_PORTE  &= ~0x33;                  // disable analog 
-	GPIOAFSEL_PORTE |= 0x3C;                 // activate alternate function for 2,3,4,5
+	GPIOAFSEL_PORTE |= 0x30;                 // activate alternate function for 3,4,5
+//	GPIODEN_PORTE   &= ~0x04;
+	//GPIOAMSEL_PORTE |= 0x04;                 
 	GPIOPCTL_PORTE  &= ~0x00FF0000;          //initialize pctl
 	GPIOPCTL_PORTE  |= 0x00440000;           //enable pctl PWMMO pin 4,5 
-  GPIODEN_PORTE   &= ~0x0C;                 // digital disable for 2,3	GPIOAMSEL_PORTE |= 0x0C;	               // enable analog function for 2,3
-	GPIODIR_PORTE   |= 0x03;                 // set direction of 0,1 as outputs
+	GPIODIR_PORTE   |= 0x03;                 // set direction of 0,1,2 as outputs
+	GPIODIR_PORTE   &= ~0x04;
 	GPIODR8R_PORTE |= 0x3D;
-	GPIOPUR_PORTE |=0x33;
+	GPIOPUR_PORTE |=0x37;
 		GPIOSLR_PORTE  |= 0xFF;
 	//		GPIOODR_PORTE  |= 0x01;
-	GPIODEN_PORTE   |= 0x33;                 // digital enable for 0,1,4,5
-	//  RCGCADC |= 0x01; 
+	GPIODEN_PORTE   |= 0x37;                 // digital enable for 0,1,4,5
 
 	PWM0_CTL_2 = 0x00;                      // stop counter  generator 3
   PWM0_GENA_2  |= 0x0000008C ;            // M0PWM4 output set when reload clear when match PWM CMP A ch4
@@ -226,7 +228,7 @@ void PWME_Init()
   GPIODIR_PORTB   &= ~0xC0;              // set direction of 6,7 as inputs
 		GPIOAFSEL_PORTB |= 0x30;                // enable alternate function for 4,5
 	GPIODEN_PORTB   &= ~0x30;                // digital disable for 4,5
-	//GPIOAMSEL_PORTB |= 0x30;                 // enable analog function for 4,5
+	GPIOAMSEL_PORTB |= 0x30;                 // enable analog function for 4,5
 	GPIODEN_PORTB   |= 0xC3;                // digital enable for 0,1,6,7
 	
 	/*
@@ -251,7 +253,6 @@ void PWME_Init()
 	GPIODIR_PORTC   |= 0xC0;                 // set direction of 6,7 as outputs
 	GPIODR8R_PORTC |= 0x30;
 	GPIOPUR_PORTC |=0x30;
-	//	GPIOSLR_PORTC  |= 0x30;
 	GPIODEN_PORTC   |= 0xF0;                 // digital enable for 4,5,6,7
 	
 	PWM0_CTL_3 = 0x00;                      // stop counter  generator 3
@@ -321,6 +322,8 @@ void PortF_Init()
 	  GPIOCR_PORTF = 0x1F;              // allow changes to 0 and 4
 	  GPIOAFSEL_PORTF |= 0xF;           // Alternate function pins select 0,1,2,3
 		GPIODIR_PORTF   |= 0x10;          // set direction of 4 as output
+		//GPIODR8R_PORTF |= 0x1F;
+	 // GPIOPUR_PORTF |=0x1F;
 	  GPIODEN_PORTF |= 0x1F;            // Digital enable pins   0,1,2,3,4
     GPIOPCTL_PORTF &= ~0x0000FFFF ;   // Initialize PCTL
     GPIOPCTL_PORTF |=  0x00002222 ;   // set alternate functions SSI
@@ -359,7 +362,7 @@ RCGCGPIO |=0x3F;
 	PWMD_Init();                            // Direction M5 M6 + ADC
 	PWME_Init();                            // PWM M5 M6   + Direction M3 M7 + ADC
 	PortF_Init();                            // SPI communication slave 
-	//	init_adc_3pins();
+//		init_adc_3pins();
 	SysTick_Init();
 		digitalWrite(ServePiston,LOW);
 digitalWrite(ServeMotorCW,LOW);
@@ -370,17 +373,19 @@ digitalWrite(ServeMotorCCW,LOW);
 
 void TIVA2()  // initialization of tiva 2 (Base , LINE follower , base sensors) 
 {
-	//RCGCGPIO |=0x3E;
-		RCGCPWM  |=0x03;                         // enable clock to PWM0 & PWM1
+   RCGCGPIO |= 0x3E;  // port D, E clock
+    RCGCADC |= 0x1;    //adc0 clock
+	RCGCPWM  |=0x03;                         // enable clock to PWM0 & PWM1
 	RCC        &= ~0x00100000 ;               // don't use pre-divide for PWM clock (default)
   ADCB_Init();
   ADCC_Init();
  ADCD_Init();
 		  ADCE_Init();
   PortF_Init();
- //init_adc_8pins();
+ init_adc_8pins();
 	//init_adc_2pins();
- SysTick_Init();
+ //SysTick_Init();
+	calibration();
 }
 
 
@@ -393,34 +398,34 @@ void init_adc_3pins()
   */
  //RCGCADC |= 0x01;                //adc0 Module clock clock
  ADCACTSS_ADC0 &=~0x01 ;        // disable SS0 during configartion
- ADCSSPRI_ADC0 |= 0x3210;       // Set the highest piriority for SS0 (the highest pirority 0x0)
+ ADCSSPRI_ADC0 = 0x3210;       // Set the highest piriority for SS0 (the highest pirority 0x0)
  ADCEMUX_ADC0 &= ~0x000F;       // software trigger for sequencer 0
  ADCSSMUX0_ADC0 &= ~0xFFFFFFFF;     // mask register bits
- ADCSSMUX0_ADC0 = 0x701;           //10
+ ADCSSMUX0_ADC0 = 0x1;           //10
 /* 
         if  PE3 - (AIN0) ==>>  (HEX(0x0000)) (DEC(0)) 
-   else if  PE2 - (AIN1) ==>>  (HEX(0x0001)) (DEC(1))
+   else if  PE2 - (AIN1) ==>>  (HEX(0x0001)) (DEC(1)) 
    else if  PD1 - (AIN6) ==>>  (HEX(0x0006)) (DEC(6))
    else if  PD0 - (AIN7) ==>>  (HEX(0x0007)) (DEC(7)) 
 */    
- ADCSSCTL0_ADC0 |= 0x0644;      // (0x6) for ending squence and enable interrupt , (0x4) enable interrupt only 
+ ADCSSCTL0_ADC0 |= 0x6;      // (0x6) for ending squence and enable interrupt , (0x4) enable interrupt only 
  ADCACTSS_ADC0  |=0x01 ;        // Enable SS0 
  
  }
  
 void init_adc_8pins()
 {
-    volatile unsigned long delay;
- //   RCGCGPIO |= 0x18;  // port D, E clock
-//    RCGCADC |= 0x1;    //adc0 clock
+  volatile unsigned long delay;
+  //  RCGCGPIO |= 0x18;  // port D, E clock
+  //  RCGCADC |= 0x1;    //adc0 clock
    // port E initialization
-  //  GPIOAFSEL_PORTE |= 0x0F;   // PE 0,1,2,3 alterntae function enable
-  //  GPIODEN_PORTE &= ~0x0F;    // PE 0,1,2,3 digital function disable
-  // GPIOAMSEL_PORTE |= 0x0F;   // PE 0,1,2,3 analog function enable
+    GPIOAFSEL_PORTE |= 0x0F;   // PE 0,1,2,3 alterntae function enable
+    GPIODEN_PORTE &= ~0x0F;    // PE 0,1,2,3 digital function disable
+    GPIOAMSEL_PORTE |= 0x0F;   // PE 0,1,2,3 analog function enable
   // port D initialization
-  //  GPIOAFSEL_PORTD |= 0x0F;   // PD 0,1,2,3 alterntae function enable
-  // GPIODEN_PORTD &= ~0x0F;    // PD 0,1,2,3 digital function disable
-  // GPIOAMSEL_PORTD |= 0x0F;   // PD 0,1,2,3 analog function enable
+    GPIOAFSEL_PORTD |= 0x0F;   // PD 0,1,2,3 alterntae function enable
+    GPIODEN_PORTD &= ~0x0F;    // PD 0,1,2,3 digital function disable
+    GPIOAMSEL_PORTD |= 0x0F;   // PD 0,1,2,3 analog function enable
 
   // ADC 0 init
   /*  PE0   PD0   PD1   PD2   PD3    PE1   PE2   PE3
@@ -431,7 +436,7 @@ void init_adc_8pins()
     ADCSSPRI_ADC0 |= 0x3210;       // Set the highest piriority for SS0
     ADCEMUX_ADC0 &= ~0x000F;       //software trigger for sequencer 0
     ADCSSMUX0_ADC0 &= ~0xFFFFFFFF;  // mask register bits
-    ADCSSMUX0_ADC0 += 0x30124567;   // [(AIN3)-(AIN0)-(AIN1)-(AIN2)-(AIN4)-(AIN5)-(AIN6)-(AIN7) ] 0x30124567
+    ADCSSMUX0_ADC0 = 0x30124567;   // [(AIN3)-(AIN0)-(AIN1)-(AIN2)-(AIN4)-(AIN5)-(AIN6)-(AIN7) ] 0x30124567
     ADCSSCTL0_ADC0 |= 0x64444444;   // enable raw interrupt signal (IE) for all channels and END7(sample 8 is the last sample)
     ADCACTSS_ADC0 |= 0x01;         //Enable SS0
 }

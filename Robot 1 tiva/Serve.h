@@ -6,6 +6,7 @@
 #include "MotorInit.h"
 #include "Motion.h"
 #include "spi.h"
+#include "ADC.h"
 extern unsigned long State ;
 
 

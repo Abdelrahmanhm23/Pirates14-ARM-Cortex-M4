@@ -69,6 +69,9 @@ extern char POLE4 ;        // UP
 extern char VERTICAL_LINE ;  // DOWN
 extern char LINE  ;          //RIGHT
 extern char R2;             // R2
+extern char L2;             // L2
+extern char UP ;
+
 uint32_t ReadData() ;
 
 #endif

@@ -16,7 +16,6 @@
  int i=0;
 int a=0;
 unsigned long servepwm=8000 ;
-
 //uint32_t A[100]={0};
 //uint32_t B[100]={0};
 //uint32_t C[100]={0};
@@ -42,6 +41,7 @@ int main()
 	TIVA1();
 	while(1)
 	{
+	
 	Data();
 	/*   if(ReadData()==LIFTall_UP)  // UP
 		{digitalWrite(ServeMotorCW,HIGH);} 
@@ -196,16 +196,16 @@ Delay1ms(5);
 	a=50;}
 	//-------------------------------------------------------------	
 		if (ReadData()==POLE2)
-	{Pole2(2746,3100,1796,9500);}
+	{Pole2(3250,3650,2630,9500);}
 	//-------------------------------------------------------------	
 	if (ReadData()==POLE3)
-	{Pole3(500,500,500,1550);}
+	{Pole1(500,500,500,1550);}
 	//-------------------------------------------------------------		
 	if (ReadData()==POLE4)
-	{Pole4(135,135,135,1550);}
+	{Pole4(0,0,0,1550);}
 	//----------------------------------------------------------
 	if (ReadData()==POLE5)
-	{Pole5(135,135,135,1550);}
+	{Pole5(0,0,0,1550);}
 //-------------------------------------------------------------	
 	if (ReadData()==LINE)        //RIGHT
 	{while(1)
@@ -246,14 +246,32 @@ Delay1ms(5);
 		else if(ReadData()==CCW)      // right analog left (CCW)
 		{CounterClockWise();}
 		else if(ReadData()==stop)
-		{Stop();}
+		{Stop();
+		MotorStop(Motor10);}
 		else if(ReadData()==ServeStart)  // R1
 		{serve();}
 		else if(ReadData()==ServeStop)   // L1
 		{servestop();}
 		else if(ReadData()==LIFT_STOP)
-		{liftersStop();}
+		{liftersStop();
+		MotorStop(Motor10);}
+		else if(ReadData()==R2)
+		{
+		PD2 &= ~0x04;
+	analogWrite(Motor10,5000) ;
+		}
+				else if(ReadData()==L2)   // L2
+		{
+		PD2 |= 0x04;
+	analogWrite(Motor10,5000) ;
+		}
 		
+				else if(ReadData()==UP)   // L2
+		{
+	digitalWrite(ServePiston,HIGH);
+					Delay1ms(150);
+		digitalWrite(ServePiston,LOW);
+		}
 	if (ReadData()==0x23)
 	{break;}
 	}
