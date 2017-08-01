@@ -4,7 +4,7 @@ ROBOCON Egypt's Champion
 ROBOCON Helwan University Champion
 
 
-Robocon achievemnets :
+Robocon achievements :
 
  2014 : 6th place & best innovation award - local ABU ROBOCON 2014-Salute to parenthood.
  
