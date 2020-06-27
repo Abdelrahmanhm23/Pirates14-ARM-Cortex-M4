@@ -4,7 +4,7 @@ This repository made by PIRATES team members (Robocon 2015 Egypt's champions)
 
 It includes all the necessary drivers to control 2017's theme Robot using two arm cortex-m4 (tiva c) microcontrollers and one arduino mega. Based on SPI communication between the three
 
-System Includes: - 2 Tivas (used for robot control) - 1 arduino (used to connect a ps3 controller and send data to tivas using spi commuinication) - 8 channel ldr line sensor - 1 channel ldr line sensor - 3 optical encoders - 3 object detection sensors - 2 IR sensors - 10 Motors - 3 Pistons
+System Includes: - 2 Tivas (used for robot control) - 1 arduino (used to connect a ps3 controller and send data to tivas using spi commuinication) - 8 channel ldr line sensor - 1 channel ldr line sensor - 3 optical encoders - 3 object detection sensors - 2 IR sensors - 10 Motors - 3 Air Valves
 
 ***************************************************************************************************************************************
 ROBOCON Egypt's Champion
